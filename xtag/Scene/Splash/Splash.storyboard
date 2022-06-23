@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zyl-gj-rdI">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--SplashVC-->
+        <scene sceneID="dk5-CA-Rij">
+            <objects>
+                <viewController id="zyl-gj-rdI" customClass="SplashVC" customModule="xtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5qL-dV-owe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_xtag_logo" translatesAutoresizingMaskIntoConstraints="NO" id="jL1-j2-Nrd">
+                                <rect key="frame" x="110.5" y="354" width="193" height="88"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="JeD-qw-PkE"/>
+                        <color key="backgroundColor" name="Grey100"/>
+                        <constraints>
+                            <constraint firstItem="jL1-j2-Nrd" firstAttribute="centerY" secondItem="JeD-qw-PkE" secondAttribute="centerY" constant="-55" id="0Mj-WY-AVK"/>
+                            <constraint firstItem="jL1-j2-Nrd" firstAttribute="centerX" secondItem="JeD-qw-PkE" secondAttribute="centerX" id="z28-YV-Icg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="ccw-ee-6QG" kind="show" identifier="segue_tab" animates="NO" id="hCH-jD-CxZ"/>
+                        <segue destination="gH9-Fp-bgU" kind="show" identifier="segue_login" animates="NO" id="WbR-f9-I77"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eEh-dE-Vw7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+        <!--Tab-->
+        <scene sceneID="Qi2-Cr-byJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Tab" id="ccw-ee-6QG" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="TPy-fi-U1m"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="75D-qi-YDb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="208"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="eaX-d8-YaP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="gH9-Fp-bgU" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="HiJ-hx-s1b"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sfj-um-LrW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="splash_xtag_logo" width="193" height="88"/>
+        <namedColor name="Grey100">
+            <color red="0.97299998998641968" green="0.97299998998641968" blue="0.97299998998641968" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XTBottomBar" customModule="xtag" customModuleProvider="target">
+            <connections>
+                <outlet property="mainButton" destination="hCU-0W-pEl" id="Ddu-wE-ruK"/>
+                <outlet property="myPageButton" destination="5Jt-i5-VKZ" id="cUr-If-YHv"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="186" height="56"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EDC-fC-xc7">
+                    <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Bj-9d-VOw">
+                            <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="icon_bottom_plus"/>
+                            <connections>
+                                <action selector="plusBtnPressed:" destination="-1" eventType="touchUpInside" id="J82-Jy-UEY"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="EDC-fC-xc7" secondAttribute="height" multiplier="1:1" id="MPb-Ca-dSA"/>
+                        <constraint firstAttribute="trailing" secondItem="5Bj-9d-VOw" secondAttribute="trailing" id="Tit-Vr-vSz"/>
+                        <constraint firstItem="5Bj-9d-VOw" firstAttribute="top" secondItem="EDC-fC-xc7" secondAttribute="top" id="XIM-1m-xJO"/>
+                        <constraint firstAttribute="bottom" secondItem="5Bj-9d-VOw" secondAttribute="bottom" id="Zy2-9C-bsj"/>
+                        <constraint firstItem="5Bj-9d-VOw" firstAttribute="leading" secondItem="EDC-fC-xc7" secondAttribute="leading" id="jJW-Gh-Fcx"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerradius">
+                            <real key="value" value="28"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Fcw-Ra-SyS">
+                    <rect key="frame" x="62" y="0.0" width="124" height="56"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCU-0W-pEl">
+                            <rect key="frame" x="0.0" y="0.0" width="62" height="56"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="icon_bottom_house_off"/>
+                            <state key="selected" image="icon_bottom_house_on"/>
+                            <connections>
+                                <action selector="mainBtnPressed:" destination="-1" eventType="touchUpInside" id="iEQ-5b-kiP"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Jt-i5-VKZ">
+                            <rect key="frame" x="62" y="0.0" width="62" height="56"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="icon_bottom_user_off"/>
+                            <state key="selected" image="icon_bottom_user_on"/>
+                            <connections>
+                                <action selector="myPageBtnPressed:" destination="-1" eventType="touchUpInside" id="yx9-8H-g5Y"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" red="0.10588235294117647" green="0.11372549019607843" blue="0.12156862745098039" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Fcw-Ra-SyS" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="4in-aE-Yug"/>
+                <constraint firstItem="EDC-fC-xc7" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="Pnu-W2-cps"/>
+                <constraint firstItem="EDC-fC-xc7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="fJI-pF-o1X"/>
+                <constraint firstItem="Fcw-Ra-SyS" firstAttribute="leading" secondItem="EDC-fC-xc7" secondAttribute="trailing" constant="6" id="ggR-cW-LbB"/>
+                <constraint firstItem="Fcw-Ra-SyS" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="oKR-nt-hlC"/>
+                <constraint firstItem="Fcw-Ra-SyS" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="p55-Ft-Mkt"/>
+                <constraint firstItem="EDC-fC-xc7" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="tDa-bS-Ft0"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerradius">
+                    <real key="value" value="28"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="139" y="98"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_bottom_house_off" width="20" height="20"/>
+        <image name="icon_bottom_house_on" width="20" height="20"/>
+        <image name="icon_bottom_plus" width="56" height="56"/>
+        <image name="icon_bottom_user_off" width="20" height="19.333333969116211"/>
+        <image name="icon_bottom_user_on" width="20" height="19.333333969116211"/>
+    </resources>
+</document>

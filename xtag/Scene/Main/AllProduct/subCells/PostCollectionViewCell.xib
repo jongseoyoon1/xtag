@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.ttf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PostCollectionViewCell" id="gTV-IL-0wX" customClass="PostCollectionViewCell" customModule="xtag" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="206" height="308"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="206" height="308"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ei7-LW-sCL">
+                        <rect key="frame" x="0.0" y="0.0" width="206" height="308"/>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iDl-EL-wvc">
+                        <rect key="frame" x="8" y="8" width="26" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="5cY-vY-1m0"/>
+                            <constraint firstAttribute="width" constant="26" id="MeA-KO-Dmc"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderwidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerradius">
+                                <real key="value" value="13"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bordercolor">
+                                <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLF-K4-CCz">
+                        <rect key="frame" x="42" y="13" width="60" height="16"/>
+                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="13"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="ei7-LW-sCL" firstAttribute="trailing" secondItem="ZTg-uK-7eu" secondAttribute="trailing" id="FMl-0E-N05"/>
+                <constraint firstItem="ei7-LW-sCL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="IwN-J6-uhG"/>
+                <constraint firstAttribute="top" secondItem="iDl-EL-wvc" secondAttribute="top" constant="-8" id="Src-zd-GOt"/>
+                <constraint firstItem="iDl-EL-wvc" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="8" id="g6J-EA-cmU"/>
+                <constraint firstItem="ei7-LW-sCL" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="gDr-LC-6R9"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="ei7-LW-sCL" secondAttribute="bottom" id="gbs-jI-QlT"/>
+                <constraint firstItem="FLF-K4-CCz" firstAttribute="leading" secondItem="iDl-EL-wvc" secondAttribute="trailing" constant="8" id="jbQ-IJ-kYk"/>
+                <constraint firstItem="FLF-K4-CCz" firstAttribute="centerY" secondItem="iDl-EL-wvc" secondAttribute="centerY" id="nlC-Ip-P3L"/>
+            </constraints>
+            <size key="customSize" width="206" height="308"/>
+            <connections>
+                <outlet property="postImageView" destination="ei7-LW-sCL" id="WMC-X3-tmR"/>
+                <outlet property="profileImageView" destination="iDl-EL-wvc" id="Cg8-QY-MVk"/>
+                <outlet property="userNameLabel" destination="FLF-K4-CCz" id="vXm-89-NSc"/>
+            </connections>
+            <point key="canvasLocation" x="244.92753623188409" y="218.30357142857142"/>
+        </collectionViewCell>
+    </objects>
+</document>
