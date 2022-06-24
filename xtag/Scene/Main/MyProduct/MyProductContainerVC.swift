@@ -1,29 +1,27 @@
 //
-//  AllProductContainerVC.swift
+//  MyProductContainerVC.swift
 //  xtag
 //
-//  Created by Yoon on 2022/06/23.
+//  Created by Yoon on 2022/06/24.
 //
 
 import UIKit
 import Combine
 
-class AllProductContainerVC: UIViewController {
+class MyProductContainerVC: UIViewController {
     
     @IBOutlet weak var containerView: UIView!
-    
-    private var allProductVC: AllProductVC!
-    private var categoryCollectionVC : CategoryCollectionVC!
+    private var myProductVC: MyProductVC!
+    private var myCategoryCollectionVC: MyCategoryCollectionVC!
+
     
     private var subscriptions = Set<AnyCancellable>()
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.navigationController?.navigationBar.isHidden = true
         
-        allProductVC = children.first! as! AllProductVC
+        myProductVC = children.first! as! MyProductVC
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -31,8 +29,8 @@ class AllProductContainerVC: UIViewController {
         layout.minimumInteritemSpacing = 22
         layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         
-        categoryCollectionVC = CategoryCollectionVC(collectionViewLayout: layout)
-        categoryCollectionVC.CELL_WIDTH = (self.view.frame.size.width - 32 - 44) / 3
+        myCategoryCollectionVC = MyCategoryCollectionVC(collectionViewLayout: layout)
+        myCategoryCollectionVC.CELL_WIDTH = (self.view.frame.size.width - 32 - 44) / 3
         //UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryCollectionVC") as! CategoryCollectionVC
         
         
@@ -43,27 +41,23 @@ class AllProductContainerVC: UIViewController {
             .sink { _ in
                 
             } receiveValue: { [self] value in
-                print("isOpen = \(value)")
+                print("isOpen2 = \(value)")
                 if value {
-                    if (children.first! is AllProductVC) {
-                        cycle(from: allProductVC, to: categoryCollectionVC)
+                    if (children.first! is MyProductVC) {
+                        cycle(from: myProductVC, to: myCategoryCollectionVC)
                         CategoryManager.shared.bottomBarIsOpen = false
                     }
                     
                 } else {
-                    if (children.first! is CategoryCollectionVC) {
-                        cycle(from: categoryCollectionVC, to: allProductVC)
+                    if (children.first! is MyCategoryCollectionVC) {
+                        cycle(from: myCategoryCollectionVC, to: myProductVC)
                         CategoryManager.shared.bottomBarIsOpen = true
                         CategoryManager.shared.mainSelectedSmallCategory = nil
                     }
                 }
             }
             .store(in: &subscriptions)
-
     }
-    
-   
-    
     
     func cycle(from oldVC: UIViewController, to newVC: UIViewController) {
         oldVC.willMove(toParent: nil)
@@ -73,7 +67,7 @@ class AllProductContainerVC: UIViewController {
         
 //        transition(from: oldVC, to: newVC, duration: 0.0, options: .transitionCrossDissolve, animations: {
 //        }, completion: { finished in
-//            
+//
 //        })
         
         oldVC.removeFromParent()

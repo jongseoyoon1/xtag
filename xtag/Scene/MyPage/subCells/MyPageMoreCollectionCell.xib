@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gTV-IL-0wX" customClass="MyPageMoreCollectionCell" customModule="xtag" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="121" height="121"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="121" height="121"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YMe-Wq-Ghi">
+                        <rect key="frame" x="0.0" y="0.0" width="121" height="121"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hobby_more" translatesAutoresizingMaskIntoConstraints="NO" id="0Kd-EN-Xch">
+                                <rect key="frame" x="42.5" y="42.5" width="36" height="36"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" name="Grey900"/>
+                        <constraints>
+                            <constraint firstItem="0Kd-EN-Xch" firstAttribute="centerX" secondItem="YMe-Wq-Ghi" secondAttribute="centerX" id="GcY-jJ-1cZ"/>
+                            <constraint firstItem="0Kd-EN-Xch" firstAttribute="centerY" secondItem="YMe-Wq-Ghi" secondAttribute="centerY" id="WxE-TU-nx4"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="YMe-Wq-Ghi" secondAttribute="trailing" id="6bG-3x-yp3"/>
+                <constraint firstAttribute="bottom" secondItem="YMe-Wq-Ghi" secondAttribute="bottom" id="XI8-u7-utp"/>
+                <constraint firstItem="YMe-Wq-Ghi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Ytw-eu-x0h"/>
+                <constraint firstItem="YMe-Wq-Ghi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="gl8-So-2pA"/>
+            </constraints>
+            <size key="customSize" width="121" height="121"/>
+            <point key="canvasLocation" x="183.33333333333334" y="155.69196428571428"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="hobby_more" width="36" height="36"/>
+        <namedColor name="Grey900">
+            <color red="0.10588235294117647" green="0.11372549019607843" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

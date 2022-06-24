@@ -37,6 +37,7 @@ class XTMainNavigationBar: XIBView {
     
     private var subscriptions = Set<AnyCancellable>()
     
+    @IBOutlet weak var toggleButton: UIButton!
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -51,6 +52,8 @@ class XTMainNavigationBar: XIBView {
     }
     
     private func setupButtons() {
+        toggleButton.isExclusiveTouch = false
+        
         allProductButton.didTab = { [self] in
             state = .ALL
             
@@ -116,6 +119,8 @@ class XTMainNavigationBar: XIBView {
         
         CategoryManager.shared.bottomBarIsOpen = categoryToggleButton.isSelected
         CategoryManager.shared.isOpen = categoryToggleButton.isSelected
+        
+
     }
     @IBAction func deleteSmallCategoryPressed(_ sender: Any) {
         CategoryManager.shared.mainSelectedSmallCategory = nil

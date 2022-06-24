@@ -20,6 +20,8 @@ class MyProductVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.isHidden = true
 
         setupCollectionView()
         getPost()
@@ -68,7 +70,7 @@ extension MyProductVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         let ry = CGFloat(ratio!.getRatioRy())
         
         let width = (self.view.frame.size.width - 2) / 2
-        var height = width * rx / ry
+        var height = width * ry / rx
         
         if rx == 0 || ry == 0 {
             height = width

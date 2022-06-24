@@ -23,6 +23,7 @@
                 <outlet property="smallCategoryLabel" destination="wfO-Wb-KgK" id="rDs-al-wSb"/>
                 <outlet property="smallCategoryView" destination="wr6-rN-Gsh" id="4QM-q1-zwO"/>
                 <outlet property="stackView" destination="jgN-Nr-ytk" id="9Ge-ud-LHR"/>
+                <outlet property="toggleButton" destination="IHx-40-A2L" id="sc4-OV-nMF"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

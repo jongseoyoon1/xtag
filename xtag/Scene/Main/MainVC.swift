@@ -19,7 +19,7 @@ class MainVC: TabmanViewController {
         
         // Do any additional setup after loading the view.
         let allProductVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AllProductVC") as! UINavigationController
-        let myProductVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyProductVC") as! MyProductVC
+        let myProductVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyProductVC") as! UINavigationController
         let followingProductVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FollowingProductVC") as! FollowingProductVC
         
         viewControllers.append(allProductVC)

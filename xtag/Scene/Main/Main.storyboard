@@ -43,7 +43,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="Grey900"/>
                         <constraints>
                             <constraint firstItem="Oro-IM-1p3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="H6o-f8-mkO"/>
                             <constraint firstItem="Oro-IM-1p3" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="RNu-v6-tRZ"/>
@@ -59,16 +59,31 @@
             </objects>
             <point key="canvasLocation" x="103" y="68"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ns2-9A-JhZ">
+            <objects>
+                <navigationController storyboardIdentifier="MyProductVC" navigationBarHidden="YES" id="JxJ-N9-94M" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rlC-2J-u3G">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dy8-Eh-4dN" kind="relationship" relationship="rootViewController" id="whp-Qp-8Ju"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sUo-f6-AoW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1230" y="85"/>
+        </scene>
         <!--All ProductVC-->
         <scene sceneID="2gI-rT-fzR">
             <objects>
                 <viewController id="bNv-dr-EKO" customClass="AllProductVC" customModule="xtag" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K6G-pB-goE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="714"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rWD-cQ-6wh">
-                                <rect key="frame" x="0.0" y="44" width="414" height="670"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="714"/>
                                 <color key="backgroundColor" name="Grey900"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UTI-FR-q6G">
                                     <size key="itemSize" width="128" height="128"/>
@@ -95,18 +110,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ikM-xO-vR9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1745" y="-605"/>
+            <point key="canvasLocation" x="2797" y="-619"/>
         </scene>
         <!--My ProductVC-->
         <scene sceneID="gII-j0-iYa">
             <objects>
-                <viewController storyboardIdentifier="MyProductVC" id="xoi-up-HW5" customClass="MyProductVC" customModule="xtag" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xoi-up-HW5" customClass="MyProductVC" customModule="xtag" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SKW-Tt-xDF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RD7-mm-prt">
-                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="714"/>
                                 <color key="backgroundColor" name="Grey900"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4nd-XX-W2K">
                                     <size key="itemSize" width="128" height="128"/>
@@ -132,7 +147,7 @@
                             <constraint firstItem="lA0-Wd-nUc" firstAttribute="trailing" secondItem="RD7-mm-prt" secondAttribute="trailing" id="Djh-eV-tR3"/>
                             <constraint firstItem="lA0-Wd-nUc" firstAttribute="leading" secondItem="RD7-mm-prt" secondAttribute="leading" id="SE3-Ov-m4c"/>
                             <constraint firstItem="lA0-Wd-nUc" firstAttribute="bottom" secondItem="RD7-mm-prt" secondAttribute="bottom" id="Y1j-yf-vn8"/>
-                            <constraint firstItem="RD7-mm-prt" firstAttribute="top" secondItem="lA0-Wd-nUc" secondAttribute="top" constant="60" id="vt5-gr-uvt"/>
+                            <constraint firstItem="RD7-mm-prt" firstAttribute="top" secondItem="lA0-Wd-nUc" secondAttribute="top" id="vt5-gr-uvt"/>
                         </constraints>
                     </view>
                     <connections>
@@ -141,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zSd-Sk-gqG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1694" y="68"/>
+            <point key="canvasLocation" x="2799" y="68"/>
         </scene>
         <!--Following ProductVC-->
         <scene sceneID="vP0-GV-Lea">
@@ -156,14 +171,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jx6-wp-RK1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2441" y="68"/>
+            <point key="canvasLocation" x="1781" y="1930"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GsO-xL-3wM">
             <objects>
-                <navigationController storyboardIdentifier="AllProductVC" id="C6n-P8-ekC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AllProductVC" navigationBarHidden="YES" id="C6n-P8-ekC" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XzX-xV-22J">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -172,7 +186,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cHr-gL-RC1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="180" y="-605"/>
+            <point key="canvasLocation" x="1232" y="-619"/>
         </scene>
         <!--All Product ContainerVC-->
         <scene sceneID="rnZ-c1-QYE">
@@ -183,7 +197,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="goC-rt-2fD">
-                                <rect key="frame" x="0.0" y="148" width="414" height="714"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
                                 <color key="backgroundColor" name="Grey900"/>
                                 <connections>
                                     <segue destination="bNv-dr-EKO" kind="embed" id="M7A-dx-KeE"/>
@@ -206,7 +220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y3s-eZ-9iM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="972" y="-605"/>
+            <point key="canvasLocation" x="2023" y="-619"/>
         </scene>
         <!--Category CollectionVC-->
         <scene sceneID="R66-af-iYl">
@@ -231,7 +245,41 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ga-UD-xkE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2499" y="-605"/>
+            <point key="canvasLocation" x="3551" y="-619"/>
+        </scene>
+        <!--My Product ContainerVC-->
+        <scene sceneID="uGO-Lc-ZVB">
+            <objects>
+                <viewController id="dy8-Eh-4dN" customClass="MyProductContainerVC" customModule="xtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W9j-rm-Lbv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGd-1s-ls6">
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <color key="backgroundColor" name="Grey900"/>
+                                <connections>
+                                    <segue destination="xoi-up-HW5" kind="embed" id="SSa-7U-7Js"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rxj-Ah-Gnx"/>
+                        <color key="backgroundColor" name="Grey900"/>
+                        <constraints>
+                            <constraint firstItem="fGd-1s-ls6" firstAttribute="top" secondItem="rxj-Ah-Gnx" secondAttribute="top" constant="60" id="8L1-75-9AT"/>
+                            <constraint firstItem="rxj-Ah-Gnx" firstAttribute="bottom" secondItem="fGd-1s-ls6" secondAttribute="bottom" id="96M-1j-fvM"/>
+                            <constraint firstItem="rxj-Ah-Gnx" firstAttribute="trailing" secondItem="fGd-1s-ls6" secondAttribute="trailing" id="JeU-cH-soh"/>
+                            <constraint firstItem="fGd-1s-ls6" firstAttribute="leading" secondItem="rxj-Ah-Gnx" secondAttribute="leading" id="rHi-95-9Ir"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="0hh-Fd-xzc"/>
+                    <connections>
+                        <outlet property="containerView" destination="fGd-1s-ls6" id="zTg-EB-7oj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FKU-vT-JQI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2022" y="84"/>
         </scene>
     </scenes>
     <resources>

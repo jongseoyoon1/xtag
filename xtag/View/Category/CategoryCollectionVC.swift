@@ -16,6 +16,14 @@ class CategoryCollectionVC: UICollectionViewController, UICollectionViewDelegate
     public var smallCategoryList: [SmallCategoryModel] = []
     public var selectedCategoryList: [String] = []
     
+    lazy var applyButton: UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        return btn
+    }()
+    
     public var CELL_WIDTH : CGFloat = 0.0
     
     private var selectedSmallCategory: SmallCategoryModel? {
@@ -45,6 +53,7 @@ class CategoryCollectionVC: UICollectionViewController, UICollectionViewDelegate
         self.collectionView!.register(SmallCategoryCell.self, forCellWithReuseIdentifier: SmallCategoryCell.IDENTIFIER)
         
         getLargeCategory()
+        setupApplyButton()
         
         collectionView.autoresizesSubviews = false
         
@@ -53,6 +62,10 @@ class CategoryCollectionVC: UICollectionViewController, UICollectionViewDelegate
             self.selectedSmallCategory = smallCategoryModel
         }
         .store(in: &subscriptions)
+    }
+    
+    private func setupApplyButton() {
+        
     }
     
     private func getLargeCategory() {

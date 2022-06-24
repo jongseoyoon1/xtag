@@ -12,6 +12,7 @@ extension HTTPSession {
         case categoryLarge
         case categorySmall(largeCategoryId: String)
         case categorySearch(keyword: String)
+        case getUserCategory(userId: String)
         
         var path: String {
             switch self {
@@ -21,6 +22,8 @@ extension HTTPSession {
                 return "category/\(largeCategoryId)/small"
             case .categorySearch(let keyword):
                 return "category/small/search?keyword=\(keyword)"
+            case .getUserCategory(let userId):
+                return "category/user/\(userId)/all"
             default:
                 return ""
             }
@@ -47,6 +50,39 @@ extension HTTPSession {
     
     func categorySmall(largeCategoryId: String, completion: @escaping([SmallCategoryModel]?, Error?) -> Void) {
         request(request: Category.categorySmall(largeCategoryId: largeCategoryId)).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    
+                    
+                    
+                    if let data = dict["result"] as? [Dictionary<String, Any>] {
+                        var result : [SmallCategoryModel] = []
+                        for dt in data {
+                            let rst = SmallCategoryModel(JSON: dt as! [String:Any])
+                            result.append(rst!)
+                        }
+                        
+                        completion(result,nil)
+                    } else {
+                        completion(nil, nil)
+                    }
+                } else {
+                    completion(nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                completion(nil, error)
+            }
+        
+        }
+        
+    }
+    
+    func getUserCategory(userId: String, completion: @escaping([SmallCategoryModel]?, Error?) -> Void) {
+        request(request: Category.getUserCategory(userId: userId)).responseJSON { response in
             switch response.result {
             case .success(let result):
                 if let dict = result as? Dictionary<String, Any> {
@@ -110,4 +146,6 @@ extension HTTPSession {
         
         }
     }
+    
+    
 }
