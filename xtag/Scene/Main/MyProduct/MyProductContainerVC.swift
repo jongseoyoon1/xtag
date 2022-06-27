@@ -65,13 +65,13 @@ class MyProductContainerVC: UIViewController {
         
         newVC.view.frame = containerView.bounds
         
-//        transition(from: oldVC, to: newVC, duration: 0.0, options: .transitionCrossDissolve, animations: {
-//        }, completion: { finished in
-//
-//        })
-        
-        oldVC.removeFromParent()
-        newVC.didMove(toParent: self)
+        transition(from: oldVC, to: newVC, duration: 0.0, options: .transitionCrossDissolve, animations: {
+        }, completion: { finished in
+            
+            oldVC.removeFromParent()
+            newVC.didMove(toParent: self)
+
+        })
     }
     
     func display(_ child: UIViewController) {

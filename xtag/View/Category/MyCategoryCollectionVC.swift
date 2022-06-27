@@ -41,6 +41,8 @@ class MyCategoryCollectionVC: UICollectionViewController, UICollectionViewDelega
             self.selectedSmallCategory = smallCategoryModel
         }
         .store(in: &subscriptions)
+        
+        getUserCategory()
     }
     
     private func getUserCategory() {
