@@ -5,6 +5,8 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -204,6 +206,26 @@
                                                     <constraint firstAttribute="height" constant="1" id="494-Sb-ihA"/>
                                                 </constraints>
                                             </view>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Xm2-cT-ZSM">
+                                                <rect key="frame" x="0.0" y="256" width="414" height="514"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xQN-c1-Sgj">
+                                                    <size key="itemSize" width="128" height="128"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sTE-oM-TeY">
+                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="C49-yf-VVM">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </collectionViewCellContentView>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -215,6 +237,7 @@
                                             <constraint firstItem="hbO-m5-ljr" firstAttribute="leading" secondItem="F8i-JS-ezl" secondAttribute="leading" constant="16" id="EuT-MX-q7h"/>
                                             <constraint firstItem="mna-RC-w9g" firstAttribute="leading" secondItem="uHw-j2-96d" secondAttribute="leading" id="Gce-dz-lJX"/>
                                             <constraint firstItem="mJb-9o-wr0" firstAttribute="top" secondItem="hbO-m5-ljr" secondAttribute="bottom" constant="16" id="Kfe-lB-ORd"/>
+                                            <constraint firstAttribute="trailing" secondItem="Xm2-cT-ZSM" secondAttribute="trailing" id="MTj-qH-Q8O"/>
                                             <constraint firstAttribute="trailing" secondItem="tdB-24-qDk" secondAttribute="trailing" constant="20" id="Poa-kZ-I2K"/>
                                             <constraint firstItem="mJb-9o-wr0" firstAttribute="leading" secondItem="F8i-JS-ezl" secondAttribute="leading" id="REJ-w5-aNh"/>
                                             <constraint firstItem="hbO-m5-ljr" firstAttribute="top" secondItem="tdB-24-qDk" secondAttribute="bottom" constant="22" id="TEM-56-hEO"/>
@@ -230,9 +253,12 @@
                                             <constraint firstItem="gc7-RU-QLy" firstAttribute="top" secondItem="uXm-dK-ZDu" secondAttribute="bottom" constant="2" id="gz5-AR-Im6"/>
                                             <constraint firstItem="qfV-tD-hkB" firstAttribute="top" secondItem="F8i-JS-ezl" secondAttribute="top" constant="8" id="hAZ-Jt-rMf"/>
                                             <constraint firstAttribute="trailing" secondItem="mJb-9o-wr0" secondAttribute="trailing" id="iuO-Aq-ccD"/>
+                                            <constraint firstAttribute="bottom" secondItem="Xm2-cT-ZSM" secondAttribute="bottom" id="l95-3F-jS4"/>
                                             <constraint firstItem="CAV-Yv-0h8" firstAttribute="top" secondItem="gc7-RU-QLy" secondAttribute="bottom" id="rRt-wh-c99"/>
                                             <constraint firstItem="gc7-RU-QLy" firstAttribute="leading" secondItem="qfV-tD-hkB" secondAttribute="trailing" constant="16" id="sNN-PE-nCF"/>
                                             <constraint firstItem="faz-3s-QEq" firstAttribute="trailing" secondItem="mJb-9o-wr0" secondAttribute="trailing" id="upw-2Q-eIv"/>
+                                            <constraint firstItem="Xm2-cT-ZSM" firstAttribute="top" secondItem="faz-3s-QEq" secondAttribute="bottom" id="xEm-4k-kGA"/>
+                                            <constraint firstItem="Xm2-cT-ZSM" firstAttribute="leading" secondItem="F8i-JS-ezl" secondAttribute="leading" id="xpx-5X-o1S"/>
                                             <constraint firstItem="uHw-j2-96d" firstAttribute="centerY" secondItem="gc7-RU-QLy" secondAttribute="centerY" id="zaF-LX-J2a"/>
                                         </constraints>
                                     </view>
@@ -262,6 +288,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionMoreButton" destination="lZF-2g-8dK" id="edA-Zd-0RQ"/>
+                        <outlet property="collectionVIew" destination="Xm2-cT-ZSM" id="1ut-f2-CCl"/>
                         <outlet property="contentView" destination="F8i-JS-ezl" id="dhF-eV-QgS"/>
                         <outlet property="contentViewHeight" destination="YAg-Qr-nZe" id="Ufq-TE-vVK"/>
                         <outlet property="descroptionLabel" destination="tdB-24-qDk" id="mfp-wu-Fd5"/>
@@ -297,5 +324,8 @@
         <namedColor name="Grey900">
             <color red="0.10588235294117647" green="0.11372549019607843" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
