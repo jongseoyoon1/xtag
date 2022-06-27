@@ -158,20 +158,36 @@
             </objects>
             <point key="canvasLocation" x="2799" y="68"/>
         </scene>
-        <!--Following ProductVC-->
+        <!--Following Product ContainerVC-->
         <scene sceneID="vP0-GV-Lea">
             <objects>
-                <viewController storyboardIdentifier="FollowingProductVC" id="GLh-pj-q2d" customClass="FollowingProductVC" customModule="xtag" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GLh-pj-q2d" customClass="FollowingProductContainerVC" customModule="xtag" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KmE-VR-J7I">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pxj-tV-SUq">
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <color key="backgroundColor" name="Grey900"/>
+                                <connections>
+                                    <segue destination="lm3-CW-2zz" kind="embed" id="GWd-bs-mtM"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="elJ-1V-Ss6"/>
-                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                        <color key="backgroundColor" name="Grey900"/>
+                        <constraints>
+                            <constraint firstItem="Pxj-tV-SUq" firstAttribute="trailing" secondItem="elJ-1V-Ss6" secondAttribute="trailing" id="Aog-NC-mOZ"/>
+                            <constraint firstItem="elJ-1V-Ss6" firstAttribute="top" secondItem="Pxj-tV-SUq" secondAttribute="top" constant="-60" id="DeX-oG-9hk"/>
+                            <constraint firstItem="elJ-1V-Ss6" firstAttribute="bottom" secondItem="Pxj-tV-SUq" secondAttribute="bottom" id="FlO-an-vpO"/>
+                            <constraint firstItem="Pxj-tV-SUq" firstAttribute="leading" secondItem="elJ-1V-Ss6" secondAttribute="leading" id="UBN-eF-Dxf"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="im8-8l-ojY"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jx6-wp-RK1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1781" y="1930"/>
+            <point key="canvasLocation" x="2022" y="844"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GsO-xL-3wM">
@@ -281,6 +297,67 @@
             </objects>
             <point key="canvasLocation" x="2022" y="84"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3Yf-uY-LE2">
+            <objects>
+                <navigationController storyboardIdentifier="FollowingProductVC" navigationBarHidden="YES" id="xiD-Rn-EHw" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2vm-mG-kaZ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="GLh-pj-q2d" kind="relationship" relationship="rootViewController" id="8z6-ll-ebK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GxP-io-Qtv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1232" y="844"/>
+        </scene>
+        <!--Following ProductVC-->
+        <scene sceneID="m6X-rQ-VZ2">
+            <objects>
+                <viewController id="lm3-CW-2zz" customClass="FollowingProductVC" customModule="xtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yid-HO-F6i">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g3y-iK-Dt7">
+                                <rect key="frame" x="0.0" y="44" width="414" height="714"/>
+                                <color key="backgroundColor" name="Grey900"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LpJ-98-UVY">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="NqL-6y-LQG">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="sqP-8Y-MLU">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Puj-hY-1o9"/>
+                        <color key="backgroundColor" name="Grey900"/>
+                        <constraints>
+                            <constraint firstItem="Puj-hY-1o9" firstAttribute="bottom" secondItem="g3y-iK-Dt7" secondAttribute="bottom" id="XYR-QR-Sa2"/>
+                            <constraint firstItem="g3y-iK-Dt7" firstAttribute="top" secondItem="Puj-hY-1o9" secondAttribute="top" id="aHg-7j-c7m"/>
+                            <constraint firstItem="Puj-hY-1o9" firstAttribute="trailing" secondItem="g3y-iK-Dt7" secondAttribute="trailing" id="rf0-ea-d2r"/>
+                            <constraint firstItem="Puj-hY-1o9" firstAttribute="leading" secondItem="g3y-iK-Dt7" secondAttribute="leading" id="uOE-dc-vZM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="g3y-iK-Dt7" id="yoF-3D-SNn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dgs-pL-pD8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2800" y="844"/>
+        </scene>
     </scenes>
     <resources>
         <namedColor name="Grey900">
@@ -288,9 +365,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

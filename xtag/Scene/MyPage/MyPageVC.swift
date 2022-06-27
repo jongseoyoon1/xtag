@@ -10,6 +10,11 @@ import Kingfisher
 
 class MyPageVC: UIViewController {
     
+    enum MyPageType: String {
+    case Album = "Album"
+    case Collection = "Collection"
+    }
+    
     /* ScrollView */
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
