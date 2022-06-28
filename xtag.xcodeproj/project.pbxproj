@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5504F31A286A803A0029C242 /* FollowingTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504F318286A803A0029C242 /* FollowingTableCell.swift */; };
+		5504F31B286A803A0029C242 /* FollowingTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5504F319286A803A0029C242 /* FollowingTableCell.xib */; };
 		55116106283E3225002B679E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55116105283E3225002B679E /* AppDelegate.swift */; };
 		55116108283E3225002B679E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55116107283E3225002B679E /* SceneDelegate.swift */; };
 		5511610A283E3225002B679E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55116109283E3225002B679E /* BaseViewController.swift */; };
@@ -162,6 +164,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5504F318286A803A0029C242 /* FollowingTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableCell.swift; sourceTree = "<group>"; };
+		5504F319286A803A0029C242 /* FollowingTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowingTableCell.xib; sourceTree = "<group>"; };
 		55116102283E3225002B679E /* xtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55116105283E3225002B679E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55116107283E3225002B679E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -331,6 +335,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5504F317286A80210029C242 /* subCells */ = {
+			isa = PBXGroup;
+			children = (
+				5504F319286A803A0029C242 /* FollowingTableCell.xib */,
+				5504F318286A803A0029C242 /* FollowingTableCell.swift */,
+			);
+			path = subCells;
+			sourceTree = "<group>";
+		};
 		551160F9283E3225002B679E = {
 			isa = PBXGroup;
 			children = (
@@ -443,7 +456,6 @@
 		5511614F283E3842002B679E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				557AB654285FDCD3007BAB32 /* Category */,
 				55116157283E3A1A002B679E /* XIBView.swift */,
 				55D20CA22862D54100BA5480 /* XTConfirmButton.swift */,
 				55116162283F2511002B679E /* XTNavigationBar.xib */,
@@ -505,16 +517,6 @@
 			path = Color;
 			sourceTree = "<group>";
 		};
-		557AB654285FDCD3007BAB32 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				557AB655285FDCEB007BAB32 /* CategoryCollectionVC.swift */,
-				552148A4286573FA00205DD9 /* MyCategoryCollectionVC.swift */,
-				55E1139028695890007DC6DD /* FollwoingCollectionVC.swift */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
 		55B4DD58284484B600F3C55A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +573,7 @@
 			children = (
 				55DA4E9728582C73003F598A /* subCells */,
 				55BCB9AB284DA714005A60F2 /* AllProductVC.swift */,
+				557AB655285FDCEB007BAB32 /* CategoryCollectionVC.swift */,
 				55EAF7FC2863F26C00503526 /* AllProductContainerVC.swift */,
 			);
 			path = AllProduct;
@@ -580,6 +583,7 @@
 			isa = PBXGroup;
 			children = (
 				55BCB9AD284DA722005A60F2 /* MyProductVC.swift */,
+				552148A4286573FA00205DD9 /* MyCategoryCollectionVC.swift */,
 				552148A228655D1600205DD9 /* MyProductContainerVC.swift */,
 			);
 			path = MyProduct;
@@ -588,7 +592,9 @@
 		55DA4E942858245D003F598A /* FollowingProduct */ = {
 			isa = PBXGroup;
 			children = (
+				5504F317286A80210029C242 /* subCells */,
 				55BCB9AF284DA733005A60F2 /* FollowingProductVC.swift */,
+				55E1139028695890007DC6DD /* FollwoingCollectionVC.swift */,
 				55E1138E28695273007DC6DD /* FollowingProductContainerVC.swift */,
 			);
 			path = FollowingProduct;
@@ -846,6 +852,7 @@
 				552148AB2865972800205DD9 /* MyPageFilterCell.xib in Resources */,
 				55116148283E352F002B679E /* Pretendard-Medium.ttf in Resources */,
 				55116143283E352F002B679E /* Pretendard-ExtraLight.ttf in Resources */,
+				5504F31B286A803A0029C242 /* FollowingTableCell.xib in Resources */,
 				55116149283E352F002B679E /* Pretendard-Thin.ttf in Resources */,
 				55B4DDCD284CF39E00F3C55A /* XTNextButton.xib in Resources */,
 				55116163283F2511002B679E /* XTNavigationBar.xib in Resources */,
@@ -932,6 +939,7 @@
 				55E92B3128573BD300DBA480 /* UserManager.swift in Sources */,
 				55DCB83C2852101D006997F2 /* TabVC.swift in Sources */,
 				55D20CA52862E34800BA5480 /* SignUpNickNameVC.swift in Sources */,
+				5504F31A286A803A0029C242 /* FollowingTableCell.swift in Sources */,
 				55D20CA12862D0AA00BA5480 /* SignUpManager.swift in Sources */,
 				55B4DD49284484AF00F3C55A /* CALayer+Extension.swift in Sources */,
 				55116108283E3225002B679E /* SceneDelegate.swift in Sources */,
@@ -1140,6 +1148,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = SignUp;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1169,6 +1178,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = SignUp;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

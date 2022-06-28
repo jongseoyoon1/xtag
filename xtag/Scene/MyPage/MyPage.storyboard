@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -129,13 +130,13 @@
                                                 <color key="textColor" name="Grey900"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hbO-m5-ljr">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hbO-m5-ljr">
                                                 <rect key="frame" x="16" y="145" width="382" height="54"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="54" id="XG6-ZH-URI"/>
                                                 </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zcY-Lt-2c3">
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zcY-Lt-2c3">
                                                     <size key="itemSize" width="125" height="38"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -287,8 +288,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="categoryCollectionView" destination="hbO-m5-ljr" id="zkN-VH-RPv"/>
                         <outlet property="collectionMoreButton" destination="lZF-2g-8dK" id="edA-Zd-0RQ"/>
-                        <outlet property="collectionVIew" destination="Xm2-cT-ZSM" id="1ut-f2-CCl"/>
+                        <outlet property="collectionView" destination="Xm2-cT-ZSM" id="cQj-8I-dgE"/>
                         <outlet property="contentView" destination="F8i-JS-ezl" id="dhF-eV-QgS"/>
                         <outlet property="contentViewHeight" destination="YAg-Qr-nZe" id="Ufq-TE-vVK"/>
                         <outlet property="descroptionLabel" destination="tdB-24-qDk" id="mfp-wu-Fd5"/>
