@@ -35,6 +35,13 @@
 		55116163283F2511002B679E /* XTNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55116162283F2511002B679E /* XTNavigationBar.xib */; };
 		55116165283F289D002B679E /* XTTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55116164283F289D002B679E /* XTTextField.xib */; };
 		55116167283F28AC002B679E /* XTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55116166283F28AC002B679E /* XTTextField.swift */; };
+		5511F89D286ACCC00049EBD5 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511F89C286ACCC00049EBD5 /* SettingVC.swift */; };
+		5511F8A1286ACFE10049EBD5 /* SettingHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511F89F286ACFE10049EBD5 /* SettingHeaderCell.swift */; };
+		5511F8A2286ACFE10049EBD5 /* SettingHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5511F8A0286ACFE10049EBD5 /* SettingHeaderCell.xib */; };
+		5511F8A5286AD0250049EBD5 /* SettingPushCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511F8A3286AD0250049EBD5 /* SettingPushCell.swift */; };
+		5511F8A6286AD0250049EBD5 /* SettingPushCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5511F8A4286AD0250049EBD5 /* SettingPushCell.xib */; };
+		5511F8A9286AD03E0049EBD5 /* SettingContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511F8A7286AD03E0049EBD5 /* SettingContentCell.swift */; };
+		5511F8AA286AD03E0049EBD5 /* SettingContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5511F8A8286AD03E0049EBD5 /* SettingContentCell.xib */; };
 		552148A328655D1600205DD9 /* MyProductContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552148A228655D1600205DD9 /* MyProductContainerVC.swift */; };
 		552148A5286573FA00205DD9 /* MyCategoryCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552148A4286573FA00205DD9 /* MyCategoryCollectionVC.swift */; };
 		552148A728658A9C00205DD9 /* MakePostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552148A628658A9C00205DD9 /* MakePostManager.swift */; };
@@ -199,6 +206,13 @@
 		55116162283F2511002B679E /* XTNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XTNavigationBar.xib; sourceTree = "<group>"; };
 		55116164283F289D002B679E /* XTTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XTTextField.xib; sourceTree = "<group>"; };
 		55116166283F28AC002B679E /* XTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTTextField.swift; sourceTree = "<group>"; };
+		5511F89C286ACCC00049EBD5 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		5511F89F286ACFE10049EBD5 /* SettingHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderCell.swift; sourceTree = "<group>"; };
+		5511F8A0286ACFE10049EBD5 /* SettingHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingHeaderCell.xib; sourceTree = "<group>"; };
+		5511F8A3286AD0250049EBD5 /* SettingPushCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPushCell.swift; sourceTree = "<group>"; };
+		5511F8A4286AD0250049EBD5 /* SettingPushCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingPushCell.xib; sourceTree = "<group>"; };
+		5511F8A7286AD03E0049EBD5 /* SettingContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingContentCell.swift; sourceTree = "<group>"; };
+		5511F8A8286AD03E0049EBD5 /* SettingContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingContentCell.xib; sourceTree = "<group>"; };
 		552148A228655D1600205DD9 /* MyProductContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProductContainerVC.swift; sourceTree = "<group>"; };
 		552148A4286573FA00205DD9 /* MyCategoryCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCategoryCollectionVC.swift; sourceTree = "<group>"; };
 		552148A628658A9C00205DD9 /* MakePostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostManager.swift; sourceTree = "<group>"; };
@@ -517,6 +531,28 @@
 			path = Color;
 			sourceTree = "<group>";
 		};
+		5511F89B286ACCAB0049EBD5 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				5511F89E286ACF140049EBD5 /* subCells */,
+				5511F89C286ACCC00049EBD5 /* SettingVC.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		5511F89E286ACF140049EBD5 /* subCells */ = {
+			isa = PBXGroup;
+			children = (
+				5511F8A0286ACFE10049EBD5 /* SettingHeaderCell.xib */,
+				5511F89F286ACFE10049EBD5 /* SettingHeaderCell.swift */,
+				5511F8A4286AD0250049EBD5 /* SettingPushCell.xib */,
+				5511F8A3286AD0250049EBD5 /* SettingPushCell.swift */,
+				5511F8A8286AD03E0049EBD5 /* SettingContentCell.xib */,
+				5511F8A7286AD03E0049EBD5 /* SettingContentCell.swift */,
+			);
+			path = subCells;
+			sourceTree = "<group>";
+		};
 		55B4DD58284484B600F3C55A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -630,6 +666,7 @@
 			isa = PBXGroup;
 			children = (
 				55FB4EE92859D18A00309FAC /* subCells */,
+				5511F89B286ACCAB0049EBD5 /* Setting */,
 				55DCB83E285589CC006997F2 /* MyPage.storyboard */,
 				55DCB840285589E0006997F2 /* MyPageVC.swift */,
 			);
@@ -851,8 +888,11 @@
 				55FB4EF42859E8A600309FAC /* GoogleService-Info.plist in Resources */,
 				552148AB2865972800205DD9 /* MyPageFilterCell.xib in Resources */,
 				55116148283E352F002B679E /* Pretendard-Medium.ttf in Resources */,
+				5511F8AA286AD03E0049EBD5 /* SettingContentCell.xib in Resources */,
+				5511F8A2286ACFE10049EBD5 /* SettingHeaderCell.xib in Resources */,
 				55116143283E352F002B679E /* Pretendard-ExtraLight.ttf in Resources */,
 				5504F31B286A803A0029C242 /* FollowingTableCell.xib in Resources */,
+				5511F8A6286AD0250049EBD5 /* SettingPushCell.xib in Resources */,
 				55116149283E352F002B679E /* Pretendard-Thin.ttf in Resources */,
 				55B4DDCD284CF39E00F3C55A /* XTNextButton.xib in Resources */,
 				55116163283F2511002B679E /* XTNavigationBar.xib in Resources */,
@@ -889,12 +929,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				55E1139128695890007DC6DD /* FollwoingCollectionVC.swift in Sources */,
+				5511F89D286ACCC00049EBD5 /* SettingVC.swift in Sources */,
 				55B4DD4F284484AF00F3C55A /* UIColor+Extension.swift in Sources */,
 				5511610A283E3225002B679E /* BaseViewController.swift in Sources */,
 				55DCB84C28559B53006997F2 /* CommonModel.swift in Sources */,
 				552148A728658A9C00205DD9 /* MakePostManager.swift in Sources */,
 				55B4DD56284484AF00F3C55A /* Extension+Designable.swift in Sources */,
 				55E1138F28695273007DC6DD /* FollowingProductContainerVC.swift in Sources */,
+				5511F8A5286AD0250049EBD5 /* SettingPushCell.swift in Sources */,
 				55116110283E3225002B679E /* xtag.xcdatamodeld in Sources */,
 				556B5FE6284F4D04009A96FE /* XTCommonButton.swift in Sources */,
 				55DCB84A28559AC8006997F2 /* SplashVC.swift in Sources */,
@@ -918,6 +960,7 @@
 				552148A328655D1600205DD9 /* MyProductContainerVC.swift in Sources */,
 				55116106283E3225002B679E /* AppDelegate.swift in Sources */,
 				55DA4E9628582C05003F598A /* PostModel.swift in Sources */,
+				5511F8A1286ACFE10049EBD5 /* SettingHeaderCell.swift in Sources */,
 				55116158283E3A1A002B679E /* XIBView.swift in Sources */,
 				55116167283F28AC002B679E /* XTTextField.swift in Sources */,
 				55B4DD53284484AF00F3C55A /* Extension+UIColor.swift in Sources */,
@@ -932,6 +975,7 @@
 				55DA4E9A28582C8D003F598A /* PostCollectionViewCell.swift in Sources */,
 				5511615A283E48C7002B679E /* Font.swift in Sources */,
 				552148AA2865972800205DD9 /* MyPageFilterCell.swift in Sources */,
+				5511F8A9286AD03E0049EBD5 /* SettingContentCell.swift in Sources */,
 				55DCB841285589E0006997F2 /* MyPageVC.swift in Sources */,
 				55FB4EF22859DCF100309FAC /* UserPostVC.swift in Sources */,
 				55B4DD4C284484AF00F3C55A /* UIBezierPath+Extension.swift in Sources */,

@@ -12,10 +12,16 @@ import Combine
 
 class TabVC: TabmanViewController {
     
+    public let PRODUCT_BOTTOM_CONSTANT: CGFloat = 136
+    public let POST_BOTTOM_CONSTANT:CGFloat = 72
+    
+    @IBOutlet weak var productBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var postBottomConstraint: NSLayoutConstraint!
     private var viewControllers: Array<UIViewController> = []
 
     @IBOutlet weak var bottomBar: XTBottomBar!
     
+    @IBOutlet weak var backgroundView: UIView!
     private var subscriptions = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -43,6 +49,34 @@ class TabVC: TabmanViewController {
                 
             }
             
+        }
+        .store(in: &subscriptions)
+        
+        let bottomPublisher = NavigationManager.shared.$activeBottomBar
+        bottomPublisher.sink { value in
+            DispatchQueue.main.async {
+                if value {
+                    self.backgroundView.isHidden = !value
+                }
+                
+                
+                if value {
+                    self.postBottomConstraint.constant = self.POST_BOTTOM_CONSTANT
+                    self.productBottomConstraint.constant = self.PRODUCT_BOTTOM_CONSTANT
+                } else {
+                    self.postBottomConstraint.constant = 0
+                    self.productBottomConstraint.constant = 0
+                }
+                
+                UIView.animate(withDuration: 0.5, delay: 0.0, options: []) {
+                    self.backgroundView.layoutIfNeeded()
+                } completion: { _ in
+                    if !value {
+                        self.backgroundView.isHidden = !value
+                    }
+                }
+
+            }
         }
         .store(in: &subscriptions)
     }

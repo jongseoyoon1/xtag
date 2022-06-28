@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-ExtraBold.ttf">
+            <string>Pretendard-ExtraBold</string>
+        </array>
+        <array key="Pretendard-Regular.ttf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingContentCell" id="KGk-i7-Jjw" customClass="SettingContentCell" customModule="xtag" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogl-gY-CeA">
+                        <rect key="frame" x="20" y="13.5" width="34.5" height="17"/>
+                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                        <color key="textColor" name="Grey900"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.1.1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GdS-Yo-1Fh">
+                        <rect key="frame" x="62.5" y="13.5" width="25" height="17"/>
+                        <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="14"/>
+                        <color key="textColor" name="Grey500"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron-right-grey" translatesAutoresizingMaskIntoConstraints="NO" id="L7a-6Z-dey">
+                        <rect key="frame" x="289" y="16" width="7" height="12"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrB-ep-RQS">
+                        <rect key="frame" x="261.5" y="13.5" width="34.5" height="17"/>
+                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                        <color key="textColor" name="Grey500"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit_apple" translatesAutoresizingMaskIntoConstraints="NO" id="pS8-Mf-t3l">
+                        <rect key="frame" x="229.5" y="10" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="MIH-QD-va3"/>
+                            <constraint firstAttribute="width" constant="24" id="vO9-fp-9EE"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ogl-gY-CeA" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="H8w-mQ-Qcd"/>
+                    <constraint firstItem="pS8-Mf-t3l" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="IQE-fl-BjN"/>
+                    <constraint firstItem="GdS-Yo-1Fh" firstAttribute="centerY" secondItem="ogl-gY-CeA" secondAttribute="centerY" id="Kj5-Z6-era"/>
+                    <constraint firstItem="ogl-gY-CeA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="LBR-E2-fnH"/>
+                    <constraint firstItem="zrB-ep-RQS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LXC-8b-KvF"/>
+                    <constraint firstAttribute="trailing" secondItem="L7a-6Z-dey" secondAttribute="trailing" constant="24" id="Lgr-xa-hRc"/>
+                    <constraint firstAttribute="trailing" secondItem="zrB-ep-RQS" secondAttribute="trailing" constant="24" id="Ofh-Uk-b8V"/>
+                    <constraint firstItem="GdS-Yo-1Fh" firstAttribute="leading" secondItem="ogl-gY-CeA" secondAttribute="trailing" constant="8" id="aek-ji-gRD"/>
+                    <constraint firstItem="L7a-6Z-dey" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="imz-F2-JrB"/>
+                    <constraint firstItem="zrB-ep-RQS" firstAttribute="leading" secondItem="pS8-Mf-t3l" secondAttribute="trailing" constant="8" id="w2y-oj-u4W"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="chevronImage" destination="L7a-6Z-dey" id="MPI-tW-P7c"/>
+                <outlet property="emailLabel" destination="zrB-ep-RQS" id="Q56-Bc-oyi"/>
+                <outlet property="titleLabel" destination="ogl-gY-CeA" id="8b7-03-Lcw"/>
+                <outlet property="typeImage" destination="pS8-Mf-t3l" id="5oM-c8-qJN"/>
+                <outlet property="versionLabel" destination="GdS-Yo-1Fh" id="Sg6-u9-7x1"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="131.91964285714286"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chevron-right-grey" width="7" height="12"/>
+        <image name="edit_apple" width="24" height="24"/>
+        <namedColor name="Grey500">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Grey900">
+            <color red="0.10588235294117647" green="0.11372549019607843" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

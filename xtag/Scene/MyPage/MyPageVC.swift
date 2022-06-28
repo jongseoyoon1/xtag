@@ -108,6 +108,13 @@ class MyPageVC: UIViewController {
         
     }
     
+    @IBAction func settingBtnPressed(_ sender: Any) {
+        if let viewcontroller = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(withIdentifier: "SettingVC") as? SettingVC {
+            
+            viewcontroller.modalPresentationStyle = .fullScreen
+            self.present(viewcontroller, animated: true)
+        }
+    }
     private func getUserCategory() {
         HTTPSession.shared.getUserCategory(userId: UserManager.shared.userInfo!.userId!) { smallCategoryModel, error in
             if error == nil {

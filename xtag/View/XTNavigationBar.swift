@@ -40,7 +40,7 @@ class XTNavigationBar: XIBView {
     }
     
     
-    private var backButton: UIButton = {
+    public var backButton: UIButton = {
         let btn = UIButton()
         
         btn.translatesAutoresizingMaskIntoConstraints = false

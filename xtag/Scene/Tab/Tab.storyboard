@@ -8,6 +8,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-ExtraBold.ttf">
+            <string>Pretendard-ExtraBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--TabVC-->
         <scene sceneID="s0d-6b-0kx">
@@ -19,7 +24,66 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jMn-bx-1d6">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2oO-Wi-bTu">
+                                        <rect key="frame" x="114" y="773" width="98" height="56"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAJ-MQ-0cZ">
+                                                <rect key="frame" x="18" y="18" width="58" height="20"/>
+                                                <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="16"/>
+                                                <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="5" maxY="0.0"/>
+                                                <state key="normal" title="상품" image="bottom_tag">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" name="Grey800"/>
+                                        <constraints>
+                                            <constraint firstItem="QAJ-MQ-0cZ" firstAttribute="centerY" secondItem="2oO-Wi-bTu" secondAttribute="centerY" id="Kpd-7j-JmL"/>
+                                            <constraint firstItem="QAJ-MQ-0cZ" firstAttribute="leading" secondItem="2oO-Wi-bTu" secondAttribute="leading" constant="18" id="RgF-Tg-1rT"/>
+                                            <constraint firstAttribute="width" constant="98" id="UXA-nq-PkD"/>
+                                            <constraint firstAttribute="height" constant="56" id="hhV-iY-f5b"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerradius">
+                                                <real key="value" value="28"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vdu-Ij-KIa">
+                                        <rect key="frame" x="114" y="773" width="112" height="56"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUJ-TV-c3U">
+                                                <rect key="frame" x="18" y="18" width="72" height="20"/>
+                                                <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="16"/>
+                                                <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="5" maxY="0.0"/>
+                                                <state key="normal" title="게시물" image="bottom_image_post">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" name="Grey800"/>
+                                        <constraints>
+                                            <constraint firstItem="eUJ-TV-c3U" firstAttribute="leading" secondItem="Vdu-Ij-KIa" secondAttribute="leading" constant="18" id="LMt-Or-i2D"/>
+                                            <constraint firstAttribute="height" constant="56" id="OgP-6b-lZa"/>
+                                            <constraint firstAttribute="width" constant="112" id="h1h-kB-rLU"/>
+                                            <constraint firstItem="eUJ-TV-c3U" firstAttribute="centerY" secondItem="Vdu-Ij-KIa" secondAttribute="centerY" id="q4W-me-7uB"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerradius">
+                                                <real key="value" value="28"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" red="0.10588235294117647" green="0.11372549019607843" blue="0.12156862745098039" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="2oO-Wi-bTu" firstAttribute="leading" secondItem="Vdu-Ij-KIa" secondAttribute="leading" id="0Wh-KO-d4Z"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J8b-KT-7vH" customClass="XTBottomBar" customModule="xtag" customModuleProvider="target">
                                 <rect key="frame" x="114" y="773" width="186" height="56"/>
@@ -39,15 +103,21 @@
                         <color key="backgroundColor" name="Grey900"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="J8b-KT-7vH" secondAttribute="bottom" constant="33" id="8lu-uC-ciM"/>
+                            <constraint firstItem="J8b-KT-7vH" firstAttribute="bottom" secondItem="Vdu-Ij-KIa" secondAttribute="bottom" id="IIy-Cd-dii"/>
                             <constraint firstItem="J8b-KT-7vH" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="OtP-Yi-ASu"/>
                             <constraint firstItem="jMn-bx-1d6" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="Pg4-kz-IfI"/>
+                            <constraint firstItem="Vdu-Ij-KIa" firstAttribute="leading" secondItem="J8b-KT-7vH" secondAttribute="leading" id="QeC-rH-gNd"/>
                             <constraint firstAttribute="bottom" secondItem="jMn-bx-1d6" secondAttribute="bottom" id="bEs-JE-JNv"/>
                             <constraint firstItem="jMn-bx-1d6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="tsx-QI-qgY"/>
+                            <constraint firstItem="J8b-KT-7vH" firstAttribute="bottom" secondItem="2oO-Wi-bTu" secondAttribute="bottom" id="yiT-xD-VER"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="jMn-bx-1d6" secondAttribute="trailing" id="ywM-2E-Baj"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="jMn-bx-1d6" id="mR7-JS-NHT"/>
                         <outlet property="bottomBar" destination="J8b-KT-7vH" id="8Nx-Tk-Yph"/>
+                        <outlet property="postBottomConstraint" destination="IIy-Cd-dii" id="MqY-cT-z8c"/>
+                        <outlet property="productBottomConstraint" destination="yiT-xD-VER" id="gsC-1A-9uq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -56,6 +126,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bottom_image_post" width="20" height="20"/>
+        <image name="bottom_tag" width="20" height="20"/>
+        <namedColor name="Grey800">
+            <color red="0.16470588235294117" green="0.17647058823529413" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Grey900">
             <color red="0.10588235294117647" green="0.11372549019607843" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

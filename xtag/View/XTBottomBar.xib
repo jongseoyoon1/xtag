@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -9,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XTBottomBar" customModule="xtag" customModuleProvider="target">
             <connections>
+                <outlet property="activeButton" destination="5Bj-9d-VOw" id="Art-OF-mQ9"/>
                 <outlet property="mainButton" destination="hCU-0W-pEl" id="Ddu-wE-ruK"/>
                 <outlet property="myPageButton" destination="5Jt-i5-VKZ" id="cUr-If-YHv"/>
             </connections>
@@ -25,6 +27,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="icon_bottom_plus"/>
+                            <state key="selected" image="icon_bottom_close"/>
                             <connections>
                                 <action selector="plusBtnPressed:" destination="-1" eventType="touchUpInside" id="J82-Jy-UEY"/>
                             </connections>
@@ -89,6 +92,7 @@
         </view>
     </objects>
     <resources>
+        <image name="icon_bottom_close" width="56" height="56"/>
         <image name="icon_bottom_house_off" width="20" height="20"/>
         <image name="icon_bottom_house_on" width="20" height="20"/>
         <image name="icon_bottom_plus" width="56" height="56"/>

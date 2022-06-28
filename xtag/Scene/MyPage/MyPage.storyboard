@@ -37,6 +37,9 @@
                                         <rect key="frame" x="365" y="11.5" width="25" height="25"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="icon_settings"/>
+                                        <connections>
+                                            <action selector="settingBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ELB-dY-5Aw"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8e-Hp-Mlc">
                                         <rect key="frame" x="309.5" y="10.5" width="23.5" height="27"/>
@@ -306,6 +309,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8.6956521739130448" y="116.51785714285714"/>
+        </scene>
+        <!--SettingVC-->
+        <scene sceneID="arV-UP-Rrr">
+            <objects>
+                <viewController storyboardIdentifier="SettingVC" id="4ME-WC-rda" customClass="SettingVC" customModule="xtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zuc-dP-D3v">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6hR-Gm-pRw" customClass="XTNavigationBar" customModule="xtag" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="48"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syZ-3I-xsV">
+                                        <rect key="frame" x="191.5" y="13.5" width="31.5" height="21.5"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="18"/>
+                                        <color key="textColor" name="Grey900"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="syZ-3I-xsV" firstAttribute="centerX" secondItem="6hR-Gm-pRw" secondAttribute="centerX" id="MG4-FI-Nm2"/>
+                                    <constraint firstItem="syZ-3I-xsV" firstAttribute="centerY" secondItem="6hR-Gm-pRw" secondAttribute="centerY" id="QG3-9h-G2f"/>
+                                    <constraint firstAttribute="height" constant="48" id="Wsm-PQ-tPh"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isBackButton" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isDismissButton" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qb8-UQ-uWU">
+                                <rect key="frame" x="0.0" y="92" width="414" height="770"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KvX-7s-Sjr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6hR-Gm-pRw" firstAttribute="top" secondItem="KvX-7s-Sjr" secondAttribute="top" id="9Is-8T-PY2"/>
+                            <constraint firstItem="KvX-7s-Sjr" firstAttribute="trailing" secondItem="Qb8-UQ-uWU" secondAttribute="trailing" id="ASK-JC-RQE"/>
+                            <constraint firstItem="Qb8-UQ-uWU" firstAttribute="top" secondItem="6hR-Gm-pRw" secondAttribute="bottom" id="L6h-Hn-cTg"/>
+                            <constraint firstItem="KvX-7s-Sjr" firstAttribute="trailing" secondItem="6hR-Gm-pRw" secondAttribute="trailing" id="TD6-eG-oeH"/>
+                            <constraint firstItem="KvX-7s-Sjr" firstAttribute="bottom" secondItem="Qb8-UQ-uWU" secondAttribute="bottom" id="nx8-oy-zbd"/>
+                            <constraint firstItem="Qb8-UQ-uWU" firstAttribute="leading" secondItem="KvX-7s-Sjr" secondAttribute="leading" id="q7t-xl-FHC"/>
+                            <constraint firstItem="6hR-Gm-pRw" firstAttribute="leading" secondItem="KvX-7s-Sjr" secondAttribute="leading" id="vYe-wM-K3b"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="navigationBar" destination="6hR-Gm-pRw" id="FF6-e2-9jh"/>
+                        <outlet property="tableView" destination="Qb8-UQ-uWU" id="8qs-pd-IAV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YP4-yH-O3b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="772" y="117"/>
         </scene>
     </scenes>
     <resources>

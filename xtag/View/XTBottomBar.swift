@@ -12,6 +12,7 @@ class XTBottomBar: XIBView {
     var delegate: XTBottomBarDelegate?
     @IBOutlet weak var myPageButton: UIButton!
     @IBOutlet weak var mainButton: UIButton!
+    @IBOutlet weak var activeButton: UIButton!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,16 +29,24 @@ class XTBottomBar: XIBView {
         if let delegate = delegate {
             delegate.onPlus()
         }
+        
+        activeButton.isSelected = !activeButton.isSelected
+        NavigationManager.shared.activeBottomBar = activeButton.isSelected
+        
     }
     @IBAction func mainBtnPressed(_ sender: Any) {
         if let delegate = delegate {
             delegate.onMain()
         }
+        activeButton.isSelected = false
+        NavigationManager.shared.activeBottomBar = false
     }
     @IBAction func myPageBtnPressed(_ sender: Any) {
         if let delegate = delegate {
             delegate.onMyPage()
         }
+        activeButton.isSelected = false
+        NavigationManager.shared.activeBottomBar = false
     }
 }
 

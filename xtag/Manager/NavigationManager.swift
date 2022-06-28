@@ -6,9 +6,18 @@
 //
 
 import Foundation
+import Combine
 
 class NavigationManager {
     public static var shared = NavigationManager()
     
     public var isCategory : Bool = false
+    
+    var objectDidChange = PassthroughSubject<Void,Never>()
+  
+    @Published public var activeBottomBar: Bool = false {
+        didSet {
+            objectDidChange.send()
+        }
+    }
 }
