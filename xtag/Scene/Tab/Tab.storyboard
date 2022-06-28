@@ -37,6 +37,9 @@
                                                 <state key="normal" title="상품" image="bottom_tag">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="productBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="kie-Ey-l99"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" name="Grey800"/>
@@ -64,6 +67,9 @@
                                                 <state key="normal" title="게시물" image="bottom_image_post">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="postBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="sId-G9-mrm"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" name="Grey800"/>

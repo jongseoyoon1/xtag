@@ -42,6 +42,8 @@
 		5511F8A6286AD0250049EBD5 /* SettingPushCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5511F8A4286AD0250049EBD5 /* SettingPushCell.xib */; };
 		5511F8A9286AD03E0049EBD5 /* SettingContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511F8A7286AD03E0049EBD5 /* SettingContentCell.swift */; };
 		5511F8AA286AD03E0049EBD5 /* SettingContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5511F8A8286AD03E0049EBD5 /* SettingContentCell.xib */; };
+		5515BA6D286AE76400785D21 /* HTTPSession+Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5515BA6C286AE76400785D21 /* HTTPSession+Product.swift */; };
+		5515BA70286AE80300785D21 /* MakeProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5515BA6F286AE80300785D21 /* MakeProductVC.swift */; };
 		552148A328655D1600205DD9 /* MyProductContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552148A228655D1600205DD9 /* MyProductContainerVC.swift */; };
 		552148A5286573FA00205DD9 /* MyCategoryCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552148A4286573FA00205DD9 /* MyCategoryCollectionVC.swift */; };
 		552148A728658A9C00205DD9 /* MakePostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552148A628658A9C00205DD9 /* MakePostManager.swift */; };
@@ -213,6 +215,8 @@
 		5511F8A4286AD0250049EBD5 /* SettingPushCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingPushCell.xib; sourceTree = "<group>"; };
 		5511F8A7286AD03E0049EBD5 /* SettingContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingContentCell.swift; sourceTree = "<group>"; };
 		5511F8A8286AD03E0049EBD5 /* SettingContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingContentCell.xib; sourceTree = "<group>"; };
+		5515BA6C286AE76400785D21 /* HTTPSession+Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPSession+Product.swift"; sourceTree = "<group>"; };
+		5515BA6F286AE80300785D21 /* MakeProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeProductVC.swift; sourceTree = "<group>"; };
 		552148A228655D1600205DD9 /* MyProductContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProductContainerVC.swift; sourceTree = "<group>"; };
 		552148A4286573FA00205DD9 /* MyCategoryCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCategoryCollectionVC.swift; sourceTree = "<group>"; };
 		552148A628658A9C00205DD9 /* MakePostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostManager.swift; sourceTree = "<group>"; };
@@ -454,6 +458,7 @@
 				55116153283E38D4002B679E /* SingUp */,
 				5511614C283E37AB002B679E /* Login */,
 				55DCB84628559AA4006997F2 /* Splash */,
+				5515BA6E286AE7E300785D21 /* MakeProduct */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -553,6 +558,14 @@
 			path = subCells;
 			sourceTree = "<group>";
 		};
+		5515BA6E286AE7E300785D21 /* MakeProduct */ = {
+			isa = PBXGroup;
+			children = (
+				5515BA6F286AE80300785D21 /* MakeProductVC.swift */,
+			);
+			path = MakeProduct;
+			sourceTree = "<group>";
+		};
 		55B4DD58284484B600F3C55A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +585,7 @@
 				5588C63C284F6213006245BF /* HTTPSession+Category.swift */,
 				5588C63E284F996F006245BF /* HTTPSession+User.swift */,
 				55DA4E9C28582E04003F598A /* HTTPSession+Post.swift */,
+				5515BA6C286AE76400785D21 /* HTTPSession+Product.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -976,6 +990,7 @@
 				5511615A283E48C7002B679E /* Font.swift in Sources */,
 				552148AA2865972800205DD9 /* MyPageFilterCell.swift in Sources */,
 				5511F8A9286AD03E0049EBD5 /* SettingContentCell.swift in Sources */,
+				5515BA6D286AE76400785D21 /* HTTPSession+Product.swift in Sources */,
 				55DCB841285589E0006997F2 /* MyPageVC.swift in Sources */,
 				55FB4EF22859DCF100309FAC /* UserPostVC.swift in Sources */,
 				55B4DD4C284484AF00F3C55A /* UIBezierPath+Extension.swift in Sources */,
@@ -984,6 +999,7 @@
 				55DCB83C2852101D006997F2 /* TabVC.swift in Sources */,
 				55D20CA52862E34800BA5480 /* SignUpNickNameVC.swift in Sources */,
 				5504F31A286A803A0029C242 /* FollowingTableCell.swift in Sources */,
+				5515BA70286AE80300785D21 /* MakeProductVC.swift in Sources */,
 				55D20CA12862D0AA00BA5480 /* SignUpManager.swift in Sources */,
 				55B4DD49284484AF00F3C55A /* CALayer+Extension.swift in Sources */,
 				55116108283E3225002B679E /* SceneDelegate.swift in Sources */,

@@ -12,12 +12,12 @@ import SwiftUI
 class CustomPicker: UIView, UIGestureRecognizerDelegate {
     var picker: UIPickerView = UIPickerView(frame: CGRect.zero)
     var textField: UITextField = UITextField(frame: CGRect.zero)
-//    var isKeyboardShowing: Bool = false
-//    var pickerList: [String] = [] {
-//        didSet {
-//            picker.reloadComponent(0)
-//        }
-//    }
+    //    var isKeyboardShowing: Bool = false
+    //    var pickerList: [String] = [] {
+    //        didSet {
+    //            picker.reloadComponent(0)
+    //        }
+    //    }
     
     @IBInspectable
     var textFieldFont: UIFont = UIFont(name: "NotoSansCJKkr-DemiLiteTTF", size: 16)! {
@@ -27,9 +27,9 @@ class CustomPicker: UIView, UIGestureRecognizerDelegate {
         }
     }
     
-//    @IBInspectable
-//    var pickerMaxValue: Int = 800
-        
+    //    @IBInspectable
+    //    var pickerMaxValue: Int = 800
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -38,18 +38,18 @@ class CustomPicker: UIView, UIGestureRecognizerDelegate {
         self.layer.borderWidth = 0
         self.backgroundColor = #colorLiteral(red: 0.8901960784, green: 0.8901960784, blue: 0.8901960784, alpha: 1)
         
-//        textField.delegate = self
+        //        textField.delegate = self
         
         textField.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         textField.textAlignment = .center
         textField.keyboardType = .numberPad
         textField.tintColor = .clear
-    
+        
         picker.frame = CGRect(x: 0, y: textField.frame.size.height / 2 -  30, width: self.frame.size.width, height: 60)
         picker.alpha = 0.1
         
-//        picker.delegate = self
-//        picker.dataSource = self
+        //        picker.delegate = self
+        //        picker.dataSource = self
         
         
         self.addSubview(textField)
@@ -117,29 +117,29 @@ extension UIView {
 }
 
 extension WKWebView {
-
+    
     var refreshControl: UIRefreshControl? { (scrollView.getAllSubviews() as [UIRefreshControl]).first }
-
+    
     enum PullToRefreshType {
         case none
         case embed
         case custom(target: Any, selector: Selector)
     }
-
+    
     func setPullToRefresh(type: PullToRefreshType) {
         (scrollView.getAllSubviews() as [UIRefreshControl]).forEach { $0.removeFromSuperview() }
         switch type {
-            case .none: break
-            case .embed: _setPullToRefresh(target: self, selector: #selector(webViewPullToRefreshHandler(source:)))
-            case .custom(let params): _setPullToRefresh(target: params.target, selector: params.selector)
+        case .none: break
+        case .embed: _setPullToRefresh(target: self, selector: #selector(webViewPullToRefreshHandler(source:)))
+        case .custom(let params): _setPullToRefresh(target: params.target, selector: params.selector)
         }
     }
-
+    
     private func _setPullToRefresh(target: Any, selector: Selector) {
         let refreshControl = UIRefreshControl()
         refreshControl.translatesAutoresizingMaskIntoConstraints = false
         refreshControl.addTarget(target, action: selector, for: .valueChanged)
-
+        
         scrollView.addSubview(refreshControl)
         
         refreshControl.topAnchor.constraint(equalTo:
@@ -148,7 +148,7 @@ extension WKWebView {
         refreshControl.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         
     }
-
+    
     @objc func webViewPullToRefreshHandler(source: UIRefreshControl) {
         guard let url = self.url else { source.endRefreshing(); return }
         load(URLRequest(url: url))
@@ -156,7 +156,7 @@ extension WKWebView {
 }
 
 extension UIView {
-
+    
     class func getAllSubviews<T: UIView>(from parenView: UIView) -> [T] {
         return parenView.subviews.flatMap { subView -> [T] in
             var result = getAllSubviews(from: subView) as [T]
@@ -164,7 +164,7 @@ extension UIView {
             return result
         }
     }
-
+    
     func getAllSubviews<T: UIView>() -> [T] { return UIView.getAllSubviews(from: self) as [T] }
 }
 
@@ -186,6 +186,28 @@ extension UIView{
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
         gradient.colors = [color1.cgColor, color2.cgColor]
         layer.insertSublayer(gradient, at: 0)
+    }
+    
+    func addDashedBorder(strokeColor: UIColor, lineWidth: CGFloat) {
+        self.layoutIfNeeded()
+        let strokeColor = strokeColor.cgColor
+        
+        let shapeLayer:CAShapeLayer = CAShapeLayer()
+        let frameSize = self.frame.size
+        let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
+        
+        shapeLayer.bounds = shapeRect
+        shapeLayer.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeColor = strokeColor
+        shapeLayer.lineWidth = lineWidth
+        shapeLayer.lineJoin = CAShapeLayerLineJoin.round
+        shapeLayer.lineCap = .round
+        
+        shapeLayer.lineDashPattern = [5,5] // adjust to your liking
+        shapeLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: shapeRect.width, height: shapeRect.height), cornerRadius: self.layer.cornerRadius).cgPath
+        
+        self.layer.addSublayer(shapeLayer)
     }
 }
 

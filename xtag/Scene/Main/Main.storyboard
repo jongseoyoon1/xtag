@@ -10,6 +10,14 @@
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-ExtraBold.ttf">
+            <string>Pretendard-ExtraBold</string>
+        </array>
+        <array key="Pretendard-Regular.ttf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="NXS-rT-bxu">
@@ -313,6 +321,61 @@
             </objects>
             <point key="canvasLocation" x="1232" y="844"/>
         </scene>
+        <!--Make ProductVC-->
+        <scene sceneID="DvW-fv-Xlq">
+            <objects>
+                <viewController storyboardIdentifier="MakeProductVC" id="Kz7-x2-AVH" customClass="MakeProductVC" customModule="xtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="krO-a1-elG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상품 추가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRy-Qi-Rn7">
+                                <rect key="frame" x="20" y="68" width="88.5" height="29"/>
+                                <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="24"/>
+                                <color key="textColor" name="Grey900"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8Z-qm-Ou8">
+                                <rect key="frame" x="362" y="65.5" width="32" height="34"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="취소">
+                                    <color key="titleColor" name="Grey900"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissBtnPressed:" destination="Kz7-x2-AVH" eventType="touchUpInside" id="5ov-8t-U1A"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zfx-lG-6jH">
+                                <rect key="frame" x="20" y="161" width="374" height="322"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="sgX-k6-GkG"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zfx-lG-6jH" firstAttribute="top" secondItem="VRy-Qi-Rn7" secondAttribute="bottom" constant="64" id="Bu3-76-Wkx"/>
+                            <constraint firstItem="o8Z-qm-Ou8" firstAttribute="centerY" secondItem="VRy-Qi-Rn7" secondAttribute="centerY" id="PEg-kq-LbL"/>
+                            <constraint firstItem="VRy-Qi-Rn7" firstAttribute="top" secondItem="sgX-k6-GkG" secondAttribute="top" constant="24" id="U39-ji-86r"/>
+                            <constraint firstItem="zfx-lG-6jH" firstAttribute="leading" secondItem="sgX-k6-GkG" secondAttribute="leading" constant="20" id="k2V-iH-rmz"/>
+                            <constraint firstItem="sgX-k6-GkG" firstAttribute="trailing" secondItem="zfx-lG-6jH" secondAttribute="trailing" constant="20" id="l4s-oC-xfK"/>
+                            <constraint firstItem="VRy-Qi-Rn7" firstAttribute="leading" secondItem="sgX-k6-GkG" secondAttribute="leading" constant="20" id="o26-Sz-Lao"/>
+                            <constraint firstItem="sgX-k6-GkG" firstAttribute="trailing" secondItem="o8Z-qm-Ou8" secondAttribute="trailing" constant="20" id="qpd-8z-EMd"/>
+                            <constraint firstItem="sgX-k6-GkG" firstAttribute="bottom" secondItem="zfx-lG-6jH" secondAttribute="bottom" constant="379" id="whh-cS-hXw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="zfx-lG-6jH" id="yyS-ex-4BB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="efp-BW-9il" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1229" y="1665"/>
+        </scene>
         <!--Following ProductVC-->
         <scene sceneID="m6X-rQ-VZ2">
             <objects>
@@ -364,6 +427,9 @@
         <namedColor name="Grey900">
             <color red="0.10588235294117647" green="0.11372549019607843" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

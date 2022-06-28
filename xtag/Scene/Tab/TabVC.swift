@@ -81,7 +81,16 @@ class TabVC: TabmanViewController {
         .store(in: &subscriptions)
     }
     
-
+    @IBAction func productBtnPressed(_ sender: Any) {
+        if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeProductVC") as? MakeProductVC {
+            
+            viewcontroller.modalPresentationStyle = .fullScreen
+            self.present(viewcontroller, animated: true)
+        }
+    }
+    
+    @IBAction func postBtnPressed(_ sender: Any) {
+    }
 }
 
 extension TabVC: XTBottomBarDelegate {
