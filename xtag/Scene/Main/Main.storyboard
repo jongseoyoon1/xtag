@@ -329,7 +329,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상품 추가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRy-Qi-Rn7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="상품 추가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRy-Qi-Rn7">
                                 <rect key="frame" x="20" y="68" width="88.5" height="29"/>
                                 <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="24"/>
                                 <color key="textColor" name="Grey900"/>
@@ -347,8 +347,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zfx-lG-6jH">
-                                <rect key="frame" x="20" y="161" width="374" height="322"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="20" y="161" width="374" height="677"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -365,7 +364,7 @@
                             <constraint firstItem="sgX-k6-GkG" firstAttribute="trailing" secondItem="zfx-lG-6jH" secondAttribute="trailing" constant="20" id="l4s-oC-xfK"/>
                             <constraint firstItem="VRy-Qi-Rn7" firstAttribute="leading" secondItem="sgX-k6-GkG" secondAttribute="leading" constant="20" id="o26-Sz-Lao"/>
                             <constraint firstItem="sgX-k6-GkG" firstAttribute="trailing" secondItem="o8Z-qm-Ou8" secondAttribute="trailing" constant="20" id="qpd-8z-EMd"/>
-                            <constraint firstItem="sgX-k6-GkG" firstAttribute="bottom" secondItem="zfx-lG-6jH" secondAttribute="bottom" constant="379" id="whh-cS-hXw"/>
+                            <constraint firstItem="sgX-k6-GkG" firstAttribute="bottom" secondItem="zfx-lG-6jH" secondAttribute="bottom" constant="24" id="whh-cS-hXw"/>
                         </constraints>
                     </view>
                     <connections>

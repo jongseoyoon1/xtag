@@ -14,10 +14,10 @@ class MakeProductVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        textView.addDashedBorder(strokeColor: .black, lineWidth: 5)
     }
     
     @IBAction func dismissBtnPressed(_ sender: Any) {
+        self.dismiss(animated: true)
     }
     
 }
