@@ -331,6 +331,9 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="상품 추가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRy-Qi-Rn7">
                                 <rect key="frame" x="20" y="68" width="88.5" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="bCR-9f-5Ee"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="24"/>
                                 <color key="textColor" name="Grey900"/>
                                 <nil key="highlightedColor"/>
@@ -346,28 +349,41 @@
                                     <action selector="dismissBtnPressed:" destination="Kz7-x2-AVH" eventType="touchUpInside" id="5ov-8t-U1A"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zfx-lG-6jH">
-                                <rect key="frame" x="20" y="161" width="374" height="677"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWY-bP-bRY">
+                                <rect key="frame" x="20" y="161" width="374" height="657"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zfx-lG-6jH">
+                                        <rect key="frame" x="24" y="10" width="326" height="637"/>
+                                        <color key="textColor" name="Grey900"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="zfx-lG-6jH" firstAttribute="leading" secondItem="TWY-bP-bRY" secondAttribute="leading" constant="24" id="8da-cJ-dsm"/>
+                                    <constraint firstItem="zfx-lG-6jH" firstAttribute="top" secondItem="TWY-bP-bRY" secondAttribute="top" constant="10" id="SBf-sI-YFQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="zfx-lG-6jH" secondAttribute="trailing" constant="24" id="YO7-9A-J76"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" priority="500" constant="350" id="aaT-fR-aih"/>
+                                    <constraint firstAttribute="bottom" secondItem="zfx-lG-6jH" secondAttribute="bottom" constant="10" id="eqY-e1-w0g"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sgX-k6-GkG"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="zfx-lG-6jH" firstAttribute="top" secondItem="VRy-Qi-Rn7" secondAttribute="bottom" constant="64" id="Bu3-76-Wkx"/>
+                            <constraint firstItem="TWY-bP-bRY" firstAttribute="leading" secondItem="sgX-k6-GkG" secondAttribute="leading" constant="20" id="92a-sN-GJ1"/>
                             <constraint firstItem="o8Z-qm-Ou8" firstAttribute="centerY" secondItem="VRy-Qi-Rn7" secondAttribute="centerY" id="PEg-kq-LbL"/>
+                            <constraint firstItem="sgX-k6-GkG" firstAttribute="trailing" secondItem="TWY-bP-bRY" secondAttribute="trailing" constant="20" id="QMs-Bo-8I7"/>
                             <constraint firstItem="VRy-Qi-Rn7" firstAttribute="top" secondItem="sgX-k6-GkG" secondAttribute="top" constant="24" id="U39-ji-86r"/>
-                            <constraint firstItem="zfx-lG-6jH" firstAttribute="leading" secondItem="sgX-k6-GkG" secondAttribute="leading" constant="20" id="k2V-iH-rmz"/>
-                            <constraint firstItem="sgX-k6-GkG" firstAttribute="trailing" secondItem="zfx-lG-6jH" secondAttribute="trailing" constant="20" id="l4s-oC-xfK"/>
                             <constraint firstItem="VRy-Qi-Rn7" firstAttribute="leading" secondItem="sgX-k6-GkG" secondAttribute="leading" constant="20" id="o26-Sz-Lao"/>
                             <constraint firstItem="sgX-k6-GkG" firstAttribute="trailing" secondItem="o8Z-qm-Ou8" secondAttribute="trailing" constant="20" id="qpd-8z-EMd"/>
-                            <constraint firstItem="sgX-k6-GkG" firstAttribute="bottom" secondItem="zfx-lG-6jH" secondAttribute="bottom" constant="24" id="whh-cS-hXw"/>
+                            <constraint firstItem="TWY-bP-bRY" firstAttribute="top" secondItem="VRy-Qi-Rn7" secondAttribute="bottom" constant="64" id="whQ-5q-ri5"/>
+                            <constraint firstItem="sgX-k6-GkG" firstAttribute="bottom" secondItem="TWY-bP-bRY" secondAttribute="bottom" constant="44" id="wtv-Tl-kRS"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundTextView" destination="TWY-bP-bRY" id="aFN-yN-Vck"/>
                         <outlet property="textView" destination="zfx-lG-6jH" id="yyS-ex-4BB"/>
                     </connections>
                 </viewController>
@@ -426,9 +442,6 @@
         <namedColor name="Grey900">
             <color red="0.10588235294117647" green="0.11372549019607843" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
