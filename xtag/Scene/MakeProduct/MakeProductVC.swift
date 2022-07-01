@@ -41,7 +41,7 @@ class MakeProductVC: UIViewController {
     }
     
     private func validateUrl(urlString: String) {
-        HTTPSession.shared.productInfo(url: urlString) { result, error in
+        HTTPSession.shared.productInfo(url: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) { result, error in
             if error == nil {
                 print(result)
             }
