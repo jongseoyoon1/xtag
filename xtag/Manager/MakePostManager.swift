@@ -11,4 +11,6 @@ import Combine
 class MakePostManager {
     public static let shared = MakePostManager()
     
+    var productInfo: ProductInfoModel?
+    
 }

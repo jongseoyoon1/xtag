@@ -120,7 +120,7 @@ class LoginVC: BaseViewController, ASAuthorizationControllerPresentationContextP
     }
     
     private func googleLogin() {
-        let signInConfig = GIDConfiguration(clientID: "994684756010-166pj6fpc7ntelc52b6np696tmimodr5.apps.googleusercontent.com")
+        let signInConfig = GIDConfiguration(clientID: "994684756010-mnlvmu5tqph4f7s9qib66qru87oju25e.apps.googleusercontent.com")
         
         GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
             guard

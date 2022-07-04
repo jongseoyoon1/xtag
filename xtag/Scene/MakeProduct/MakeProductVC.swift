@@ -44,8 +44,17 @@ class MakeProductVC: UIViewController {
         HTTPSession.shared.productInfo(url: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) { result, error in
             if error == nil {
                 print(result)
+                
+                MakePostManager.shared.productInfo = result
             }
         }
+    }
+    
+    
+    override func paste(_ sender: Any?) {
+        super.paste(sender)
+        
+        validateUrl(urlString: textView.text)
     }
     
     @IBAction func dismissBtnPressed(_ sender: Any) {
