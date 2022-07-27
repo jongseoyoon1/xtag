@@ -94,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]
     ) -> Bool {
         
+        
         ApplicationDelegate.shared.application(
             app,
             open: url,
@@ -116,4 +117,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 }
-

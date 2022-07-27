@@ -11,6 +11,8 @@ class MyPageCollectionCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var contentLabel: UILabel!
     
+    public static let IDENTIFIER = "MyPageCollectionCell"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

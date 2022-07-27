@@ -15,12 +15,13 @@ class SplashVC: UIViewController {
         super.viewDidLoad()
         
         DispatchQueue.main.async {
+            
 //            do {
 //                try Auth.auth().signOut()
 //            } catch let signOutError as NSError {
 //                print("Error signing out: %@", signOutError)
 //            }
-//
+
             
             if let user = Auth.auth().currentUser {
                 // 로그인 된 경우
@@ -61,12 +62,13 @@ class SplashVC: UIViewController {
                             guard let smallCategoryResult = smallCategoryResult else {
                                 return
                             }
-                            print("get small category")
+                            print("large category = \(largeCategoryList.count)")
+                            print("get small category = \(iterCount)")
                             large.smallCategoryList = smallCategoryResult
                             
                             iterCount += 1
                             
-                            if largeCategoryList.count == iterCount {
+                            if largeCategoryList.count == iterCount + 1 {
                                 CategoryManager.shared.largeCategoryList = largeCategoryList
                                 self.gotoMain()
                             }

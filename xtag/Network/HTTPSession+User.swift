@@ -14,6 +14,11 @@ extension HTTPSession {
         case getUser
         case getUserProfile(userId: String)
         case signUp
+        case getUserSetting
+        case getUserCategory(userId: String)
+        case getNotification(status: String)
+        case updateUserCategory(removeSmallCategoryIdList: [String], addSmallCategoryIdList: [String])
+        case userFollow(removeSmallCategoryIdList: [String], addSmallCategoryIdList: [String], userId: String)
         
         var path: String {
             switch self {
@@ -25,6 +30,16 @@ extension HTTPSession {
                 return "user/profile/\(userId)"
             case .signUp:
                 return "user/sign-up"
+            case .getUserSetting:
+                return "user/jwt"
+            case .getUserCategory(let userId):
+                return "category/user/\(userId)"
+            case .getNotification(let status):
+                return "user/notification?status=\(status)"
+            case .updateUserCategory:
+                return "category/user"
+            case .userFollow(let removeSmallCategoryIdList ,let addSmallCategoryIdList, let userId):
+                return "category/user/follow/\(userId)"
             }
         }
         
@@ -38,6 +53,16 @@ extension HTTPSession {
                 return .get
             case .signUp:
                 return .post
+            case .getUserSetting:
+                return .get
+            case .getUserCategory:
+                return .get
+            case .getNotification:
+                return .get
+            case .updateUserCategory:
+                return .patch
+            case .userFollow:
+                return .patch
             }
         }
         
@@ -54,6 +79,13 @@ extension HTTPSession {
                 param["email"] = SignUpManager.shared.userInfo.email!
                 param["name"] = SignUpManager.shared.userInfo.name!
                 param["fcmToken"] = SignUpManager.shared.userInfo.fcmToken!
+            case .updateUserCategory(let removeSmallCategoryIdList, let addSmallCategoryIdList):
+                param["removeSmallCategoryIdList"] = removeSmallCategoryIdList
+                param["addSmallCategoryIdList"] = addSmallCategoryIdList
+            case .userFollow(let removeSmallCategoryIdList ,let addSmallCategoryIdList, let userId):
+                param["removeSmallCategoryIdList"] = removeSmallCategoryIdList
+                param["addSmallCategoryIdList"] = addSmallCategoryIdList
+                
             default: break
             }
             
@@ -61,6 +93,109 @@ extension HTTPSession {
         }
         
         
+    }
+    
+    func getNotification(status: String, completion: @escaping([NotificationModel]?, Error?) -> Void) {
+        request(request: User.getNotification(status: status)).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    if let result = dict["result"] as? [Dictionary<String, Any>] {
+                        var list : [NotificationModel] = []
+                   
+                        completion(list ,nil)
+                    }
+                    
+                    
+                } else {
+                    completion(nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, error)
+            }
+        
+        }
+    }
+    
+    func userFollow(removeSmallCategoryIdList: [String], addSmallCategoryIdList: [String], userId: String,completion: @escaping(Dictionary<String, Any>?, Error?) -> Void) {
+        
+        request(request: User.userFollow(removeSmallCategoryIdList: removeSmallCategoryIdList, addSmallCategoryIdList:addSmallCategoryIdList, userId: userId)).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    if let result = dict["result"] as? Dictionary<String, Any> {
+                        
+                        
+                    }
+                    
+                    completion(dict,nil)
+                } else {
+                    completion(nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, error)
+            }
+        
+        }
+    }
+    
+    func updateUserCategory(removeSmallCategoryIdList: [String], addSmallCategoryIdList: [String],completion: @escaping(Dictionary<String, Any>?, Error?) -> Void) {
+        
+        request(request: User.updateUserCategory(removeSmallCategoryIdList: removeSmallCategoryIdList, addSmallCategoryIdList:addSmallCategoryIdList)).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    if let result = dict["result"] as? Dictionary<String, Any> {
+                        
+                        
+                    }
+                    
+                    completion(dict,nil)
+                } else {
+                    completion(nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, error)
+            }
+        
+        }
+    }
+    
+    
+    func getUserSetting(completion: @escaping(UserSettingInfo?, Error?) -> Void) {
+        request(request: User.getUserSetting).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    if let result = dict["result"] as? Dictionary<String, Any> {
+                        completion(UserSettingInfo(JSON: result as! [String:Any]),nil)
+                    }
+                    
+                    
+                } else {
+                    completion(nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, error)
+            }
+        
+        }
     }
     
     func login(providerId: String, fcmToken: String,completion: @escaping(UserModel?, Error?) -> Void) {

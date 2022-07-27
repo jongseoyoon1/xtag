@@ -29,3 +29,10 @@ class SmallCategoryModel: Mappable {
         smallCategoryCdnImageUn <- map["smallCategoryCdnImageUn"]
     }
 }
+
+extension SmallCategoryModel: Equatable {
+    static func ==(lhs: SmallCategoryModel, rhs: SmallCategoryModel) -> Bool {
+        // Using "identifier" property for comparison
+        return lhs.smallCategoryId! == rhs.smallCategoryId!
+    }
+}

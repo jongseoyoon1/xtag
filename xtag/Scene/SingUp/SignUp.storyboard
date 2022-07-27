@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -42,19 +43,19 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일 주소 확인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bt-l3-qsq">
-                                <rect key="frame" x="20" y="96" width="156" height="29"/>
+                                <rect key="frame" x="20" y="96" width="159" height="28"/>
                                 <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아래 이메일 주소로 안내사항이 발송됩니다. " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uig-de-FFQ">
-                                <rect key="frame" x="20" y="135" width="273.5" height="19"/>
+                                <rect key="frame" x="20" y="134" width="276" height="19"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
                                 <color key="textColor" name="Grey198"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcH-Io-g6B" customClass="XTTextField" customModule="xtag" customModuleProvider="target">
-                                <rect key="frame" x="16" y="201" width="382" height="56"/>
+                                <rect key="frame" x="16" y="200" width="382" height="56"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="zgL-VR-HlE"/>
@@ -69,13 +70,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일 형식이 맞는지 확인해주세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkz-86-lVd">
-                                <rect key="frame" x="16" y="277" width="182" height="16"/>
+                                <rect key="frame" x="16" y="276" width="183.5" height="16"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="13"/>
                                 <color key="textColor" name="Red700"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/64" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZO8-ma-eEy">
-                                <rect key="frame" x="342.5" y="273" width="39.5" height="21"/>
+                                <rect key="frame" x="345.5" y="272" width="36.5" height="21"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="18"/>
                                 <color key="textColor" name="Grey500"/>
                                 <nil key="highlightedColor"/>
@@ -158,19 +159,19 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아이디 만들기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eY6-Wy-3GG">
-                                <rect key="frame" x="20" y="96" width="130" height="29"/>
+                                <rect key="frame" x="20" y="96" width="131.5" height="28"/>
                                 <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="변경은 한 달 뒤에 가능해요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIv-PZ-2zc">
-                                <rect key="frame" x="20" y="135" width="172.5" height="19"/>
+                                <rect key="frame" x="20" y="134" width="174.5" height="19"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
                                 <color key="textColor" name="Grey198"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbC-fQ-z52" customClass="XTTextField" customModule="xtag" customModuleProvider="target">
-                                <rect key="frame" x="16" y="201" width="382" height="56"/>
+                                <rect key="frame" x="16" y="200" width="382" height="56"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="KIp-W1-WS7"/>
@@ -186,13 +187,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아이디 끝에 마침표를 사용할 수 없어요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iye-9N-dGu">
-                                <rect key="frame" x="16" y="277" width="199.5" height="16"/>
+                                <rect key="frame" x="16" y="276" width="202" height="16"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="13"/>
                                 <color key="textColor" name="Red700"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6u-kV-a2K">
-                                <rect key="frame" x="343" y="273" width="39" height="21"/>
+                                <rect key="frame" x="345.5" y="272" width="36.5" height="21"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="18"/>
                                 <color key="textColor" name="Grey500"/>
                                 <nil key="highlightedColor"/>
@@ -275,13 +276,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="어떤 취미에 관심이 있나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYZ-uw-uAy">
-                                <rect key="frame" x="20" y="96" width="258" height="29"/>
+                                <rect key="frame" x="20" y="96" width="262" height="28"/>
                                 <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxs-9t-vJO">
-                                <rect key="frame" x="0.0" y="181" width="414" height="681"/>
+                                <rect key="frame" x="0.0" y="180" width="414" height="682"/>
                                 <connections>
                                     <segue destination="WtV-GJ-ArS" kind="embed" id="LEw-eq-4Rw"/>
                                 </connections>
@@ -315,7 +316,7 @@
             <objects>
                 <collectionViewController id="WtV-GJ-ArS" customClass="CategoryCollectionVC" customModule="xtag" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="cb0-Z6-lCB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="681"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="682"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="Grey900"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aYP-eS-0GA">
@@ -338,10 +339,10 @@
     </scenes>
     <designables>
         <designable name="Mkd-CG-e3u">
-            <size key="intrinsicContentSize" width="30" height="32"/>
+            <size key="intrinsicContentSize" width="30" height="31"/>
         </designable>
         <designable name="leE-MV-StE">
-            <size key="intrinsicContentSize" width="30" height="32"/>
+            <size key="intrinsicContentSize" width="30" height="31"/>
         </designable>
     </designables>
     <resources>

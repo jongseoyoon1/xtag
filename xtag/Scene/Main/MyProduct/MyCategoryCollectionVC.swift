@@ -27,6 +27,16 @@ class MyCategoryCollectionVC: UICollectionViewController, UICollectionViewDelega
     }
     
     public var CELL_WIDTH: CGFloat = 0
+    
+    private let applyButton : UIButton = {
+        let btn = UIButton()
+       
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setTitle("적용", for: [])
+        btn.backgroundColor = .white
+        
+        return btn
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +53,12 @@ class MyCategoryCollectionVC: UICollectionViewController, UICollectionViewDelega
         .store(in: &subscriptions)
         
         getUserCategory()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        CategoryManager.shared.mainSelectedSmallCategory = nil
     }
     
     private func getUserCategory() {
@@ -78,7 +94,7 @@ class MyCategoryCollectionVC: UICollectionViewController, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: CELL_WIDTH, height: CELL_WIDTH)
+        return CGSize(width: CELL_WIDTH, height: CELL_WIDTH / 2)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -91,6 +107,24 @@ class MyCategoryCollectionVC: UICollectionViewController, UICollectionViewDelega
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        
+        if let selectedSmallCategory = selectedSmallCategory {
+            let smallCategory = smallCategoryList[indexPath.row]
+            if smallCategory.smallCategoryId! == selectedSmallCategory.smallCategoryId! {
+                self.selectedSmallCategory = nil
+                CategoryManager.shared.mainSelectedSmallCategory = nil
+            } else {
+                self.selectedSmallCategory = smallCategory
+                CategoryManager.shared.mainSelectedSmallCategory = smallCategory
+            }
+            
+            
+        } else {
+            let smallCategory = smallCategoryList[indexPath.row]
+            
+            self.selectedSmallCategory = smallCategory
+            CategoryManager.shared.mainSelectedSmallCategory = smallCategory
+        }
     }
     
 }

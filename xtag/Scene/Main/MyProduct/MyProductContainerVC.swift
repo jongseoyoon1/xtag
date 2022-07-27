@@ -52,7 +52,7 @@ class MyProductContainerVC: UIViewController {
                     if (children.first! is MyCategoryCollectionVC) {
                         cycle(from: myCategoryCollectionVC, to: myProductVC)
                         CategoryManager.shared.bottomBarIsOpen = true
-                        CategoryManager.shared.mainSelectedSmallCategory = nil
+                        //CategoryManager.shared.mainSelectedSmallCategory = nil
                     }
                 }
             }

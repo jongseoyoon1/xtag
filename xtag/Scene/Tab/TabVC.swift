@@ -82,7 +82,7 @@ class TabVC: TabmanViewController {
     }
     
     @IBAction func productBtnPressed(_ sender: Any) {
-        if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeProductVC") as? MakeProductVC {
+        if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeProductLinkVC") as? MakeProductLinkVC {
             
             viewcontroller.modalPresentationStyle = .fullScreen
             self.present(viewcontroller, animated: true)
@@ -90,6 +90,11 @@ class TabVC: TabmanViewController {
     }
     
     @IBAction func postBtnPressed(_ sender: Any) {
+        if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostVC") as? MakePostVC {
+            
+            viewcontroller.modalPresentationStyle = .fullScreen
+            self.present(viewcontroller, animated: true)
+        }
     }
 }
 

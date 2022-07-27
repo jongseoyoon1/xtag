@@ -24,8 +24,12 @@ class UserManager {
     
     public var user : UserModel? {
         didSet {
-            if user!.jwt != nil {
-                self.jwt = user!.jwt!
+            guard let user = user else {
+                return
+            }
+            
+            if user.jwt != nil {
+                self.jwt = user.jwt!
             }
             
         }

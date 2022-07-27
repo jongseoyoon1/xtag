@@ -9,7 +9,6 @@ import UIKit
 
 class FollowingProductVC: UIViewController {
 
-    
     private var postList: [PostModel] = [] {
         didSet {
             self.collectionView.reloadData()

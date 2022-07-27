@@ -9,7 +9,6 @@ import UIKit
 
 class MyProductVC: UIViewController {
 
-    
     private var postList: [PostModel] = [] {
         didSet {
             self.collectionView.reloadData()
@@ -47,7 +46,7 @@ class MyProductVC: UIViewController {
     }
     
     private func getPost() {
-        HTTPSession.shared.feed(smallCategoryId: nil, page: nil, size: nil) { result, error in
+        HTTPSession.shared.getMyFeed { result, error in
             if error == nil {
                 guard let result = result else {
                     return

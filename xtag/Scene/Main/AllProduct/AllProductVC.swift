@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 class AllProductVC: UIViewController {
-
+    
+    private var subscriptions = Set<AnyCancellable>()
+    
     private var postList: [PostModel] = [] {
         didSet {
             self.collectionView.reloadData()
@@ -21,7 +24,7 @@ class AllProductVC: UIViewController {
         super.viewDidLoad()
 
         setupCollectionView()
-        
+        setupPublisher()
         
         self.navigationController?.navigationBar.isHidden = true
     }
@@ -30,6 +33,7 @@ class AllProductVC: UIViewController {
         super.viewDidAppear(animated)
         
         getPost()
+        
     }
     
     private func setupCollectionView() {
@@ -60,6 +64,30 @@ class AllProductVC: UIViewController {
             
         }
         
+    }
+    
+    private func setupPublisher() {
+        let publisher = CategoryManager.shared.$mainSelectedSmallCategory
+        publisher.sink { smallCategoryModel in
+            if let smallCategoryModel = smallCategoryModel {
+                self.updatePost(smallCategoryId: smallCategoryModel.smallCategoryId ?? "")
+            } else {
+                self.updatePost(smallCategoryId: "")
+            }
+        }
+        .store(in: &subscriptions)
+    }
+    
+    private func updatePost(smallCategoryId: String) {
+        HTTPSession.shared.feed(smallCategoryId: smallCategoryId, page: nil, size: nil) { result, error in
+            if error == nil {
+                guard let result = result else {
+                    return
+                }
+
+                self.postList = result
+            }
+        }
     }
 
 }
@@ -126,10 +154,11 @@ extension AllProductVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let post = postList[indexPath.row]
         if let viewController = UIStoryboard(name: "UserPost", bundle: nil).instantiateViewController(withIdentifier: "UserPostVC") as? UserPostVC {
-            
+            MainNavigationBar.isHidden = true
             viewController.modalPresentationStyle = .fullScreen
-            
+            viewController.postId = post.postId ?? ""
             self.navigationController?.pushViewController(viewController, animated: true)
         }
         

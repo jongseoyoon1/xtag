@@ -100,7 +100,7 @@ protocol Router: URLRequestConvertible {
 
 extension Router {
     private var baseURL: String {
-        return BASE_URL
+        return BASE_URL_DEV
     }
     
     func asURLRequest() throws -> URLRequest {
@@ -113,8 +113,18 @@ extension Router {
         //request.setValue("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4NCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjU1OTAwNjIxLCJleHAiOjE2NTY3NjQ2MjF9.kGxiZVH-Krx4_z_LMuzGXbauJFt9Jw00bxo03BH4FAc", forHTTPHeaderField: "X-ACCESS-TOKEN")
         
         print("httpMethod = \(request.httpMethod)")
+        print("jwt = \(Defaults[\.jwt])")
         
         if request.httpMethod == "POST" {
+            if let theJSONData = try? JSONSerialization.data(
+                withJSONObject: paramaters,
+                options: []) {
+                let theJSONText = String(data: theJSONData,
+                                           encoding: .ascii)
+                print("JSON string = \(theJSONText!)")
+                request.httpBody = theJSONData
+            }
+        } else if request.httpMethod == "PATCH" {
             if let theJSONData = try? JSONSerialization.data(
                 withJSONObject: paramaters,
                 options: []) {

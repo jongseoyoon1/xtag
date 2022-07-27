@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import FirebaseDynamicLinks
 
 class MyPageVC: UIViewController {
     
@@ -34,12 +35,53 @@ class MyPageVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
+    @IBOutlet weak var productCollectionView: UICollectionView!
     
-    var myPageType : MyPageType = .Album
+    @IBOutlet weak var albumButton: UIButton!
+    @IBOutlet weak var collectionButton: UIButton!
+    private var selectedSmallCategoryId = ""
+    
+    @IBOutlet weak var postEmptyLabel: UILabel!
+    @IBOutlet weak var productEmptyLabel: UILabel!
+    
+    var myPageType : MyPageType = .Album {
+        didSet {
+            postEmptyLabel.isHidden = true
+            productEmptyLabel.isHidden = true
+            
+            self.setMenuButtons()
+            
+            if self.productList.count == 0 {
+                if self.myPageType == .Collection {
+                    self.productEmptyLabel.isHidden = false
+                }
+                
+            }
+            
+            if self.postList.count == 0 {
+                if self.myPageType == .Album {
+                    self.postEmptyLabel.isHidden = false
+                }
+                
+            }
+        }
+    }
     
     private var postList: [PostModel] = [] {
         didSet {
+            postEmptyLabel.isHidden = true
+            productEmptyLabel.isHidden = true
             self.collectionView.reloadData()
+            
+        }
+    }
+    private var productList: [ProductModel] = [] {
+        didSet {
+            postEmptyLabel.isHidden = true
+            productEmptyLabel.isHidden = true
+            self.setMenuButtons()
+            self.productCollectionView.reloadData()
+            
         }
     }
     
@@ -50,10 +92,12 @@ class MyPageVC: UIViewController {
         super.viewDidLoad()
         
         
-        setupUI()
-        getPost()
-        setupCollectionView()
-        getUserCategory()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        getUserInfo()
     }
     
     private func setupUI() {
@@ -84,6 +128,7 @@ class MyPageVC: UIViewController {
     private func setupCollectionView() {
         collectionView.register(UINib(nibName: "PostCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PostCollectionViewCell")
         
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -98,14 +143,76 @@ class MyPageVC: UIViewController {
         
         categoryCollectionView.register(UINib(nibName: "MyPageMoreCollectionCell", bundle: nil), forCellWithReuseIdentifier: "MyPageMoreCollectionCell")
         categoryCollectionView.register(UINib(nibName: "MyPageFilterCell", bundle: nil), forCellWithReuseIdentifier: "MyPageFilterCell")
+        
+        productCollectionView.delegate = self
+        productCollectionView.dataSource = self
+        
+        productCollectionView.register(UINib(nibName: "MyPageCollectionCell", bundle: nil), forCellWithReuseIdentifier: "MyPageCollectionCell")
     }
     
-    @IBAction func shareBtnPressed(_ sender: Any) {
+    private func setMenuButtons() {
+        if myPageType == .Album {
+            self.productCollectionView.isHidden = true
+            
+            albumButton.setTitle("Album \(postList.count)", for: [])
+            collectionButton.setTitle("Collection", for: [])
+            albumButton.setAttributedTitle(applyBoldAttributedStringSelected("Album \(postList.count)", highlightText: "\(postList.count)"), for: [])
+            collectionButton.setAttributedTitle(applyBoldAttributedStringDeSelected("Collection \(productList.count)", highlightText: "\(productList.count)"), for: [])
+            
+        } else {
+            self.productCollectionView.isHidden = false
+            
+            albumButton.setTitle("Album \(postList.count)", for: [])
+            collectionButton.setTitle("Collection", for: [])
+            
+            albumButton.setAttributedTitle(applyBoldAttributedStringDeSelected("Album \(postList.count)", highlightText: "\(postList.count)"), for: [])
+            collectionButton.setAttributedTitle(applyBoldAttributedStringSelected("Collection \(productList.count)", highlightText: "\(productList.count)"), for: [])
+            
+        }
         
+        self.collectionView.reloadData()
+    }
+    
+    @IBAction func alarmBtnPressed(_ sender: Any) {
+        if let viewcontroller = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(withIdentifier: "AlarmVC") as? AlarmVC {
+            viewcontroller.modalPresentationStyle = .fullScreen
+            
+            self.present(viewcontroller, animated: true)
+        }
+    }
+    @IBAction func shareBtnPressed(_ sender: Any) {
+        guard let link = URL(string: "https://www.xtag.info/profile?id=\(UserManager.shared.userInfo!.userId!)") else { return }
+        let dynamicLinksDomainURIPrefix = "https://xtag.xlab.io"
+        let linkBuilder = DynamicLinkComponents(link: link, domainURIPrefix: dynamicLinksDomainURIPrefix)!
+        
+        linkBuilder.iOSParameters = DynamicLinkIOSParameters(bundleID: "com.xlab.www.xtag")
+        linkBuilder.iOSParameters!.appStoreID = "1632547743"
+        linkBuilder.iOSParameters!.minimumAppVersion = "1.0.0"
+        
+        linkBuilder.androidParameters = DynamicLinkAndroidParameters(packageName: "xlab.io.xtag")
+        linkBuilder.androidParameters!.minimumVersion = 1
+        
+        
+        linkBuilder.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
+        linkBuilder.socialMetaTagParameters!.title = "\(UserManager.shared.userInfo!.name!) 프로필"
+            //linkBuilder.socialMetaTagParameters.descriptionText = "This link works whether the app is installed or not!"
+        linkBuilder.socialMetaTagParameters!.imageURL = URL(string: "https://images.xtag.info/link_copy.png")
+//
+        linkBuilder.shorten { url, warnings, error in
+            guard let url = url, error == nil else { return }
+            
+            UIPasteboard.general.string = url.absoluteString
+        }
     }
     
     @IBAction func collectionMoreBtnPressed(_ sender: Any) {
+        if let viewcontroller = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(withIdentifier: "SecretProductVC") as? SecretProductVC {
+            viewcontroller.modalPresentationStyle = .fullScreen
+            viewcontroller.productList = self.productList
         
+            
+            self.present(viewcontroller, animated: true)
+        }
     }
     
     @IBAction func settingBtnPressed(_ sender: Any) {
@@ -125,44 +232,140 @@ class MyPageVC: UIViewController {
         }
     }
     
-    private func getPost() {
-        if CategoryManager.shared.mainSelectedSmallCategory == nil {
-            HTTPSession.shared.feed(smallCategoryId: nil, page: nil, size: nil) { result, error in
-                if error == nil {
-                    guard let result = result else {
-                        return
-                    }
-
-                    self.postList = result
+    private func getUserInfo() {
+        HTTPSession.shared.getUserProfile(userId: UserManager.shared.userInfo?.userId ?? "") { result, error in
+            if error == nil {
+                guard let result = result else {
+                    return
                 }
+                
+                UserManager.shared.userInfo = result
+                
+                
+                self.setupUI()
+                self.getPost()
+                self.setupCollectionView()
+                self.getUserCategory()
             }
-        } else {
-            
+        }
+    }
+    
+    private func getPost() {
+        
+        
+        HTTPSession.shared.getPostAlbum(userId: UserManager.shared.userInfo!.userId!,
+                                        smallCategoryId: selectedSmallCategoryId) { result, error in
+            if error == nil {
+                guard let result = result else {
+                    return
+                }
+
+                self.postList = result
+                
+                HTTPSession.shared.getUserProductWithReview(userId: UserManager.shared.userInfo!.userId!,
+                                                  smallCategoryId: self.selectedSmallCategoryId) { result, error in
+                    if error == nil {
+                        guard let result = result else {
+                            return
+                        }
+                        self.productList = result
+                        self.setMenuButtons()
+                        
+                        if self.productList.count == 0 {
+                            if self.myPageType == .Collection {
+                                self.productEmptyLabel.isHidden = false
+                            }
+                            
+                        }
+                        
+                        if self.postList.count == 0 {
+                            if self.myPageType == .Album {
+                                self.postEmptyLabel.isHidden = false
+                            }
+                            
+                        }
+                    }
+                }
+                
+            }
         }
         
     }
+    @IBAction func albumBtnPressed(_ sender: Any) {
+        self.myPageType = .Album
+    }
     
+    @IBAction func collectionBtnPressed(_ sender: Any) {
+        self.myPageType = .Collection
+    }
+    
+    
+    fileprivate func applyBoldAttributedStringSelected(_ originalText: String, highlightText: String) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: originalText, attributes: [
+            .font: UIFont(name: XTFont.PRETENDARD_EXTRABOLD, size: 16)!,
+            .foregroundColor: XTColor.GREY_900.getColorWithString()
+            
+        ])
+        
+        let range = (originalText as NSString).range(of:highlightText)
+        attributedString.addAttribute(
+            .font,
+            value: UIFont(name: XTFont.PRETENDARD_EXTRABOLD, size: 13.0)!,
+            range: range)
+        
+        attributedString.addAttribute(.foregroundColor, value: XTColor.BLUE_800.getColorWithString(), range: range)
+                                      
+        return attributedString
+        
+    }
+    
+    fileprivate func applyBoldAttributedStringDeSelected(_ originalText: String, highlightText: String) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: originalText, attributes: [
+            .font: UIFont(name: XTFont.PRETENDARD_EXTRABOLD, size: 16)!,
+            .foregroundColor: XTColor.GREY_500.getColorWithString()
+            
+        ])
+        
+        let range = (originalText as NSString).range(of:highlightText)
+        attributedString.addAttribute(
+            .font,
+            value: UIFont(name: XTFont.PRETENDARD_EXTRABOLD, size: 13.0)!,
+            range: range)
+        
+        attributedString.addAttribute(.foregroundColor, value: XTColor.GREY_400.getColorWithString(), range: range)
+                                      
+        return attributedString
+        
+    }
 }
 
 extension MyPageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CustomLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         if collectionView == self.collectionView {
-            let post = postList[indexPath.row]
-            let ratio = post.postImageRatio
-            let rx = CGFloat(ratio!.getRatioRx())
-            let ry = CGFloat(ratio!.getRatioRy())
-            
-            let width = (self.view.frame.size.width - 2) / 2
-            var height = width * ry / rx
-            
-            if rx == 0 || ry == 0 {
-                height = width
+            if self.myPageType == .Album {
+                let post = postList[indexPath.row]
+                let ratio = post.postImageRatio
+                let rx = CGFloat(ratio!.getRatioRx())
+                let ry = CGFloat(ratio!.getRatioRy())
+                
+                let width = (self.view.frame.size.width - 2) / 2
+                var height = width * ry / rx
+                
+                if rx == 0 || ry == 0 {
+                    height = width
+                }
+                
+                print("rx = \(rx) ry = \(ry)")
+                print("width = \(width) hieght = \(height)")
+                
+                return height
+            } else {
+                let width = (self.view.frame.width - 2) / 3
+                
+                return width + 40
             }
             
-            print("rx = \(rx) ry = \(ry)")
-            print("width = \(width) hieght = \(height)")
             
-            return height
         }
         
         return 0
@@ -171,10 +374,16 @@ extension MyPageVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView {
-            return postList.count
+            if myPageType == .Album {
+                return postList.count
+            }
+            
         } else if collectionView == self.categoryCollectionView {
             print("smallCategoryList.count = \(smallCategoryList.count)")
             return smallCategoryList.count + 2
+        } else if collectionView == self.productCollectionView {
+            return productList.count
+            
         }
         
         return 0
@@ -183,15 +392,28 @@ extension MyPageVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == self.collectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCollectionViewCell", for: indexPath) as! PostCollectionViewCell
-            let post = postList[indexPath.row]
+            if self.myPageType == .Album {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCollectionViewCell", for: indexPath) as! PostCollectionViewCell
+                let post = postList[indexPath.row]
+                
+                cell.setupCell(userName: post.userName ?? "", profileImageUri: post.userCdnImageUri ?? "", postImageUri: post.postCdnImageUri ?? "")
+                
+                
+                
+                
+                return cell
+            }
+        }
+        
+        
+       if collectionView == self.productCollectionView {
+           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyPageCollectionCell", for: indexPath) as! MyPageCollectionCell
+           
+           let product = productList[indexPath.row]
+           cell.imageView.kf.setImage(with: URL(string: product.productImageUri ?? ""), placeholder: UIImage(named: "nproduct_image"))
+           cell.contentLabel.text = product.productTitle
+           return cell
             
-            cell.setupCell(userName: post.userName ?? "", profileImageUri: post.userCdnImageUri ?? "", postImageUri: post.postCdnImageUri ?? "")
-            
-            
-            
-            
-            return cell
         }
         
         if collectionView == self.categoryCollectionView {
@@ -238,22 +460,32 @@ extension MyPageVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.collectionView {
-            let post = postList[indexPath.row]
-            let ratio = post.postImageRatio
-            let rx = CGFloat(ratio!.getRatioRx())
-            let ry = CGFloat(ratio!.getRatioRy())
-            
-            let width = (self.view.frame.size.width - 2) / 2
-            var height = width * rx / ry
-            
-            if rx == 0 || ry == 0 {
-                height = width
+            if self.myPageType == .Album {
+                let post = postList[indexPath.row]
+                let ratio = post.postImageRatio
+                let rx = CGFloat(ratio!.getRatioRx())
+                let ry = CGFloat(ratio!.getRatioRy())
+                
+                let width = (self.view.frame.size.width - 2) / 2
+                var height = width * rx / ry
+                
+                if rx == 0 || ry == 0 {
+                    height = width
+                }
+                
+                print("rx = \(rx) ry = \(ry)")
+                print("width = \(width) hieght = \(height)")
+                
+                return CGSize(width: width, height: height)
             }
             
-            print("rx = \(rx) ry = \(ry)")
-            print("width = \(width) hieght = \(height)")
+        }
+        
+        if collectionView == self.productCollectionView {
+            let width = (self.view.frame.width - 2) / 3
             
-            return CGSize(width: width, height: height)
+            return CGSize(width: width, height: width + 40)
+            
         }
         
         if collectionView == self.categoryCollectionView {
@@ -311,6 +543,7 @@ extension MyPageVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
             return 16
         }
         
+        
         return 1
     }
     
@@ -336,7 +569,26 @@ extension MyPageVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         if collectionView == self.categoryCollectionView {
             self.selectedCategoryIndex = indexPath.row
             
-            self.categoryCollectionView.reloadData()
+            if indexPath.row == 0  {
+                if let viewcontroller = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(withIdentifier: "MyPageEditCategoryVC") as? MyPageEditCategoryVC {
+                    viewcontroller.modalPresentationStyle = .fullScreen
+                    
+                    self.present(viewcontroller, animated: true)
+                }
+            }
+            
+            if indexPath.row == 1 {
+                self.selectedSmallCategoryId = ""
+                self.getPost()
+                
+                self.categoryCollectionView.reloadData()
+            } else if indexPath.row > 1 {
+                let category = self.smallCategoryList[indexPath.row - 2]
+                self.selectedSmallCategoryId = category.smallCategoryId ?? ""
+                self.getPost()
+                
+                self.categoryCollectionView.reloadData()
+            }
         }
         
         

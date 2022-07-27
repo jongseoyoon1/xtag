@@ -14,3 +14,15 @@ class MakePostManager {
     var productInfo: ProductInfoModel?
     
 }
+
+class MakeProductManager {
+    public static let shared = MakeProductManager()
+    
+    var productInfo: ProductInfoModel?
+    var productEvaluateState: EvaluateState?
+    
+    public func `init`() {
+        productInfo = nil
+        productEvaluateState = nil
+    }
+}

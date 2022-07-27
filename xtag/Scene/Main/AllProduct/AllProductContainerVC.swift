@@ -32,7 +32,7 @@ class AllProductContainerVC: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         
         categoryCollectionVC = CategoryCollectionVC(collectionViewLayout: layout)
-        categoryCollectionVC.CELL_WIDTH = (self.view.frame.size.width - 32 - 44) / 3
+        categoryCollectionVC.CELL_WIDTH = (self.view.frame.size.width - 32 - 44) / 3 - 1
         //UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryCollectionVC") as! CategoryCollectionVC
         
         
@@ -54,7 +54,7 @@ class AllProductContainerVC: UIViewController {
                     if (children.first! is CategoryCollectionVC) {
                         cycle(from: categoryCollectionVC, to: allProductVC)
                         CategoryManager.shared.bottomBarIsOpen = true
-                        CategoryManager.shared.mainSelectedSmallCategory = nil
+                        //CategoryManager.shared.mainSelectedSmallCategory = nil
                     }
                 }
             }

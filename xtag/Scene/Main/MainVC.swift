@@ -9,6 +9,8 @@ import UIKit
 import Tabman
 import Pageboy
 
+var MainNavigationBar: XTMainNavigationBar!
+
 class MainVC: TabmanViewController {
     
     @IBOutlet weak var mainNavigationBar: XTMainNavigationBar!
@@ -22,10 +24,12 @@ class MainVC: TabmanViewController {
         let myProductVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyProductVC") as! UINavigationController
         let followingProductVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FollowingProductVC") as! UINavigationController
         
+        
         viewControllers.append(allProductVC)
         viewControllers.append(myProductVC)
         viewControllers.append(followingProductVC)
         
+        MainNavigationBar = self.mainNavigationBar
         
         self.dataSource = self
         setupNav()
@@ -37,6 +41,10 @@ class MainVC: TabmanViewController {
         super.viewDidAppear(animated)
         
        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
     
     private func setupNav() {

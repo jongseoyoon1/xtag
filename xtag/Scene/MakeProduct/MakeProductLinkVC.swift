@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import PKHUD
 
-class MakeProductVC: UIViewController {
+class MakeProductLinkVC: UIViewController {
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var backgroundTextView: UIView!
     
     let textViewPlaceHolder = "상품 링크 복사 후 붙여넣기"
+    @IBOutlet weak var confirmButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,7 @@ class MakeProductVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        MakeProductManager.shared.productInfo?.memo = "작성하기"
         setupTextView()
     }
     
@@ -41,11 +43,16 @@ class MakeProductVC: UIViewController {
     }
     
     private func validateUrl(urlString: String) {
+        HUD.show(.progress)
+        
         HTTPSession.shared.productInfo(url: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) { result, error in
+            HUD.hide()
+            self.confirmButton.isSelected = false
+            
             if error == nil {
                 print(result)
-                
-                MakePostManager.shared.productInfo = result
+                self.confirmButton.isSelected = true
+                MakeProductManager.shared.productInfo = result
             }
         }
     }
@@ -61,9 +68,18 @@ class MakeProductVC: UIViewController {
         self.dismiss(animated: true)
     }
     
+    @IBAction func comfirmBtnPressed(_ sender: Any) {
+        if confirmButton.isSelected {
+            if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeProductDetailVC") as?  MakeProductDetailVC {
+                
+                viewcontroller.modalPresentationStyle = .fullScreen
+                self.present(viewcontroller, animated: true)
+            }
+        }
+    }
 }
 
-extension MakeProductVC: UITextViewDelegate {
+extension MakeProductLinkVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == textViewPlaceHolder {
             textView.text = nil
@@ -84,6 +100,17 @@ extension MakeProductVC: UITextViewDelegate {
     
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        confirmButton.isSelected = false
+        if let paste = UIPasteboard.general.string, text == paste {
+            print("paste")
+            if paste.isValidURL {
+                validateUrl(urlString: textView.text)
+            }
+        } else {
+            print("normal typing")
+        }
+        
+        
         let inputString = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard let oldString = textView.text, let newRange = Range(range, in: oldString) else { return true }
         let newString = oldString.replacingCharacters(in: newRange, with: inputString).trimmingCharacters(in: .whitespacesAndNewlines)

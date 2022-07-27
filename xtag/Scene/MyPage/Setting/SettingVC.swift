@@ -12,7 +12,12 @@ class SettingVC: UIViewController {
     @IBOutlet weak var navigationBar: XTNavigationBar!
     @IBOutlet weak var tableView: UITableView!
     
-    var pushCellCount = 1
+    var pushCellCount = 4
+    
+    private var isPushOn = false
+    private var isLikeOn = false
+    private var isCommentOn = false
+    private var isFollowOn = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +52,13 @@ class SettingVC: UIViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SettingPushCell") as! SettingPushCell
             cell.titleLabel.text = "푸시알림"
             cell.titleLabel.textColor = XTColor.GREY_900.getColorWithString()
+            
+            cell.onSwitch = { (isOn) in
+                if isOn {
+                    
+                } else {
+                }
+            }
             
             return cell
         case 2:
@@ -88,6 +100,19 @@ class SettingVC: UIViewController {
             cell.typeImage.isHidden = false
             
             cell.titleLabel.text = "로그인 정보"
+            cell.emailLabel.text = UserManager.shared.userInfo?.email!
+            
+            if let loginType = UserManager.shared.userInfo?.providerType {
+                if loginType == "GOOGLE" {
+                    cell.typeImage.image = UIImage(named: "Google")
+                } else if loginType == "APPLE" {
+                    
+                        cell.typeImage.image = UIImage(named: "Apple")
+                } else if loginType == "APPLE" {
+                    
+                        cell.typeImage.image = UIImage(named: "facebook")
+                }
+            }
             
             return cell
         case 2:
@@ -202,6 +227,16 @@ extension SettingVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
+            let user = UserManager.shared.user
+            print(user)
+            
+            if let isLikeAlarm = UserManager.shared.user?.isLikeAlarm,
+               let isCommentAlarm = UserManager.shared.user?.isCommentAlarm,
+               let isFollowerAlarm = UserManager.shared.user?.isFollowerAlarm {
+                
+                
+            }
+            
             return pushCellCount + 1
         case 1:
             return 3

@@ -11,6 +11,9 @@ class SettingPushCell: UITableViewCell {
 
     @IBOutlet weak var settingSwitch: UISwitch!
     @IBOutlet weak var titleLabel: UILabel!
+    
+    public var onSwitch: ((Bool)->Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,6 +27,10 @@ class SettingPushCell: UITableViewCell {
     }
     
     @IBAction func onSwitch(_ sender: Any) {
-        
+        guard let onSwitch = onSwitch else {
+            return
+        }
+
+        onSwitch(settingSwitch.isOn)
     }
 }

@@ -97,3 +97,91 @@ class UserInfo: Mappable {
         
     }
 }
+
+class UserSettingInfo: Mappable {
+    required init?(map: Map) {
+        
+    }
+    
+    var userId: String?
+    var providerType: String?
+    var providerId: String?
+    var email: String?
+    var name: String?
+    
+    var isLikeAlarm: String?
+    var isCommentAlarm: String?
+    var isFollowerAlarm: String?
+    
+    func mapping(map: Map) {
+        userId <- map["userId"]
+        providerType <- map["providerType"]
+        providerId <- map["providerId"]
+        email <- map["email"]
+        name <- map["name"]
+        
+        isLikeAlarm <- map["isLikeAlarm"]
+        isCommentAlarm <- map["isCommentAlarm"]
+        isFollowerAlarm <- map["isFollowerAlarm"]
+        
+    }
+}
+
+class SenderModel: Mappable {
+    required init?(map: Map) {
+        
+    }
+    
+    var userId: String?
+    var userName: String?
+    var userS3ImageUri: String?
+    var userCdnImageUri: String?
+    
+    func mapping(map: Map) {
+        userId <- map["userId"]
+        userName <- map["userName"]
+        userS3ImageUri <- map["userS3ImageUri"]
+        userCdnImageUri <- map["userCdnImageUri"]
+        
+    }
+}
+
+class NotificationPostModel: Mappable {
+    required init?(map: Map) {
+        
+    }
+    
+    var postId: String?
+    var postS3ImageUri: String?
+    var postCdnImageUri: String?
+    var postImageRatio: String?
+    var isMyPost: String?
+    
+    func mapping(map: Map) {
+        postId <- map["postId"]
+        postS3ImageUri <- map["postS3ImageUri"]
+        postCdnImageUri <- map["postCdnImageUri"]
+        postImageRatio <- map["postImageRatio"]
+        isMyPost <- map["isMyPost"]
+        
+    }
+}
+
+class NotificationModel: Mappable {
+    required init?(map: Map) {
+        
+    }
+    
+    var id: String?
+    var type: String?
+    var sender: SenderModel?
+    var post: NotificationPostModel?
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        type <- map["type"]
+        sender <- map["sender"]
+        post <- map["post"]
+        
+    }
+}

@@ -307,7 +307,7 @@ class LargeCategoryCell: UICollectionViewCell {
 class SmallCategoryCell: UICollectionViewCell {
     public static let IDENTIFIER = "SmallCategoryCell"
     
-    private var grayView: UIView = {
+    public var grayView: UIView = {
         let vw = UIView()
         
         vw.translatesAutoresizingMaskIntoConstraints = false
