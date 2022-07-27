@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Pretendard-Regular.ttf">
+            <string>Pretendard-Regular</string>
+        </array>
         <array key="SpoqaHanSansNeo-Regular.ttf">
             <string>SpoqaHanSansNeo-Regular</string>
         </array>
@@ -35,11 +38,42 @@
                         <color key="textColor" name="Grey600"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BcX-wq-oRs">
+                        <rect key="frame" x="177" y="8" width="24" height="24"/>
+                        <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEw-zd-Pva">
+                                <rect key="frame" x="9" y="3.5" width="6.5" height="17"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="DEw-zd-Pva" firstAttribute="centerY" secondItem="BcX-wq-oRs" secondAttribute="centerY" id="MlC-FA-0qq"/>
+                            <constraint firstAttribute="width" constant="24" id="k51-dh-JKN"/>
+                            <constraint firstItem="DEw-zd-Pva" firstAttribute="centerX" secondItem="BcX-wq-oRs" secondAttribute="centerX" id="mu5-bv-6vZ"/>
+                            <constraint firstAttribute="height" constant="24" id="vEg-BF-diU"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerradius">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderwidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bordercolor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstItem="BcX-wq-oRs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="4jG-MB-Y7G"/>
                 <constraint firstItem="Hqe-qW-qcQ" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="8" id="ABM-An-pSh"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="BcX-wq-oRs" secondAttribute="trailing" constant="8" id="BmD-g4-8JK"/>
                 <constraint firstItem="HrZ-Qn-7Es" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="QX0-2t-8o6"/>
                 <constraint firstItem="Hqe-qW-qcQ" firstAttribute="top" secondItem="HrZ-Qn-7Es" secondAttribute="bottom" constant="8" id="eU2-Hl-Pyp"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="HrZ-Qn-7Es" secondAttribute="trailing" id="f1o-Rr-HO6"/>
@@ -49,6 +83,8 @@
             <size key="customSize" width="209" height="380"/>
             <connections>
                 <outlet property="contentLabel" destination="Hqe-qW-qcQ" id="w3E-3a-eoM"/>
+                <outlet property="countLabel" destination="DEw-zd-Pva" id="dFD-ie-XQG"/>
+                <outlet property="countView" destination="BcX-wq-oRs" id="yuq-HL-cl7"/>
                 <outlet property="imageView" destination="HrZ-Qn-7Es" id="oVX-yg-Q3F"/>
             </connections>
             <point key="canvasLocation" x="247.10144927536234" y="242.41071428571428"/>

@@ -223,11 +223,16 @@ class MakePostSelectImageVC: UIViewController {
         if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostUploadVC") as? MakePostUploadVC {
             var selectImage : [UIImage] = []
             
+            MakePostManager.shared.postList = []
+            
             for idx in self.selectedIndex {
                 let reversedIndex = allPhotos.count - idx - 1
                 let asset = self.allPhotos[reversedIndex]
                 let image = getOriginalUIImage(asset: asset)
                 selectImage.append(image!)
+                
+                MakePostManager.shared.postList.append(UploadPostModel.init())
+                
             }
             
             viewcontroller.selectedCategory = self.selectedCategory

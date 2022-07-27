@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import ObjectMapper
+import UIKit
 
 class PostModel: Mappable {
     var userId: String?
@@ -137,6 +138,22 @@ class CommentModel: Mappable {
         comment <- map["comment"]
         isMyComment <- map["isMyComment"]
         hasComentReply <- map["hasComentReply"]
+    }
+}
+
+class UploadPostModel: Mappable {
+    var image: UIImage?
+    var productList: [ProductModel] = []
+    
+    init() {
+        image = nil
+        productList = []
+    }
+    
+    required init?(map: Map) {}
+    
+    func mapping(map: Map) {
+        
     }
 }
 

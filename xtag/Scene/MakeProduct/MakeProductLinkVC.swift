@@ -80,6 +80,7 @@ class MakeProductLinkVC: UIViewController {
 }
 
 extension MakeProductLinkVC: UITextViewDelegate {
+   
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == textViewPlaceHolder {
             textView.text = nil
@@ -99,7 +100,13 @@ extension MakeProductLinkVC: UITextViewDelegate {
     
     
     
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n")
+            {
+                view.endEditing(true)
+                return false
+            }
         confirmButton.isSelected = false
         if let paste = UIPasteboard.general.string, text == paste {
             print("paste")

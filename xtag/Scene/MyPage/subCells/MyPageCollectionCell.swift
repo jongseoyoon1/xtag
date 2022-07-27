@@ -10,6 +10,8 @@ import UIKit
 class MyPageCollectionCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var countView: UIView!
+    @IBOutlet weak var countLabel: UILabel!
     
     public static let IDENTIFIER = "MyPageCollectionCell"
     

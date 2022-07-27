@@ -13,6 +13,7 @@ class MakePostManager {
     
     var productInfo: ProductInfoModel?
     
+    var postList: [UploadPostModel] = []
 }
 
 class MakeProductManager {

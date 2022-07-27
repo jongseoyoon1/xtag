@@ -86,6 +86,9 @@
 		557AB65C286029CE007BAB32 /* SmallCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557AB65B286029CE007BAB32 /* SmallCategory.swift */; };
 		557B661128574C3B0080264B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B661028574C3B0080264B /* UserModel.swift */; };
 		557B6614285783760080264B /* MXParallaxHeader in Frameworks */ = {isa = PBXBuildFile; productRef = 557B6613285783760080264B /* MXParallaxHeader */; };
+		557D5FED2890F3CE007D646F /* MakePostProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 557D5FEB2890F3CE007D646F /* MakePostProductCell.xib */; };
+		557D5FEE2890F3CE007D646F /* MakePostProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D5FEC2890F3CE007D646F /* MakePostProductCell.swift */; };
+		557D5FF02890FA52007D646F /* MakePostProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D5FEF2890FA52007D646F /* MakePostProductVC.swift */; };
 		5588C63D284F6213006245BF /* HTTPSession+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588C63C284F6213006245BF /* HTTPSession+Category.swift */; };
 		5588C63F284F996F006245BF /* HTTPSession+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588C63E284F996F006245BF /* HTTPSession+User.swift */; };
 		5595004228894110004DF606 /* UserProfileCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5595004128894110004DF606 /* UserProfileCategoryVC.swift */; };
@@ -317,6 +320,9 @@
 		557AB659286005F6007BAB32 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		557AB65B286029CE007BAB32 /* SmallCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCategory.swift; sourceTree = "<group>"; };
 		557B661028574C3B0080264B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		557D5FEB2890F3CE007D646F /* MakePostProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MakePostProductCell.xib; sourceTree = "<group>"; };
+		557D5FEC2890F3CE007D646F /* MakePostProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakePostProductCell.swift; sourceTree = "<group>"; };
+		557D5FEF2890FA52007D646F /* MakePostProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostProductVC.swift; sourceTree = "<group>"; };
 		5588C63C284F6213006245BF /* HTTPSession+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPSession+Category.swift"; sourceTree = "<group>"; };
 		5588C63E284F996F006245BF /* HTTPSession+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPSession+User.swift"; sourceTree = "<group>"; };
 		5595004128894110004DF606 /* UserProfileCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCategoryVC.swift; sourceTree = "<group>"; };
@@ -508,6 +514,8 @@
 				55ECD8822890323500F7E874 /* PhotoCell.xib */,
 				55ECD8892890BE5100F7E874 /* PostImageCell.swift */,
 				55ECD88A2890BE5100F7E874 /* PostImageCell.xib */,
+				557D5FEC2890F3CE007D646F /* MakePostProductCell.swift */,
+				557D5FEB2890F3CE007D646F /* MakePostProductCell.xib */,
 			);
 			path = subCells;
 			sourceTree = "<group>";
@@ -969,6 +977,7 @@
 				550690F2288F73D200C76E55 /* MakePostSelectImageVC.swift */,
 				55ECD8872890ABFF00F7E874 /* MakePostUploadVC.swift */,
 				55ECD88D2890C81400F7E874 /* MakePostTagVC.swift */,
+				557D5FEF2890FA52007D646F /* MakePostProductVC.swift */,
 			);
 			path = MakePost;
 			sourceTree = "<group>";
@@ -1197,6 +1206,7 @@
 				55116149283E352F002B679E /* Pretendard-Thin.ttf in Resources */,
 				55B4DDCD284CF39E00F3C55A /* XTNextButton.xib in Resources */,
 				550DF2AD28868A2500AD3B33 /* ProductTagProductsCell.xib in Resources */,
+				557D5FED2890F3CE007D646F /* MakePostProductCell.xib in Resources */,
 				550DF2B02886E00F00AD3B33 /* Comment.storyboard in Resources */,
 				5521B317287D205E008E5650 /* UserPostTagCell.xib in Resources */,
 				55D6FED128878CD5007426A9 /* UserProfile.storyboard in Resources */,
@@ -1263,6 +1273,7 @@
 				55ECD8882890ABFF00F7E874 /* MakePostUploadVC.swift in Sources */,
 				55F95D98287EA7AF00CD2B93 /* ProductEvaluationResultTableCell.swift in Sources */,
 				550DF2AC28868A2500AD3B33 /* ProductTagProductsCell.swift in Sources */,
+				557D5FEE2890F3CE007D646F /* MakePostProductCell.swift in Sources */,
 				550690F1288F73AB00C76E55 /* MakePostSelectCategoryVC.swift in Sources */,
 				55DA4E9D28582E04003F598A /* HTTPSession+Post.swift in Sources */,
 				55DE3998287D0D78001FD762 /* UserPostBottomTableCell.swift in Sources */,
@@ -1284,6 +1295,7 @@
 				55B4DD55284484AF00F3C55A /* Date+Extension.swift in Sources */,
 				55ECD88E2890C81400F7E874 /* MakePostTagVC.swift in Sources */,
 				557AB656285FDCEB007BAB32 /* CategoryCollectionVC.swift in Sources */,
+				557D5FF02890FA52007D646F /* MakePostProductVC.swift in Sources */,
 				5588C63F284F996F006245BF /* HTTPSession+User.swift in Sources */,
 				55E810412888E8AE001C6018 /* MakeProductMemoVC.swift in Sources */,
 				552148A328655D1600205DD9 /* MyProductContainerVC.swift in Sources */,

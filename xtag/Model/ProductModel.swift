@@ -72,6 +72,12 @@ class ProductModel: Mappable {
     
     var productLink: String?
     
+    /*
+     upload 를 위한 parameter
+     */
+    var xRatio: String?
+    var yRatio: String?
+    
     func mapping(map: Map) {
         productCdnImageUri <- map["productCdnImageUri"]
         isMyProduct <- map["isMyProduct"]

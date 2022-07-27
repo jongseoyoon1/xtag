@@ -25,6 +25,17 @@ extension String {
 }
 
 extension String {
+
+  func CGFloatValue() -> CGFloat? {
+    guard let doubleValue = Double(self) else {
+      return nil
+    }
+
+    return CGFloat(doubleValue)
+  }
+}
+
+extension String {
     func getRatioRx() -> Int {
         let splitString = self.split(separator: ":")
         let rx = Int(String(splitString[0]))
