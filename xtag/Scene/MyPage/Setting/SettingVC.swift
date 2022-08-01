@@ -413,7 +413,14 @@ extension SettingVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0: break
-        case 1: break
+        case 1:
+            if indexPath.row == 2 {
+                if let viewcontroller = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(withIdentifier: "SettingBlockUserVC") as? SettingBlockUserVC {
+                    viewcontroller.modalPresentationStyle = .fullScreen
+                    
+                    self.present(viewcontroller, animated: true)
+                }
+            }
         case 2:
             if indexPath.row == 2 {
                 if let viewcontroller = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(withIdentifier: "SettingServiceTermVC") as? SettingServiceTermVC {

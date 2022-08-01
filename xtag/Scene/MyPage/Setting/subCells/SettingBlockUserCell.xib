@@ -58,6 +58,9 @@
                                 <real key="value" value="16"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="blockBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="erK-jZ-0AM"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -70,6 +73,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="nameLabel" destination="yO9-Bf-MfC" id="MHJ-nO-mmx"/>
+                <outlet property="profileImageView" destination="Tl1-AZ-URn" id="r0Q-YQ-CZz"/>
+            </connections>
             <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
         </tableViewCell>
     </objects>

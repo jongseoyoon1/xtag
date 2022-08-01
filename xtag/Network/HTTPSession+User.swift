@@ -21,6 +21,7 @@ extension HTTPSession {
         case userFollow(removeSmallCategoryIdList: [String], addSmallCategoryIdList: [String], userId: String)
         case updateNotification(type: String)
         case getBlockUser(page: String, size: String)
+        case deleteBlockUser(userId: String)
         
         var path: String {
             switch self {
@@ -46,6 +47,8 @@ extension HTTPSession {
                 return "user/alarm?type=\(type)"
             case .getBlockUser(let page,let size):
                 return "user/block?page=\(page)&size=\(size)"
+            case .deleteBlockUser(let userId):
+                return "user/block/\(userId)"
             }
         }
         
@@ -73,6 +76,8 @@ extension HTTPSession {
                 return .patch
             case .getBlockUser:
                 return .get
+            case .deleteBlockUser:
+                return .delete
             }
         }
         
@@ -106,6 +111,32 @@ extension HTTPSession {
         }
         
         
+    }
+    
+    func deleteBlockUser(userId: String, completion: @escaping(Dictionary<String, Any>?, Error?) -> Void) {
+        
+        request(request: User.deleteBlockUser(userId: userId)).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    if let result = dict["result"] as? Dictionary<String, Any> {
+                        
+                        
+                    }
+                    
+                    completion(dict,nil)
+                } else {
+                    completion(nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, error)
+            }
+        
+        }
     }
     
     func getBlockUser(page: String, size: String, completion: @escaping([BlockUserModel]?, PagenationModel?,Error?) -> Void) {

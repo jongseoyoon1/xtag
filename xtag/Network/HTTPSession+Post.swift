@@ -11,7 +11,7 @@ import Alamofire
 extension HTTPSession {
     private enum Post: Router {
         case feed(smallCategoryId: String?, page: Int?, size: Int?)
-        case getMyFeed
+        case getMyFeed(smallCategoryId: String)
         case getPostDetail(postId: String)
         case likePost(postId: String)
         case getPostAlbum(userId: String, smallCategoryId: String)
@@ -31,8 +31,8 @@ extension HTTPSession {
                 return "post/feed?smallCategoryId=\(id)"
             case .getPostDetail(let postId):
                 return "post/\(postId)"
-            case .getMyFeed:
-                return "post/feed/category"
+            case .getMyFeed(let smallCategoryId):
+                return "post/feed/category?smallCategoryId=\(smallCategoryId)"
             case .likePost(let postId):
                 return "post/\(postId)/like"
             case .getPostAlbum(let userId, let smallCategoryId):
@@ -366,9 +366,9 @@ extension HTTPSession {
         }
     }
     
-    func getMyFeed(completion: @escaping([PostModel]?, Error?) -> Void) {
+    func getMyFeed(smallCategoryId: String, completion: @escaping([PostModel]?, Error?) -> Void) {
         
-        request(request: Post.getMyFeed).responseJSON { response in
+        request(request: Post.getMyFeed(smallCategoryId: smallCategoryId)).responseJSON { response in
             switch response.result {
             case .success(let result):
                 if let dict = result as? Dictionary<String, Any> {

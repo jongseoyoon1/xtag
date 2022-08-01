@@ -17,6 +17,8 @@ class MyProductVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private var smallCategoryId: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,7 +48,8 @@ class MyProductVC: UIViewController {
     }
     
     private func getPost() {
-        HTTPSession.shared.getMyFeed { result, error in
+        
+        HTTPSession.shared.getMyFeed(smallCategoryId: self.smallCategoryId) { result, error in
             if error == nil {
                 guard let result = result else {
                     return
