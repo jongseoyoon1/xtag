@@ -44,6 +44,9 @@ class MakePostSelectCategoryVC: UIViewController {
     }
 
     @IBAction func selectBtnPressed(_ sender: Any) {
+        
+        MakePostManager.shared.selectedCategory = selectedSmallCategoryList
+        
         if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostSelectImageVC") as? MakePostSelectImageVC {
             viewcontroller.selectedCategory = selectedSmallCategoryList
             viewcontroller.modalPresentationStyle = .fullScreen

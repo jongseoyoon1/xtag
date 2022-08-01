@@ -35,7 +35,7 @@ class UserManager {
         }
     }
     public var userInfo : UserInfo?
-    
+    public var userSetting : UserSettingInfo?
     
     public func clean() {
         jwt = ""

@@ -18,6 +18,30 @@ extension UIViewController {
         self.view.endEditing(true)
     }
     
+    func showCommonPopup(title: String, content: String, confirmButtonTitle: String, popupType: PopupType, confirmFunc: (()->Void)?) {
+        let commonPopup = XTCommonPopup.create()
+        let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        commonPopup.modalPresentationStyle = .overFullScreen
+        commonPopup.view.backgroundColor = .clear
+        
+        self.present(commonPopup, animated: true)
+        
+        commonPopup.titleLabel.text = title
+        commonPopup.contentLabel.text = content
+        commonPopup.confirmButton.setTitle(confirmButtonTitle, for: [])
+        commonPopup.popupType = popupType
+        commonPopup.onConfirm = confirmFunc
+        
+        backgroundView.backgroundColor = #colorLiteral(red: 0.1058823529, green: 0.1137254902, blue: 0.1215686275, alpha: 0.3)
+        self.view.addSubview(backgroundView)
+        
+        commonPopup.onCancel = {
+            backgroundView.removeFromSuperview()
+        }
+        
+        
+    }
+    
     func showAlertDialog(title: String = "", titleMessage: String, confirmMessage: String? = nil, confirmAction: ((UIAlertAction) -> Void)? = nil, cancelMessage: String? = nil, cancelAction: ((UIAlertAction) -> Void)? = nil){
         let dialog = UIAlertController(title: title, message: titleMessage, preferredStyle: UIAlertController.Style.alert)
         

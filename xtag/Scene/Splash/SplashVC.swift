@@ -16,12 +16,12 @@ class SplashVC: UIViewController {
         
         DispatchQueue.main.async {
             
-//            do {
-//                try Auth.auth().signOut()
-//            } catch let signOutError as NSError {
-//                print("Error signing out: %@", signOutError)
-//            }
-
+            //            do {
+            //                try Auth.auth().signOut()
+            //            } catch let signOutError as NSError {
+            //                print("Error signing out: %@", signOutError)
+            //            }
+            
             
             if let user = Auth.auth().currentUser {
                 // 로그인 된 경우
@@ -35,6 +35,12 @@ class SplashVC: UIViewController {
                             UserManager.shared.userInfo = userInfo
                             
                             self.getLargeCategory()
+                        } else {
+                            do {
+                                try Auth.auth().signOut()
+                            } catch let signOutError as NSError {
+                                print("Error signing out: %@", signOutError)
+                            }
                         }
                     }
                     
@@ -50,8 +56,16 @@ class SplashVC: UIViewController {
         
     }
     
+    private func getUserSetting() {
+        HTTPSession.shared.getUserSetting { userSettignInfo, error in
+            if error == nil {
+                UserManager.shared.userSetting = userSettignInfo
+                self.gotoMain()
+            }
+        }
+    }
+    
     private func getLargeCategory() {
-        print("****************************************")
         HTTPSession.shared.categoryLarge { result, error in
             if error == nil {
                 guard var largeCategoryList = result else { return }
@@ -70,13 +84,11 @@ class SplashVC: UIViewController {
                             
                             if largeCategoryList.count == iterCount + 1 {
                                 CategoryManager.shared.largeCategoryList = largeCategoryList
-                                self.gotoMain()
+                                self.getUserSetting()
                             }
                         }
                     }
                 }
-                
-                
             }
         }
     }
@@ -84,8 +96,6 @@ class SplashVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-       
     }
     
     private func gotoMain() {

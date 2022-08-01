@@ -38,7 +38,6 @@
 		5511612C283E3227002B679E /* xtagUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511612B283E3227002B679E /* xtagUITestsLaunchTests.swift */; };
 		55116143283E352F002B679E /* Pretendard-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5511613A283E352E002B679E /* Pretendard-ExtraLight.ttf */; };
 		55116144283E352F002B679E /* Pretendard-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5511613B283E352F002B679E /* Pretendard-Light.ttf */; };
-		55116147283E352F002B679E /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5511613E283E352F002B679E /* Pretendard-Regular.ttf */; };
 		55116148283E352F002B679E /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5511613F283E352F002B679E /* Pretendard-Medium.ttf */; };
 		55116149283E352F002B679E /* Pretendard-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55116140283E352F002B679E /* Pretendard-Thin.ttf */; };
 		5511614A283E352F002B679E /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55116141283E352F002B679E /* Pretendard-SemiBold.ttf */; };
@@ -199,13 +198,22 @@
 		55ECD8832890323500F7E874 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ECD8812890323500F7E874 /* PhotoCell.swift */; };
 		55ECD8842890323500F7E874 /* PhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55ECD8822890323500F7E874 /* PhotoCell.xib */; };
 		55ECD8852890A1CA00F7E874 /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55116139283E352E002B679E /* Pretendard-Bold.ttf */; };
-		55ECD8862890A1E100F7E874 /* Pretendard-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5511613D283E352F002B679E /* Pretendard-Black.ttf */; };
 		55ECD8882890ABFF00F7E874 /* MakePostUploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ECD8872890ABFF00F7E874 /* MakePostUploadVC.swift */; };
 		55ECD88B2890BE5100F7E874 /* PostImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ECD8892890BE5100F7E874 /* PostImageCell.swift */; };
 		55ECD88C2890BE5100F7E874 /* PostImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55ECD88A2890BE5100F7E874 /* PostImageCell.xib */; };
 		55ECD88E2890C81400F7E874 /* MakePostTagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ECD88D2890C81400F7E874 /* MakePostTagVC.swift */; };
 		55EF6C9A287D721400C7AD76 /* UserPostProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EF6C98287D721400C7AD76 /* UserPostProductCell.swift */; };
 		55EF6C9B287D721400C7AD76 /* UserPostProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55EF6C99287D721400C7AD76 /* UserPostProductCell.xib */; };
+		55F36A8C28964A6600A5A426 /* XTCommonBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F36A8A28964A6500A5A426 /* XTCommonBottomSheet.swift */; };
+		55F36A8D28964A6600A5A426 /* XTCommonBottomSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F36A8B28964A6600A5A426 /* XTCommonBottomSheet.xib */; };
+		55F36A8F2896BC1F00A5A426 /* SettingServiceTermVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F36A8E2896BC1F00A5A426 /* SettingServiceTermVC.swift */; };
+		55F36A942896BEDF00A5A426 /* XTCommonPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F36A922896BEDF00A5A426 /* XTCommonPopup.swift */; };
+		55F36A952896BEDF00A5A426 /* XTCommonPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F36A932896BEDF00A5A426 /* XTCommonPopup.xib */; };
+		55F36A992896C01A00A5A426 /* Pretendard-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5511613D283E352F002B679E /* Pretendard-Black.ttf */; };
+		55F36A9A2896C02000A5A426 /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5511613E283E352F002B679E /* Pretendard-Regular.ttf */; };
+		55F36AA22896CB2D00A5A426 /* SettingBlockUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F36AA12896CB2D00A5A426 /* SettingBlockUserVC.swift */; };
+		55F36AA52896CB8E00A5A426 /* SettingBlockUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F36AA32896CB8E00A5A426 /* SettingBlockUserCell.swift */; };
+		55F36AA62896CB8E00A5A426 /* SettingBlockUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F36AA42896CB8E00A5A426 /* SettingBlockUserCell.xib */; };
 		55F83A0A288C184700CC73B8 /* MakePostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F83A09288C184700CC73B8 /* MakePostVC.swift */; };
 		55F95D94287EA55D00CD2B93 /* UserPostProductTitleTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F95D92287EA55D00CD2B93 /* UserPostProductTitleTableCell.swift */; };
 		55F95D95287EA55D00CD2B93 /* UserPostProductTitleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F95D93287EA55D00CD2B93 /* UserPostProductTitleTableCell.xib */; };
@@ -414,6 +422,14 @@
 		55ECD88D2890C81400F7E874 /* MakePostTagVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostTagVC.swift; sourceTree = "<group>"; };
 		55EF6C98287D721400C7AD76 /* UserPostProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostProductCell.swift; sourceTree = "<group>"; };
 		55EF6C99287D721400C7AD76 /* UserPostProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserPostProductCell.xib; sourceTree = "<group>"; };
+		55F36A8A28964A6500A5A426 /* XTCommonBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTCommonBottomSheet.swift; sourceTree = "<group>"; };
+		55F36A8B28964A6600A5A426 /* XTCommonBottomSheet.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XTCommonBottomSheet.xib; sourceTree = "<group>"; };
+		55F36A8E2896BC1F00A5A426 /* SettingServiceTermVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingServiceTermVC.swift; sourceTree = "<group>"; };
+		55F36A922896BEDF00A5A426 /* XTCommonPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTCommonPopup.swift; sourceTree = "<group>"; };
+		55F36A932896BEDF00A5A426 /* XTCommonPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XTCommonPopup.xib; sourceTree = "<group>"; };
+		55F36AA12896CB2D00A5A426 /* SettingBlockUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingBlockUserVC.swift; sourceTree = "<group>"; };
+		55F36AA32896CB8E00A5A426 /* SettingBlockUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingBlockUserCell.swift; sourceTree = "<group>"; };
+		55F36AA42896CB8E00A5A426 /* SettingBlockUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingBlockUserCell.xib; sourceTree = "<group>"; };
 		55F83A09288C184700CC73B8 /* MakePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostVC.swift; sourceTree = "<group>"; };
 		55F95D92287EA55D00CD2B93 /* UserPostProductTitleTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostProductTitleTableCell.swift; sourceTree = "<group>"; };
 		55F95D93287EA55D00CD2B93 /* UserPostProductTitleTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserPostProductTitleTableCell.xib; sourceTree = "<group>"; };
@@ -681,6 +697,10 @@
 				556B5FE5284F4D04009A96FE /* XTCommonButton.swift */,
 				55DCB84228558B93006997F2 /* XTBottomBar.xib */,
 				55DCB84428558BB6006997F2 /* XTBottomBar.swift */,
+				55F36A8B28964A6600A5A426 /* XTCommonBottomSheet.xib */,
+				55F36A8A28964A6500A5A426 /* XTCommonBottomSheet.swift */,
+				55F36A932896BEDF00A5A426 /* XTCommonPopup.xib */,
+				55F36A922896BEDF00A5A426 /* XTCommonPopup.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -734,6 +754,8 @@
 			children = (
 				5511F89E286ACF140049EBD5 /* subCells */,
 				5511F89C286ACCC00049EBD5 /* SettingVC.swift */,
+				55F36A8E2896BC1F00A5A426 /* SettingServiceTermVC.swift */,
+				55F36AA12896CB2D00A5A426 /* SettingBlockUserVC.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -747,6 +769,8 @@
 				5511F8A3286AD0250049EBD5 /* SettingPushCell.swift */,
 				5511F8A8286AD03E0049EBD5 /* SettingContentCell.xib */,
 				5511F8A7286AD03E0049EBD5 /* SettingContentCell.swift */,
+				55F36AA42896CB8E00A5A426 /* SettingBlockUserCell.xib */,
+				55F36AA32896CB8E00A5A426 /* SettingBlockUserCell.swift */,
 			);
 			path = subCells;
 			sourceTree = "<group>";
@@ -1187,11 +1211,11 @@
 				55E8103F2888E78A001C6018 /* ProductCategoryCell.xib in Resources */,
 				5595005228894E93004DF606 /* UserProfileSelectCategoryCell.xib in Resources */,
 				55ECD88C2890BE5100F7E874 /* PostImageCell.xib in Resources */,
-				55116147283E352F002B679E /* Pretendard-Regular.ttf in Resources */,
 				55ECD8842890323500F7E874 /* PhotoCell.xib in Resources */,
 				5511615F283F1B60002B679E /* SignUp.storyboard in Resources */,
 				55DE3999287D0D78001FD762 /* UserPostBottomTableCell.xib in Resources */,
 				55FB4EF02859DCE400309FAC /* UserPost.storyboard in Resources */,
+				55F36A9A2896C02000A5A426 /* Pretendard-Regular.ttf in Resources */,
 				556B5FE4284F4CFA009A96FE /* XTCommonButton.xib in Resources */,
 				552148AB2865972800205DD9 /* MyPageFilterCell.xib in Resources */,
 				55116148283E352F002B679E /* Pretendard-Medium.ttf in Resources */,
@@ -1200,13 +1224,16 @@
 				5511F8A2286ACFE10049EBD5 /* SettingHeaderCell.xib in Resources */,
 				55116143283E352F002B679E /* Pretendard-ExtraLight.ttf in Resources */,
 				5504F31B286A803A0029C242 /* FollowingTableCell.xib in Resources */,
+				55F36A992896C01A00A5A426 /* Pretendard-Black.ttf in Resources */,
 				CEB38DA9286FD73C006CA23A /* GoogleService-Info.plist in Resources */,
 				5511F8A6286AD0250049EBD5 /* SettingPushCell.xib in Resources */,
+				55F36A8D28964A6600A5A426 /* XTCommonBottomSheet.xib in Resources */,
 				550DF2B72886F2BF00AD3B33 /* CommentCell.xib in Resources */,
 				55116149283E352F002B679E /* Pretendard-Thin.ttf in Resources */,
 				55B4DDCD284CF39E00F3C55A /* XTNextButton.xib in Resources */,
 				550DF2AD28868A2500AD3B33 /* ProductTagProductsCell.xib in Resources */,
 				557D5FED2890F3CE007D646F /* MakePostProductCell.xib in Resources */,
+				55F36A952896BEDF00A5A426 /* XTCommonPopup.xib in Resources */,
 				550DF2B02886E00F00AD3B33 /* Comment.storyboard in Resources */,
 				5521B317287D205E008E5650 /* UserPostTagCell.xib in Resources */,
 				55D6FED128878CD5007426A9 /* UserProfile.storyboard in Resources */,
@@ -1217,6 +1244,7 @@
 				550FE9392880D5F300623D0A /* ProductDetail.storyboard in Resources */,
 				55008122287BFD4500EFBA8D /* ProductLinkTableCell.xib in Resources */,
 				55FB4EED2859D1A300309FAC /* MyPageCollectionCell.xib in Resources */,
+				55F36AA62896CB8E00A5A426 /* SettingBlockUserCell.xib in Resources */,
 				5521B313287D1F7D008E5650 /* UserPostImageCell.xib in Resources */,
 				55B4DDC6284C2BE100F3C55A /* SpoqaHanSansNeo-Light.ttf in Resources */,
 				55B4DDC9284C2BE100F3C55A /* SpoqaHanSansNeo-Thin.ttf in Resources */,
@@ -1226,7 +1254,6 @@
 				55B4DDC8284C2BE100F3C55A /* SpoqaHanSansNeo-Medium.ttf in Resources */,
 				556B5FE0284DCE61009A96FE /* XTMainNavigationBar.xib in Resources */,
 				5511610D283E3225002B679E /* Login.storyboard in Resources */,
-				55ECD8862890A1E100F7E874 /* Pretendard-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1286,6 +1313,7 @@
 				55B4DD57284484AF00F3C55A /* UITabBar+extension.swift in Sources */,
 				55F83A0A288C184700CC73B8 /* MakePostVC.swift in Sources */,
 				55ECD88B2890BE5100F7E874 /* PostImageCell.swift in Sources */,
+				55F36A8F2896BC1F00A5A426 /* SettingServiceTermVC.swift in Sources */,
 				55DDED5B288A38C700CAAEB1 /* AlarmVC.swift in Sources */,
 				55B4DD47284484AF00F3C55A /* UIButton+Extension.swift in Sources */,
 				55FB4EEC2859D1A300309FAC /* MyPageCollectionCell.swift in Sources */,
@@ -1310,12 +1338,14 @@
 				55AD528A2865A0210040D0A3 /* MyPageMoreCollectionCell.swift in Sources */,
 				556B5FE2284F4BDE009A96FE /* XTMainNavigationBar.swift in Sources */,
 				550690F3288F73D200C76E55 /* MakePostSelectImageVC.swift in Sources */,
+				55F36AA22896CB2D00A5A426 /* SettingBlockUserVC.swift in Sources */,
 				55B4DDCB284CF37E00F3C55A /* XTNextButton.swift in Sources */,
 				552148A5286573FA00205DD9 /* MyCategoryCollectionVC.swift in Sources */,
 				557AB65A286005F6007BAB32 /* NavigationManager.swift in Sources */,
 				55D20CAA2862F92800BA5480 /* SignUpCategoryVC.swift in Sources */,
 				55B4DD50284484AF00F3C55A /* Extension+Int.swift in Sources */,
 				55B4DD54284484AF00F3C55A /* Extension+UIImage.swift in Sources */,
+				55F36AA52896CB8E00A5A426 /* SettingBlockUserCell.swift in Sources */,
 				554D56FF2887F309002092EF /* EditProfileVC.swift in Sources */,
 				55008121287BFD4500EFBA8D /* ProductLinkTableCell.swift in Sources */,
 				5521B30E287D1D99008E5650 /* UserPostImageTableCell.swift in Sources */,
@@ -1330,6 +1360,7 @@
 				55DCB841285589E0006997F2 /* MyPageVC.swift in Sources */,
 				55FB4EF22859DCF100309FAC /* UserPostVC.swift in Sources */,
 				55B4DD4C284484AF00F3C55A /* UIBezierPath+Extension.swift in Sources */,
+				55F36A942896BEDF00A5A426 /* XTCommonPopup.swift in Sources */,
 				55116155283E3972002B679E /* XTNavigationBar.swift in Sources */,
 				55E92B3128573BD300DBA480 /* UserManager.swift in Sources */,
 				550FE93B2880D60A00623D0A /* ProductDetailVC.swift in Sources */,
@@ -1345,6 +1376,7 @@
 				5515BA72286B106500785D21 /* ProductModel.swift in Sources */,
 				55EF6C9A287D721400C7AD76 /* UserPostProductCell.swift in Sources */,
 				55B4DD66284486DD00F3C55A /* LargeCategory.swift in Sources */,
+				55F36A8C28964A6600A5A426 /* XTCommonBottomSheet.swift in Sources */,
 				55F95D94287EA55D00CD2B93 /* UserPostProductTitleTableCell.swift in Sources */,
 				5521B312287D1F7D008E5650 /* UserPostImageCell.swift in Sources */,
 				55B4DD51284484AF00F3C55A /* UITableView+Extension.swift in Sources */,

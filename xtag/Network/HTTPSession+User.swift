@@ -19,6 +19,8 @@ extension HTTPSession {
         case getNotification(status: String)
         case updateUserCategory(removeSmallCategoryIdList: [String], addSmallCategoryIdList: [String])
         case userFollow(removeSmallCategoryIdList: [String], addSmallCategoryIdList: [String], userId: String)
+        case updateNotification(type: String)
+        case getBlockUser(page: String, size: String)
         
         var path: String {
             switch self {
@@ -40,6 +42,10 @@ extension HTTPSession {
                 return "category/user"
             case .userFollow(let removeSmallCategoryIdList ,let addSmallCategoryIdList, let userId):
                 return "category/user/follow/\(userId)"
+            case .updateNotification(let type):
+                return "user/alarm?type=\(type)"
+            case .getBlockUser(let page,let size):
+                return "user/block?page=\(page)&size=\(size)"
             }
         }
         
@@ -63,6 +69,10 @@ extension HTTPSession {
                 return .patch
             case .userFollow:
                 return .patch
+            case .updateNotification:
+                return .patch
+            case .getBlockUser:
+                return .get
             }
         }
         
@@ -85,6 +95,9 @@ extension HTTPSession {
             case .userFollow(let removeSmallCategoryIdList ,let addSmallCategoryIdList, let userId):
                 param["removeSmallCategoryIdList"] = removeSmallCategoryIdList
                 param["addSmallCategoryIdList"] = addSmallCategoryIdList
+            case .updateNotification:
+                //param["type"] = type
+                break
                 
             default: break
             }
@@ -93,6 +106,64 @@ extension HTTPSession {
         }
         
         
+    }
+    
+    func getBlockUser(page: String, size: String, completion: @escaping([BlockUserModel]?, PagenationModel?,Error?) -> Void) {
+        request(request: User.getBlockUser(page: page, size: size)).responseJSON { response in
+        switch response.result {
+        case .success(let result):
+            if let dict = result as? Dictionary<String, Any> {
+                if let result = dict["result"] as? [Dictionary<String, Any>],
+                let pagenation = dict["pagination"] as? Dictionary<String, Any> {
+                    let pagenation = PagenationModel(JSON: pagenation)
+                    
+                    var blockUserList : [BlockUserModel] = []
+                    
+                    for rst in result {
+                        blockUserList.append(BlockUserModel(JSON: rst)!)
+                    }
+                    
+                    completion(blockUserList, pagenation, nil)
+                }
+                
+            } else {
+                completion(nil, nil, nil)
+            }
+            
+            
+            
+        case .failure(let error):
+            print("error message = \(error)")
+            completion(nil, nil,error)
+        }
+    
+    }
+    }
+    
+    func updateNotification(type: String, completion: @escaping(Dictionary<String, Any>?, Error?) -> Void) {
+        
+        request(request: User.updateNotification(type: type)).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    if let result = dict["result"] as? Dictionary<String, Any> {
+                        
+                        
+                    }
+                    
+                    completion(dict,nil)
+                } else {
+                    completion(nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, error)
+            }
+        
+        }
     }
     
     func getNotification(status: String, completion: @escaping([NotificationModel]?, Error?) -> Void) {

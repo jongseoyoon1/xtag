@@ -23,7 +23,7 @@ class PostCollectionViewCell: UICollectionViewCell {
         
         userNameLabel.text = userName
         postImageView.kf.setImage(with: URL(string: postImageUri))
-        profileImageView.kf.setImage(with: URL(string: profileImageUri))
+        profileImageView.kf.setImage(with: URL(string: profileImageUri), placeholder: UIImage(named: "profile_image"))
         
     }
 }

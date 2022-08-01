@@ -30,7 +30,7 @@ class MyProductContainerVC: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         
         myCategoryCollectionVC = MyCategoryCollectionVC(collectionViewLayout: layout)
-        myCategoryCollectionVC.CELL_WIDTH = (self.view.frame.size.width - 32 - 44) / 3
+        myCategoryCollectionVC.CELL_WIDTH = (self.view.frame.size.width - 32 - 44) / 3 - 1
         //UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryCollectionVC") as! CategoryCollectionVC
         
         

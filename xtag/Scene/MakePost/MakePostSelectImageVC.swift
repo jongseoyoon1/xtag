@@ -53,6 +53,8 @@ class MakePostSelectImageVC: UIViewController {
         checkAccessPhotoLibrary()
         updateCollectionViewHeight()
         setupRatioView()
+        
+        MakePostManager.shared.imageRatio = "1:1"
     }
     
     private func setupRatioView() {
@@ -192,6 +194,8 @@ class MakePostSelectImageVC: UIViewController {
             rationWidthConstraint.constant = width
             ratioHeightConstraint.constant = width / 16 * 9
             
+            MakePostManager.shared.imageRatio = "16:9"
+            
             view.layoutSubviews()
         } else if ratioType == .ratio169 {
             ratioType = .ratio45
@@ -202,6 +206,8 @@ class MakePostSelectImageVC: UIViewController {
             ratioHeightConstraint.constant = height
             rationWidthConstraint.constant = height / 5 * 4
             
+            MakePostManager.shared.imageRatio = "4:5"
+            
             view.layoutSubviews()
         } else {
             ratioType = .ratio11
@@ -211,6 +217,8 @@ class MakePostSelectImageVC: UIViewController {
             
             ratioHeightConstraint.constant = width
             rationWidthConstraint.constant = width
+            
+            MakePostManager.shared.imageRatio = "1:1"
             
             view.layoutSubviews()
         }

@@ -9,6 +9,22 @@ import Foundation
 import Alamofire
 import ObjectMapper
 
+class BlockUserModel: Mappable {
+    var userId: String?
+    var userName: String?
+    var userS3ImageUri: String?
+    var userCdnImageUri: String?
+    
+    required init?(map: Map) {}
+    
+    func mapping(map: Map) {
+        userId <- map["userId"]
+        userName <- map["userName"]
+        userS3ImageUri <- map["userS3ImageUri"]
+        userCdnImageUri <- map["userCdnImageUri"]
+    }
+}
+
 class UserModel: Mappable {
     var UserId: String?
     var name: String?

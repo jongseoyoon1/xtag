@@ -19,6 +19,7 @@ extension HTTPSession {
         case getPostReply(postCommentId: String)
         case writeComment(postId: String, comment:String)
         case writeReply(postCommentId: String, comment:String)
+        case uploadPost
         
         var path: String {
             switch self {
@@ -44,10 +45,13 @@ extension HTTPSession {
                 return "post/comment/\(postId)"
             case .writeReply(let postCommentId, let comment):
                 return "post/comment/\(postCommentId)/reply"
+            case .uploadPost:
+                return "post"
             default:
                 return ""
             }
         }
+        
         
         var method: HTTPMethod {
             switch self {
@@ -67,6 +71,8 @@ extension HTTPSession {
                 return .post
             case .writeReply:
                 return .post
+            case .uploadPost:
+                return .post
             default:
                 return .get
             }
@@ -85,6 +91,8 @@ extension HTTPSession {
                 param["comment"] = comment
             case .writeReply(let postCommentId, let comment):
                 param["comment"] = comment
+            case .uploadPost:
+                break
             default: break
             }
             
@@ -92,6 +100,69 @@ extension HTTPSession {
         }
         
         
+    }
+    
+    func uploadPost(image:[Data],upload_progress: @escaping(Progress, UploadRequest)->Void, completion: @escaping(Dictionary<String, Any>?, Error?) -> Void) {
+        var filedata:[FileData] = []
+        
+        var param :[String:Any] = [:]
+        /* image Ratio */
+        param["imageRatio"] = MakePostManager.shared.imageRatio!
+        
+        /* small Category Ids */
+        var smallCategoryIdList: [String] = []
+        
+        for category in MakePostManager.shared.selectedCategory {
+            smallCategoryIdList.append(category.smallCategoryId!)
+        }
+        param["smallCategoryIdList"] = smallCategoryIdList
+        
+        /* post Body ContentList */
+        var postBodyContentList: [String] = []
+        
+        for post in MakePostManager.shared.postList {
+            postBodyContentList.append(post.content ?? "")
+        }
+        param["postBodyContentList"] = postBodyContentList
+        
+        /* user Product Info List */
+        var userProductInfoList: [[[String:Any]]] = []
+        for post in MakePostManager.shared.postList {
+            
+            var userProductInfoListChild : [[String:Any]] = []
+            for product in post.productList {
+                var productInfo : [String: String] = [:]
+                productInfo["userProductId"] = product.userProductId!
+                productInfo["xRatio"] = product.xRatio ?? "0.0"
+                productInfo["yRatio"] = product.yRatio ?? "0.0"
+                
+                userProductInfoListChild.append(productInfo)
+            }
+            
+            userProductInfoList.append(userProductInfoListChild)
+        }
+        
+        param["userProductInfoLists"] = userProductInfoList
+        
+        var filenameList : [String] = []
+        for (i, img) in image.enumerated() {
+            let imageVar = "imageFileList"
+            let filename = "imageFileList_\(Date())[\(i)].png"
+            filenameList.append(filename)
+            filedata.append(FileData(data: img,
+                                     name: imageVar,
+                                     filename: filename,
+                                     mimeType: .image))
+        }
+        
+        //param["imageFileList"] = filenameList
+        
+        
+        
+        upload(Post.uploadPost,
+               filedata: filedata, param: param, uploadProgress: upload_progress) { (response, err) in
+                completion(response, err)
+        }
     }
     
     func writeReply(postCommentId: String, comment: String,completion: @escaping(Dictionary<String, Any>?, Error?) -> Void) {

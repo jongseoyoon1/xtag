@@ -88,6 +88,23 @@ class LoginVC: BaseViewController, ASAuthorizationControllerPresentationContextP
                             }
                         } else {
                             // UserId가 있어 로그인 된경우
+                            //                            HTTPSession.shared.getUser { user, error in
+                            //                                UserManager.shared.user = user
+                            //
+                            //
+                            //                                HTTPSession.shared.getUserProfile(userId: user?.UserId ?? "") { userInfo, error in
+                            //                                    if error == nil {
+                            //                                        UserManager.shared.userInfo = userInfo
+                            //
+                            //                                        if let viewcontroller = UIStoryboard(name: "Tab", bundle: nil).instantiateViewController(withIdentifier: "TabVC") as? TabVC {
+                            //
+                            //                                            viewcontroller.modalPresentationStyle = .fullScreen
+                            //                                            self.present(viewcontroller, animated: true, completion: nil)
+                            //                                        }
+                            //                                    }
+                            //                                }
+                            //
+                            //                            }
                             HTTPSession.shared.getUser { user, error in
                                 UserManager.shared.user = user
                                 
@@ -96,10 +113,12 @@ class LoginVC: BaseViewController, ASAuthorizationControllerPresentationContextP
                                     if error == nil {
                                         UserManager.shared.userInfo = userInfo
                                         
-                                        if let viewcontroller = UIStoryboard(name: "Tab", bundle: nil).instantiateViewController(withIdentifier: "TabVC") as? TabVC {
-                                            
-                                            viewcontroller.modalPresentationStyle = .fullScreen
-                                            self.present(viewcontroller, animated: true, completion: nil)
+                                        self.getLargeCategory()
+                                    } else {
+                                        do {
+                                            try Auth.auth().signOut()
+                                        } catch let signOutError as NSError {
+                                            print("Error signing out: %@", signOutError)
                                         }
                                     }
                                 }
@@ -116,6 +135,49 @@ class LoginVC: BaseViewController, ASAuthorizationControllerPresentationContextP
             
             
             
+        }
+    }
+    
+    private func getUserSetting() {
+        HTTPSession.shared.getUserSetting { userSettignInfo, error in
+            if error == nil {
+                UserManager.shared.userSetting = userSettignInfo
+                if let viewcontroller = UIStoryboard(name: "Tab", bundle: nil).instantiateViewController(withIdentifier: "TabVC") as? TabVC {
+                    
+                    viewcontroller.modalPresentationStyle = .fullScreen
+                    self.present(viewcontroller, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
+    private func getLargeCategory() {
+        HTTPSession.shared.categoryLarge { result, error in
+            if error == nil {
+                guard var largeCategoryList = result else { return }
+                var iterCount = 0
+                for large in largeCategoryList {
+                    HTTPSession.shared.categorySmall(largeCategoryId: large.largeCategoryId!) { smallCategoryResult, error in
+                        if error == nil {
+                            guard let smallCategoryResult = smallCategoryResult else {
+                                return
+                            }
+                            print("large category = \(largeCategoryList.count)")
+                            print("get small category = \(iterCount)")
+                            large.smallCategoryList = smallCategoryResult
+                            
+                            iterCount += 1
+                            
+                            if largeCategoryList.count == iterCount + 1 {
+                                CategoryManager.shared.largeCategoryList = largeCategoryList
+                                self.getUserSetting()
+                            }
+                        }
+                    }
+                }
+                
+                
+            }
         }
     }
     

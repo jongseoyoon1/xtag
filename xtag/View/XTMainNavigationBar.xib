@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -36,7 +37,7 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rrm-J6-f5F" customClass="XTCommonButton" customModule="xtag" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="52" height="40"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" name="Grey900"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="52" id="h2P-V5-RVl"/>
                             </constraints>
@@ -68,7 +69,7 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7mr-tt-ntk" customClass="XTCommonButton" customModule="xtag" customModuleProvider="target">
                             <rect key="frame" x="146" y="0.0" width="65" height="40"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" name="Grey900"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="65" id="Hg1-9o-sx0"/>
                             </constraints>

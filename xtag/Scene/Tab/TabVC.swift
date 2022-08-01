@@ -28,7 +28,7 @@ class TabVC: TabmanViewController {
         super.viewDidLoad()
 
         let mainVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Main") as! MainVC
-        let myPageVC = UIStoryboard.init(name: "MyPage", bundle: nil).instantiateViewController(withIdentifier: "MyPageVC") as! MyPageVC
+        let myPageVC = UIStoryboard.init(name: "MyPage", bundle: nil).instantiateViewController(withIdentifier: "MyPageVC") as! UINavigationController
         
         viewControllers.append(mainVC)
         viewControllers.append(myPageVC)

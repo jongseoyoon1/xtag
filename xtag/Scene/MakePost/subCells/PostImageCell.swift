@@ -14,6 +14,7 @@ class PostImageCell: UICollectionViewCell {
     @IBOutlet weak var productCountLabel: UILabel!
     
     public var onDelete: (()->Void)?
+    public var onTag: (()->Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,5 +27,12 @@ class PostImageCell: UICollectionViewCell {
         }
 
         onDelete()
+    }
+    @IBAction func gotoTagBtnPressed(_ sender: Any) {
+        guard let onTag = onTag else {
+            return
+        }
+
+        onTag()
     }
 }

@@ -21,7 +21,7 @@ class UserPostVC: UIViewController {
             guard let postDetailModel = postDetailModel else { return }
             
             nameLabel.text = postDetailModel.userName ?? ""
-            profileImageView.kf.setImage(with: URL(string: postDetailModel.userCdnImageUri ?? ""))
+            profileImageView.kf.setImage(with: URL(string: postDetailModel.userCdnImageUri ?? ""), placeholder: UIImage(named: "profile_image"))
             
             if let firstPostBody = postDetailModel.postBodyList.first {
                 self.selectedPostBody = firstPostBody

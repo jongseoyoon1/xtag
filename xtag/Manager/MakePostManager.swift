@@ -12,7 +12,8 @@ class MakePostManager {
     public static let shared = MakePostManager()
     
     var productInfo: ProductInfoModel?
-    
+    var selectedCategory: [SmallCategoryModel] = []
+    var imageRatio: String?
     var postList: [UploadPostModel] = []
 }
 

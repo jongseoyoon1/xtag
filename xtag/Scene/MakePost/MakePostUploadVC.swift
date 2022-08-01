@@ -9,6 +9,17 @@ import UIKit
 
 class MakePostUploadVC: UIViewController {
     
+    private let placeholderTextList = ["첫 번째 사진 내용 작성",
+                                       "두 번째 사진 내용 작성",
+                                       "세 번째 사진 내용 작성",
+                                       "네 번째 사진 내용 작성",
+                                       "다섯 번째 사진 내용 작성",
+                                       "여섯 번째 사진 내용 작성",
+                                       "일곱 번째 사진 내용 작성",
+                                       "여덟 번째 사진 내용 작성",
+                                       "아홉 번째 사진 내용 작성",
+                                       "열 번째 사진 내용 작성"]
+    
     @IBOutlet weak var postImgaeCollectionVIewPaddingWidth: NSLayoutConstraint!
     @IBOutlet weak var productCollectionView: UICollectionView!
     @IBOutlet weak var postImageCollectionView: UICollectionView!
@@ -20,6 +31,17 @@ class MakePostUploadVC: UIViewController {
     public var imageList: [UIImage] = []
     public var ratioType : RatioType!
     
+    private var placeholderText = "" {
+        didSet {
+            if MakePostManager.shared.postList[pageIndex - 1].content != nil {
+                contentTextView.text = MakePostManager.shared.postList[pageIndex - 1].content
+            } else {
+                contentTextView.text = placeholderText
+            }
+            
+        }
+    }
+    
     private var pageIndex = 1 {
         didSet {
             if pageIndex == 0 {
@@ -29,15 +51,26 @@ class MakePostUploadVC: UIViewController {
             
             pageLabel.text = "\(pageIndex)/\(imageList.count)"
             pageLabel.attributedText = applyAttributedString(pageLabel.text!, 1)
+            
+            if MakePostManager.shared.postList[pageIndex - 1].productList.count > 0 {
+                productCollectionView.isHidden = false
+                productCollectionView.reloadData()
+            } else {
+                productCollectionView.isHidden = true
+            }
+            
+            postImageCollectionView.reloadItems(at: [IndexPath(item: pageIndex - 1, section: 0)])
+            
+            placeholderText = placeholderTextList[pageIndex - 1]
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+        placeholderText = placeholderTextList[pageIndex - 1]
         setupCollectionView()
+        setupTextView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,6 +87,19 @@ class MakePostUploadVC: UIViewController {
         } else {
             postImgaeCollectionVIewPaddingWidth.constant = 16
         }
+        
+        if MakePostManager.shared.postList[pageIndex - 1].productList.count > 0 {
+            productCollectionView.isHidden = false
+            postImageCollectionView.reloadItems(at: [IndexPath(item: pageIndex - 1, section: 0)])
+            productCollectionView.reloadData()
+        } else {
+            productCollectionView.isHidden = true
+        }
+    }
+    
+    private func setupTextView() {
+        contentTextView.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        contentTextView.delegate = self
     }
     
     private func setupCollectionView() {
@@ -67,6 +113,8 @@ class MakePostUploadVC: UIViewController {
         
         categoryCollectionView.register(UINib(nibName: "UserPostTagCell", bundle: nil), forCellWithReuseIdentifier: UserPostTagCell.IDENTIFIER)
         postImageCollectionView.register(UINib(nibName: "PostImageCell", bundle: nil), forCellWithReuseIdentifier: "PostImageCell")
+        
+        productCollectionView.register(UINib(nibName: "UserPostProductCell", bundle: nil), forCellWithReuseIdentifier: UserPostProductCell.IDENTIFIER)
         
         postImageCollectionView.decelerationRate = .fast
         postImageCollectionView.isPagingEnabled = false
@@ -91,6 +139,21 @@ class MakePostUploadVC: UIViewController {
             range: range)
         
         return attributedString
+    }
+    @IBAction func uploadBtnPRessed(_ sender: Any) {
+        
+        var imageData :[Data] = []
+        
+        for image in imageList {
+            imageData.append(image.jpegData(compressionQuality: 1.0)!)
+        }
+        
+        HTTPSession.shared.uploadPost(image: imageData) { _, _ in
+            
+        } completion: { _, _ in
+            
+        }
+
     }
     
     @IBAction func addPostBtnPressed(_ sender: Any) {
@@ -117,13 +180,45 @@ extension MakePostUploadVC: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == productCollectionView {
-            return UICollectionViewCell()
+            let product = MakePostManager.shared.postList[self.pageIndex - 1].productList[indexPath.row]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserPostProductCell.IDENTIFIER, for: indexPath) as! UserPostProductCell
+            
+            cell.productImageView.kf.setImage(with: URL(string: product.productImageUri ?? ""))
+            cell.productImageView.layer.borderWidth = 0.0
+            
+            return cell
         } else if collectionView == postImageCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostImageCell", for: indexPath) as! PostImageCell
             
             let image = self.imageList[indexPath.row]
             
             cell.postImageView.image = image
+            
+            if MakePostManager.shared.postList[pageIndex - 1].productList.count > 0 {
+                cell.productCountView.isHidden = false
+                cell.productCountLabel.text = "\(MakePostManager.shared.postList[pageIndex - 1].productList.count)"
+            } else {
+                cell.productCountView.isHidden = true
+            }
+            
+            cell.onDelete = {
+                MakePostManager.shared.postList.remove(at: self.pageIndex - 1)
+                self.imageList.remove(at: self.pageIndex - 1)
+                
+                self.postImageCollectionView.reloadData()
+                self.pageIndex = 1
+            }
+            
+            cell.onTag = {
+                if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostTagVC") as? MakePostTagVC {
+                    
+                    viewcontroller.postIndex = self.pageIndex - 1
+                    viewcontroller.postImage = self.imageList[self.pageIndex - 1]
+                    viewcontroller.modalPresentationStyle = .fullScreen
+                    
+                    self.present(viewcontroller, animated: true, completion: nil)
+                }
+            }
             
             return cell
         } else {
@@ -143,7 +238,7 @@ extension MakePostUploadVC: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == productCollectionView {
-            return 0
+            return MakePostManager.shared.postList[self.pageIndex - 1].productList.count
         } else if collectionView == postImageCollectionView {
             return imageList.count
         } else {
@@ -153,7 +248,7 @@ extension MakePostUploadVC: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == productCollectionView {
-            return CGSize(width:24, height: 32)
+            return CGSize(width:56, height: 56)
         } else if collectionView == postImageCollectionView {
             if self.ratioType == .ratio11 {
                 let width = self.view.frame.size.width - 32
@@ -181,7 +276,7 @@ extension MakePostUploadVC: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if collectionView == productCollectionView {
-            return 0
+            return 8
         } else if collectionView == postImageCollectionView {
             if self.ratioType == .ratio11 {
                 let width = self.view.frame.size.width
@@ -203,7 +298,7 @@ extension MakePostUploadVC: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         if collectionView == productCollectionView {
-            return 0
+            return 8
         } else if collectionView == postImageCollectionView {
             if self.ratioType == .ratio11 {
                 let width = self.view.frame.size.width
@@ -282,4 +377,37 @@ extension MakePostUploadVC: UIScrollViewDelegate {
     }
     
     
+}
+
+extension MakePostUploadVC: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == placeholderText {
+            textView.text = nil
+            textView.textColor = XTColor.GREY_900.getColorWithString()
+            MakePostManager.shared.postList[self.pageIndex - 1].content = ""
+        } else {
+            MakePostManager.shared.postList[self.pageIndex - 1].content = textView.text
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            textView.text = placeholderText
+            textView.textColor = XTColor.GREY_400.getColorWithString()
+            
+            MakePostManager.shared.postList[self.pageIndex - 1].content = ""
+        } else {
+            MakePostManager.shared.postList[self.pageIndex - 1].content = textView.text
+        }
+    }
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let inputString = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let oldString = textView.text, let newRange = Range(range, in: oldString) else { return true }
+        let newString = oldString.replacingCharacters(in: newRange, with: inputString).trimmingCharacters(in: .whitespacesAndNewlines)
+        MakePostManager.shared.postList[self.pageIndex - 1].content = newString
+        let characterCount = newString.count
+       
+        return true
+    }
 }

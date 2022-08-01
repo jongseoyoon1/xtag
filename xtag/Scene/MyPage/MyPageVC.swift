@@ -98,19 +98,18 @@ class MyPageVC: UIViewController {
         super.viewDidAppear(animated)
         
         getUserInfo()
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     private func setupUI() {
         guard let userInfo = UserManager.shared.userInfo else { return }
         print(userInfo)
-        
-        
-        if userInfo.s3ImageUri != nil {
-            if userInfo.s3ImageUri! == "" {
-                profileImageVIew.kf.setImage(with: URL(string: userInfo.s3ImageUri!), placeholder: UIImage(named: "profile_image"))
-            }
+        profileImageVIew.kf.setImage(with: URL(string: userInfo.s3ImageUri ?? (userInfo.cdnImageUri ?? "")), placeholder: UIImage(named: "profile_image"))
             
-        }
         
         nameLabel.text = userInfo.name
         follwerLabel.text = userInfo.followers
@@ -262,6 +261,7 @@ class MyPageVC: UIViewController {
 
                 self.postList = result
                 
+                
                 HTTPSession.shared.getUserProductWithReview(userId: UserManager.shared.userInfo!.userId!,
                                                   smallCategoryId: self.selectedSmallCategoryId) { result, error in
                     if error == nil {
@@ -284,6 +284,7 @@ class MyPageVC: UIViewController {
                             }
                             
                         }
+                        
                     }
                 }
                 
@@ -398,7 +399,7 @@ extension MyPageVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
                 
                 cell.setupCell(userName: post.userName ?? "", profileImageUri: post.userCdnImageUri ?? "", postImageUri: post.postCdnImageUri ?? "")
                 
-                
+                cell.profileImageView.isHidden = true
                 
                 
                 return cell
@@ -558,10 +559,12 @@ extension MyPageVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
+            let post = self.postList[indexPath.row]
+            
             if let viewController = UIStoryboard(name: "UserPost", bundle: nil).instantiateViewController(withIdentifier: "UserPostVC") as? UserPostVC {
                 
                 viewController.modalPresentationStyle = .fullScreen
-                
+                viewController.postId = post.postId!
                 self.navigationController?.pushViewController(viewController, animated: true)
             }
         }
@@ -589,6 +592,29 @@ extension MyPageVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
                 
                 self.categoryCollectionView.reloadData()
             }
+        }
+        
+        if collectionView == self.productCollectionView {
+            let product = self.productList[indexPath.row]
+            HTTPSession.shared.getProductReview(userProductId: product.userProductId!) { result, error in
+                if error == nil {
+                    
+                    
+                    if let viewcontroller = UIStoryboard(name: "ProductDetail", bundle: nil).instantiateViewController(withIdentifier: "ProductDetailVC") as? ProductDetailVC {
+                        viewcontroller.modalPresentationStyle = .fullScreen
+                        
+                        
+                        viewcontroller.product = product
+                        viewcontroller.productReview = result!
+                        
+                        
+                        self.navigationController?.pushViewController(viewcontroller, animated: true)
+                        //self.present(viewcontroller, animated: true, completion: nil)
+                    }
+                }
+            }
+            
+            
         }
         
         

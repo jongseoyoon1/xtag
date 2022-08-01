@@ -144,6 +144,7 @@ class CommentModel: Mappable {
 class UploadPostModel: Mappable {
     var image: UIImage?
     var productList: [ProductModel] = []
+    var content: String?
     
     init() {
         image = nil

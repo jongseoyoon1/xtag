@@ -34,13 +34,24 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUC-VS-dcm">
+                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="gotoTagBtnPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="5Rd-cf-mXs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.37254901959999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="32" id="Bmt-GT-xgY"/>
+                            <constraint firstAttribute="bottom" secondItem="cUC-VS-dcm" secondAttribute="bottom" id="S0F-dK-X60"/>
                             <constraint firstItem="Mhi-w5-3g9" firstAttribute="centerX" secondItem="flc-iv-lu0" secondAttribute="centerX" id="VNG-3A-QDK"/>
+                            <constraint firstItem="cUC-VS-dcm" firstAttribute="leading" secondItem="flc-iv-lu0" secondAttribute="leading" id="bvr-2Z-esu"/>
+                            <constraint firstItem="cUC-VS-dcm" firstAttribute="top" secondItem="flc-iv-lu0" secondAttribute="top" id="eQZ-Re-LYe"/>
                             <constraint firstAttribute="height" constant="32" id="gHf-sQ-3r2"/>
                             <constraint firstItem="Mhi-w5-3g9" firstAttribute="centerY" secondItem="flc-iv-lu0" secondAttribute="centerY" id="tWe-WN-Va8"/>
+                            <constraint firstAttribute="trailing" secondItem="cUC-VS-dcm" secondAttribute="trailing" id="zod-e8-gYQ"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerradius">
