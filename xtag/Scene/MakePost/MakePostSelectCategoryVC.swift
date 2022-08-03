@@ -17,6 +17,7 @@ class MakePostSelectCategoryVC: UIViewController {
             collectionView.reloadData()
         }
     }
+    public var makePostSelectImageVC: MakePostSelectImageVC!
     
     public var CELL_WIDTH: CGFloat = 0
     
@@ -42,16 +43,16 @@ class MakePostSelectCategoryVC: UIViewController {
             }
         }
     }
-
+    @IBAction func dismissBtnPressed(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
     @IBAction func selectBtnPressed(_ sender: Any) {
         
         MakePostManager.shared.selectedCategory = selectedSmallCategoryList
-        
-        if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostSelectImageVC") as? MakePostSelectImageVC {
-            viewcontroller.selectedCategory = selectedSmallCategoryList
-            viewcontroller.modalPresentationStyle = .fullScreen
-            self.present(viewcontroller, animated: true)
-        }
+        makePostSelectImageVC.selectedCategory = selectedSmallCategoryList
+        makePostSelectImageVC.updateCategoryCollectionView()
+        self.dismiss(animated: true)
     }
 }
 

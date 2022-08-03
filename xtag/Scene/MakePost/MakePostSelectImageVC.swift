@@ -22,6 +22,8 @@ class MakePostSelectImageVC: UIViewController {
         var yOffSet: CGFloat
     }
     
+    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var imageCollectionHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var postImageView: UIImageView!
@@ -56,6 +58,16 @@ class MakePostSelectImageVC: UIViewController {
         didSet {
             //imageScrollView.zoomScale = 1.0
             
+            let reversedIndex = allPhotos.count - currnetIndex - 1
+            let asset = self.allPhotos[reversedIndex]
+            let image = getOriginalUIImage(asset: asset)
+            let sourceSize = image!.size
+            
+            imageViewHeightConstraint.constant = sourceSize.height
+            imageViewWidthConstraint.constant = sourceSize.width
+            
+            self.view.layoutIfNeeded()
+            
             if scaleFactor.count > 0 {
                 let factor = scaleFactor[currnetIndex]
                 
@@ -78,6 +90,35 @@ class MakePostSelectImageVC: UIViewController {
         MakePostManager.shared.imageRatio = "1:1"
         
         imageScrollView.delegate = self
+        
+        openSelectCategory()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
+    public func updateCategoryCollectionView() {
+        
+        self.categoryCollectionView.reloadData()
+    }
+    
+    private func openSelectCategory() {
+        DispatchQueue.main.async {
+            if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostSelectCategoryVC") as? MakePostSelectCategoryVC {
+                viewcontroller.makePostSelectImageVC = self
+                viewcontroller.modalPresentationStyle = .automatic
+                self.present(viewcontroller, animated: true)
+                
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostVC") as? MakePostVC {
+
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true)
+                }
+            }
+        }
+        
     }
     
     private func setupRatioView() {

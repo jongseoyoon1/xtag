@@ -90,8 +90,10 @@ class TabVC: TabmanViewController {
     }
     
     @IBAction func postBtnPressed(_ sender: Any) {
-        if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostVC") as? MakePostVC {
-            
+        
+        
+        if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostSelectImageVC") as? MakePostSelectImageVC {
+            viewcontroller.selectedCategory = []
             viewcontroller.modalPresentationStyle = .fullScreen
             self.present(viewcontroller, animated: true)
         }

@@ -626,6 +626,7 @@
                                     <color key="titleColor" name="Grey900"/>
                                 </state>
                                 <connections>
+                                    <action selector="dismissBtnPressed:" destination="KAe-oT-avy" eventType="touchUpInside" id="L1e-oY-QIw"/>
                                     <action selector="dismissBtnPressed:" destination="Kz7-x2-AVH" eventType="touchUpInside" id="XWV-WB-1N8"/>
                                 </connections>
                             </button>
@@ -1273,10 +1274,11 @@
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="hbT-yM-I44">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wY4-om-dPl">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wY4-om-dPl">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="wY4-om-dPl" secondAttribute="height" multiplier="1:1" id="3Pe-SD-eG1"/>
+                                                            <constraint firstAttribute="height" constant="414" id="Epr-A8-aUQ"/>
+                                                            <constraint firstAttribute="width" constant="414" id="N9h-DR-XwL"/>
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
@@ -1557,7 +1559,6 @@
                             <constraint firstItem="PMC-Jx-M1e" firstAttribute="centerX" secondItem="3sC-50-oSN" secondAttribute="centerX" id="HSg-2k-cVx"/>
                             <constraint firstItem="3sC-50-oSN" firstAttribute="trailing" secondItem="q71-5I-HGb" secondAttribute="trailing" id="foW-vS-HDC"/>
                             <constraint firstItem="3sC-50-oSN" firstAttribute="trailing" secondItem="p2c-vm-Eot" secondAttribute="trailing" id="pbF-Qq-dG7"/>
-                            <constraint firstItem="wY4-om-dPl" firstAttribute="width" secondItem="vwF-ZS-xLd" secondAttribute="width" id="qfI-do-oEC"/>
                             <constraint firstItem="q71-5I-HGb" firstAttribute="leading" secondItem="3sC-50-oSN" secondAttribute="leading" id="ub2-ea-Zh6"/>
                         </constraints>
                     </view>
@@ -1566,6 +1567,8 @@
                         <outlet property="imageCollectionHeightConstraint" destination="2ON-Tq-Uu5" id="0Br-gR-NXW"/>
                         <outlet property="imageCollectionView" destination="nAm-lV-ksI" id="W35-L4-GDc"/>
                         <outlet property="imageScrollView" destination="hbT-yM-I44" id="9fX-CV-tJa"/>
+                        <outlet property="imageViewHeightConstraint" destination="Epr-A8-aUQ" id="yiz-RV-6PW"/>
+                        <outlet property="imageViewWidthConstraint" destination="N9h-DR-XwL" id="pVX-ia-8Sj"/>
                         <outlet property="infoStackView" destination="4LX-HT-koD" id="Le8-oo-kqh"/>
                         <outlet property="postImageView" destination="wY4-om-dPl" id="MFe-WI-9Ga"/>
                         <outlet property="ratioButton" destination="HmL-Q4-E91" id="CxN-Ew-rPM"/>
@@ -1587,7 +1590,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="상품 추가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRy-Qi-Rn7">
-                                <rect key="frame" x="20" y="68" width="88.5" height="29"/>
+                                <rect key="frame" x="20" y="68" width="90" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="bCR-9f-5Ee"/>
                                 </constraints>
@@ -1596,7 +1599,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8Z-qm-Ou8">
-                                <rect key="frame" x="362" y="65.5" width="32" height="34"/>
+                                <rect key="frame" x="362" y="66" width="32" height="33"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="18"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="취소">

@@ -20,10 +20,6 @@ class MakePostVC: UIViewController {
     }
     
     @IBAction func compBtnPressed(_ sender: Any) {
-        if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostSelectCategoryVC") as? MakePostSelectCategoryVC {
-            
-            viewcontroller.modalPresentationStyle = .automatic
-            self.present(viewcontroller, animated: true)
-        }
+        self.dismiss(animated: true)
     }
 }
