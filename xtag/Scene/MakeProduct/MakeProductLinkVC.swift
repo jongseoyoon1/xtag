@@ -62,7 +62,11 @@ class MakeProductLinkVC: UIViewController {
     }
     
     @IBAction func dismissBtnPressed(_ sender: Any) {
-        self.dismiss(animated: true)
+        self.showCommonPopup(title: "변경 내용 삭제", content: "이전으로 돌아갈 시 변경 내용이 삭제됩니다.", confirmButtonTitle: "확인", popupType: .COMMON) {
+            self.dismiss(animated: true)
+        }
+        
+        
     }
     
     @IBAction func comfirmBtnPressed(_ sender: Any) {
