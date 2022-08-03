@@ -204,6 +204,10 @@ extension HTTPSession {
                 if let dict = result as? Dictionary<String, Any> {
                     if let result = dict["result"] as? [Dictionary<String, Any>] {
                         var list : [NotificationModel] = []
+                        
+                        for notification in result {
+                            list.append(NotificationModel(JSON: notification)!)
+                        }
                    
                         completion(list ,nil)
                     }

@@ -22,6 +22,7 @@ class SettingBlockUserVC: UIViewController {
 
         setupNavigationBar()
         setupTableView()
+        getBlockUser()
     }
     
 

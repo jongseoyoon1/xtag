@@ -184,11 +184,13 @@
 		55DE3999287D0D78001FD762 /* UserPostBottomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55DE3997287D0D78001FD762 /* UserPostBottomTableCell.xib */; };
 		55E1138F28695273007DC6DD /* FollowingProductContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E1138E28695273007DC6DD /* FollowingProductContainerVC.swift */; };
 		55E1139128695890007DC6DD /* FollwoingCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E1139028695890007DC6DD /* FollwoingCollectionVC.swift */; };
+		55E471B1289A001700AB0761 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 55E471B0289A001700AB0761 /* Toast */; };
 		55E8103E2888E78A001C6018 /* ProductCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8103C2888E78A001C6018 /* ProductCategoryCell.swift */; };
 		55E8103F2888E78A001C6018 /* ProductCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E8103D2888E78A001C6018 /* ProductCategoryCell.xib */; };
 		55E810412888E8AE001C6018 /* MakeProductMemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E810402888E8AE001C6018 /* MakeProductMemoVC.swift */; };
 		55E810442888ECD6001C6018 /* ProductMakeFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E810422888ECD6001C6018 /* ProductMakeFilterCell.swift */; };
 		55E810452888ECD6001C6018 /* ProductMakeFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E810432888ECD6001C6018 /* ProductMakeFilterCell.xib */; };
+		55E828FF28978A48009EB4CC /* FollowingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E828FE28978A48009EB4CC /* FollowingVC.swift */; };
 		55E85F84287C2E4700BE6ABF /* ProductMemoTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E85F82287C2E4700BE6ABF /* ProductMemoTableCell.swift */; };
 		55E85F85287C2E4700BE6ABF /* ProductMemoTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E85F83287C2E4700BE6ABF /* ProductMemoTableCell.xib */; };
 		55E92B2E28573BC000DBA480 /* SwiftyUserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 55E92B2D28573BC000DBA480 /* SwiftyUserDefaults */; };
@@ -408,6 +410,7 @@
 		55E810402888E8AE001C6018 /* MakeProductMemoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeProductMemoVC.swift; sourceTree = "<group>"; };
 		55E810422888ECD6001C6018 /* ProductMakeFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductMakeFilterCell.swift; sourceTree = "<group>"; };
 		55E810432888ECD6001C6018 /* ProductMakeFilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductMakeFilterCell.xib; sourceTree = "<group>"; };
+		55E828FE28978A48009EB4CC /* FollowingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingVC.swift; sourceTree = "<group>"; };
 		55E85F82287C2E4700BE6ABF /* ProductMemoTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductMemoTableCell.swift; sourceTree = "<group>"; };
 		55E85F83287C2E4700BE6ABF /* ProductMemoTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductMemoTableCell.xib; sourceTree = "<group>"; };
 		55E92B2B2857270E00DBA480 /* xtag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = xtag.entitlements; sourceTree = "<group>"; };
@@ -469,6 +472,7 @@
 				55BCB990284DA155005A60F2 /* FirebaseDatabase in Frameworks */,
 				55DCB8622855A206006997F2 /* FacebookLogin in Frameworks */,
 				55DCB8602855A206006997F2 /* FacebookCore in Frameworks */,
+				55E471B1289A001700AB0761 /* Toast in Frameworks */,
 				55B4DD5E284485AC00F3C55A /* Cosmos in Frameworks */,
 				55BCB998284DA155005A60F2 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				55DCB85C2855A206006997F2 /* FacebookAEM in Frameworks */,
@@ -927,6 +931,7 @@
 				55D6FECD28878854007426A9 /* SecretProductVC.swift */,
 				554D56FE2887F309002092EF /* EditProfileVC.swift */,
 				55DDED57288A334E00CAAEB1 /* MyPageEditCategoryVC.swift */,
+				55E828FE28978A48009EB4CC /* FollowingVC.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1084,6 +1089,7 @@
 				557B6613285783760080264B /* MXParallaxHeader */,
 				55D20CA72862E9D100BA5480 /* Toast */,
 				5521B319287D33C5008E5650 /* CHIPageControl */,
+				55E471B0289A001700AB0761 /* Toast */,
 			);
 			productName = xtag;
 			productReference = 55116102283E3225002B679E /* xtag.app */;
@@ -1344,6 +1350,7 @@
 				557AB65A286005F6007BAB32 /* NavigationManager.swift in Sources */,
 				55D20CAA2862F92800BA5480 /* SignUpCategoryVC.swift in Sources */,
 				55B4DD50284484AF00F3C55A /* Extension+Int.swift in Sources */,
+				55E828FF28978A48009EB4CC /* FollowingVC.swift in Sources */,
 				55B4DD54284484AF00F3C55A /* Extension+UIImage.swift in Sources */,
 				55F36AA52896CB8E00A5A426 /* SettingBlockUserCell.swift in Sources */,
 				554D56FF2887F309002092EF /* EditProfileVC.swift in Sources */,
@@ -1993,6 +2000,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 55DCB85A2855A205006997F2 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookShare;
+		};
+		55E471B0289A001700AB0761 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55D20CA62862E9D100BA5480 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
 		};
 		55E92B2D28573BC000DBA480 /* SwiftyUserDefaults */ = {
 			isa = XCSwiftPackageProductDependency;

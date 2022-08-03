@@ -47,7 +47,7 @@ class MakeProductDetailVC: UIViewController {
         for category in selectedSmallCategoryList {
             smallCategoryList.append(category.smallCategoryId!)
         }
-        var satisfied = ""
+        var satisfied = "NONE"
         if let evaluateState = evaluateState {
             if evaluateState == .DIFFICULT {
                 satisfied = "NORMAL"
@@ -67,17 +67,48 @@ class MakeProductDetailVC: UIViewController {
             }
         }
         
-        HTTPSession.shared.makeProduct(title: MakeProductManager.shared.productInfo?.title ?? "",
-                                       imageUri: MakeProductManager.shared.productInfo?.imageUri ?? "",
-                                       link: MakeProductManager.shared.productInfo?.link ?? "",
-                                       satisfied: satisfied,
-                                       smallCategoryList: smallCategoryList,
-                                       type: "MEMO",
-                                       content: content) { result, error in
-            if error == nil {
-                self.dismiss(animated: true)
+        if content == "" {
+            self.showCommonPopup(title: "평가삭제", content: "이유를 작성하지 않으면 평가 내용이 저장되지 않습니다.\n상품 링크만 저장하시곘습니까?", confirmButtonTitle: "확인", popupType: .COMMON) {
+                HTTPSession.shared.makeProduct(title: MakeProductManager.shared.productInfo?.title ?? "",
+                                               imageUri: MakeProductManager.shared.productInfo?.imageUri ?? "",
+                                               link: MakeProductManager.shared.productInfo?.link ?? "",
+                                               satisfied: "NONE",
+                                               smallCategoryList: smallCategoryList,
+                                               type: "MEMO",
+                                               content: content) { result, error in
+                    if error == nil {
+                        self.dismiss(animated: true)
+                    }
+                }
+            }
+        } else if smallCategoryList.count == 0 {
+            self.showCommonPopup(title: "평가삭제", content: "관심사를 선택하지 않을 시 평가 내용이 저장되지 않습니다.\n상품 링크만 저장하시겠습니까?", confirmButtonTitle: "확인", popupType: .COMMON) {
+                HTTPSession.shared.makeProduct(title: MakeProductManager.shared.productInfo?.title ?? "",
+                                               imageUri: MakeProductManager.shared.productInfo?.imageUri ?? "",
+                                               link: MakeProductManager.shared.productInfo?.link ?? "",
+                                               satisfied: "NONE",
+                                               smallCategoryList: smallCategoryList,
+                                               type: "MEMO",
+                                               content: content) { result, error in
+                    if error == nil {
+                        self.dismiss(animated: true)
+                    }
+                }
+            }
+        } else {
+            HTTPSession.shared.makeProduct(title: MakeProductManager.shared.productInfo?.title ?? "",
+                                           imageUri: MakeProductManager.shared.productInfo?.imageUri ?? "",
+                                           link: MakeProductManager.shared.productInfo?.link ?? "",
+                                           satisfied: satisfied,
+                                           smallCategoryList: smallCategoryList,
+                                           type: "MEMO",
+                                           content: content) { result, error in
+                if error == nil {
+                    self.dismiss(animated: true)
+                }
             }
         }
+        
     }
 }
 

@@ -16,6 +16,13 @@ enum RatioType {
 
 class MakePostSelectImageVC: UIViewController {
     
+    struct ScaleFactor {
+        var scale: CGFloat
+        var xOffset: CGFloat
+        var yOffSet: CGFloat
+    }
+    
+    @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var imageCollectionHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
@@ -45,6 +52,20 @@ class MakePostSelectImageVC: UIViewController {
             }
         }
     }
+    private var currnetIndex = 0 {
+        didSet {
+            //imageScrollView.zoomScale = 1.0
+            
+            if scaleFactor.count > 0 {
+                let factor = scaleFactor[currnetIndex]
+                
+                imageScrollView.zoomScale = factor.scale
+                imageScrollView.contentOffset.x = factor.xOffset
+                imageScrollView.contentOffset.y = factor.yOffSet
+            }
+        }
+    }
+    private var scaleFactor: [ScaleFactor] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +76,8 @@ class MakePostSelectImageVC: UIViewController {
         setupRatioView()
         
         MakePostManager.shared.imageRatio = "1:1"
+        
+        imageScrollView.delegate = self
     }
     
     private func setupRatioView() {
@@ -184,6 +207,8 @@ class MakePostSelectImageVC: UIViewController {
         return img
     }
     
+    
+    
     @IBAction func rationBtnPressed(_ sender: Any) {
         if ratioType == .ratio11 {
             ratioType = .ratio169
@@ -232,15 +257,18 @@ class MakePostSelectImageVC: UIViewController {
             var selectImage : [UIImage] = []
             
             MakePostManager.shared.postList = []
-            
+            var index = 0
             for idx in self.selectedIndex {
+                
                 let reversedIndex = allPhotos.count - idx - 1
                 let asset = self.allPhotos[reversedIndex]
                 let image = getOriginalUIImage(asset: asset)
-                selectImage.append(image!)
-                
+                //selectImage.append(image!)
+                let factor = scaleFactor[index]
+                let cropImage = self.cropImage(image!, factor)
+                selectImage.append(cropImage)
                 MakePostManager.shared.postList.append(UploadPostModel.init())
-                
+                index += 1
             }
             
             viewcontroller.selectedCategory = self.selectedCategory
@@ -253,6 +281,44 @@ class MakePostSelectImageVC: UIViewController {
         
     }
     
+    private func cropImage(_ originImage: UIImage, _ scaleFactor: ScaleFactor) -> UIImage {
+        if scaleFactor.scale == 1.0 {
+            return originImage
+        } else {
+            let viewWidth = UIScreen.main.bounds.width
+            let sourceSize = originImage.size
+            let sourceCGImage = originImage.cgImage!
+            
+            if MakePostManager.shared.imageRatio! == "1:1" {
+                let xOffset = scaleFactor.xOffset / viewWidth / scaleFactor.scale * sourceSize.width
+                let yOffset = scaleFactor.yOffSet / viewWidth / scaleFactor.scale * sourceSize.height
+                
+                let lengthWitdth = sourceSize.width / scaleFactor.scale
+                let lengthHeight = sourceSize.height / scaleFactor.scale
+                
+                let cropRect = CGRect(
+                    x: xOffset,
+                    y: yOffset,
+                    width: lengthWitdth,
+                    height: lengthHeight
+                ).integral
+                
+                let croppedCGImage = sourceCGImage.cropping(
+                    to: cropRect
+                )!
+                
+                let resultImage = UIImage(cgImage: croppedCGImage)
+                return resultImage
+            } else if MakePostManager.shared.imageRatio! == "4:5" {
+                
+            } else {
+                
+            }
+            
+        }
+        
+        return UIImage(named: "profile_image")!
+    }
     
 }
 
@@ -296,8 +362,10 @@ extension MakePostSelectImageVC: UICollectionViewDelegate, UICollectionViewDataS
             
             cell.onSelected = {
                 if self.selectedIndex.contains(indexPath.row) {
-                    self.selectedIndex.remove(at: self.selectedIndex.firstIndex(of: indexPath.row)!)
+                    let index = self.selectedIndex.firstIndex(of: indexPath.row)!
                     
+                    self.selectedIndex.remove(at: index)
+                    self.scaleFactor.remove(at: index)
                 }
                 
             }
@@ -352,13 +420,55 @@ extension MakePostSelectImageVC: UICollectionViewDelegate, UICollectionViewDataS
             let reversedIndex = allPhotos.count - indexPath.row - 1
             let asset = self.allPhotos[reversedIndex]
             
+            
             if self.selectedIndex.contains(indexPath.row) {
+                
                 
             } else {
                 self.selectedIndex.append(indexPath.row)
+                self.scaleFactor.append(ScaleFactor(scale: 1.0, xOffset: 0, yOffSet: 0))
             }
+            
+            self.currnetIndex = self.selectedIndex.firstIndex(where: { $0 == indexPath.row })!
             
             self.postImageView.image = getOriginalUIImage(asset: asset)//getUIImage(asset: asset)
         }
+    }
+}
+
+extension MakePostSelectImageVC: UIScrollViewDelegate {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        
+        return self.postImageView
+    }
+    
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        print("scale = \(scale)")
+        let x = scrollView.contentOffset.x
+        let y = scrollView.contentOffset.y
+        
+        self.scaleFactor[currnetIndex].scale = scale
+        
+        self.scaleFactor[currnetIndex].xOffset = x
+        self.scaleFactor[currnetIndex].yOffSet = y
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let x = scrollView.contentOffset.x
+        let y = scrollView.contentOffset.y
+        
+        self.scaleFactor[currnetIndex].xOffset = x
+        self.scaleFactor[currnetIndex].yOffSet = y
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let x = scrollView.contentOffset.x
+        let y = scrollView.contentOffset.y
+        
+        self.scaleFactor[currnetIndex].xOffset = x
+        self.scaleFactor[currnetIndex].yOffSet = y
+        
+        print("x = \(x)")
+        print("y = \(y)")
     }
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import PKHUD
+import Toast
 
 class MakeProductLinkVC: UIViewController {
     
@@ -43,18 +44,14 @@ class MakeProductLinkVC: UIViewController {
     }
     
     private func validateUrl(urlString: String) {
-        HUD.show(.progress)
         
-        HTTPSession.shared.productInfo(url: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) { result, error in
-            HUD.hide()
+        if urlString != "" {
+            self.confirmButton.isSelected = true
+        } else {
             self.confirmButton.isSelected = false
-            
-            if error == nil {
-                print(result)
-                self.confirmButton.isSelected = true
-                MakeProductManager.shared.productInfo = result
-            }
         }
+        
+        
     }
     
     
@@ -69,12 +66,31 @@ class MakeProductLinkVC: UIViewController {
     }
     
     @IBAction func comfirmBtnPressed(_ sender: Any) {
+        
         if confirmButton.isSelected {
-            if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeProductDetailVC") as?  MakeProductDetailVC {
+            
+            HUD.show(.progress)
+            
+            HTTPSession.shared.productInfo(url: textView.text!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) { result, error in
+                HUD.hide()
                 
-                viewcontroller.modalPresentationStyle = .fullScreen
-                self.present(viewcontroller, animated: true)
+                
+                if error == nil {
+                    print(result)
+                    
+                    MakeProductManager.shared.productInfo = result
+                    
+                    if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeProductDetailVC") as?  MakeProductDetailVC {
+                        
+                        viewcontroller.modalPresentationStyle = .fullScreen
+                        self.present(viewcontroller, animated: true)
+                    }
+                } else {
+                    self.view.makeToast("다른 상품 링크를 넣어주세요", duration: 0.5, position: .center)
+                }
             }
+            
+            
         }
     }
 }
