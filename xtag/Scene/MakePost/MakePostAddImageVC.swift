@@ -42,11 +42,6 @@ class MakePostAddImageVC: UIViewController {
         didSet {
             self.imageCollectionView.reloadData()
             
-            if selectedIndex.count == 0 {
-                infoStackView.isHidden = false
-            } else {
-                infoStackView.isHidden = true
-            }
         }
     }
     private var currnetIndex = 0 {
