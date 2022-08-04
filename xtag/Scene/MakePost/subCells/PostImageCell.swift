@@ -13,6 +13,7 @@ class PostImageCell: UICollectionViewCell {
     @IBOutlet weak var productCountView: UIView!
     @IBOutlet weak var productCountLabel: UILabel!
     
+    @IBOutlet weak var deleteButton: UIButton!
     public var onDelete: (()->Void)?
     public var onTag: (()->Void)?
     

@@ -121,6 +121,11 @@ class MakePostUploadVC: UIViewController {
         //postImageCollectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
     
+    public func updateCategoryCollectionView() {
+        
+        self.categoryCollectionView.reloadData()
+    }
+    
     fileprivate func applyAttributedString(_ text: String,_ length: Int) -> NSMutableAttributedString {
         let attributedString = NSMutableAttributedString(string: text, attributes: [
             .font: UIFont(name: XTFont.PRETENDARD_EXTRABOLD, size: 13)!,
@@ -139,6 +144,17 @@ class MakePostUploadVC: UIViewController {
             range: range)
         
         return attributedString
+    }
+    @IBAction func openCategoryBtnPressed(_ sender: Any) {
+        DispatchQueue.main.async {
+            if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostSelectCategoryVC") as? MakePostSelectCategoryVC {
+                viewcontroller.makePostUploadVC = self
+                viewcontroller.modalPresentationStyle = .automatic
+                viewcontroller.selectedSmallCategoryList = self.selectedCategory
+                self.present(viewcontroller, animated: true)
+                
+            }
+        }
     }
     @IBAction func openAddImageBtnPressed(_ sender: Any) {
         if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostAddImageVC") as? MakePostAddImageVC {
@@ -209,6 +225,12 @@ extension MakePostUploadVC: UICollectionViewDelegate, UICollectionViewDataSource
                 cell.productCountLabel.text = "\(MakePostManager.shared.postList[pageIndex - 1].productList.count)"
             } else {
                 cell.productCountView.isHidden = true
+            }
+            
+            if self.imageList.count < 2 {
+                cell.deleteButton.isHidden = true
+            } else {
+                cell.deleteButton.isHidden = false
             }
             
             cell.onDelete = {

@@ -288,36 +288,51 @@ class MakePostSelectImageVC: UIViewController {
             view.layoutSubviews()
         }
     }
+    @IBAction func openCategoryBtnPressed(_ sender: Any) {
+        DispatchQueue.main.async {
+            if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostSelectCategoryVC") as? MakePostSelectCategoryVC {
+                viewcontroller.makePostSelectImageVC = self
+                viewcontroller.modalPresentationStyle = .automatic
+                viewcontroller.selectedSmallCategoryList = self.selectedCategory
+                self.present(viewcontroller, animated: true)
+                
+            }
+        }
+    }
     
     @IBAction func dismissBtnPressed(_ sender: Any) {
         self.dismiss(animated: true)
     }
     @IBAction func nextBtnPressed(_ sender: Any) {
-        if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostUploadVC") as? MakePostUploadVC {
-            var selectImage : [UIImage] = []
-            
-            MakePostManager.shared.postList = []
-            var index = 0
-            for idx in self.selectedIndex {
+        if self.selectedIndex.count > 0 {
+            if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostUploadVC") as? MakePostUploadVC {
+                var selectImage : [UIImage] = []
                 
-                let reversedIndex = allPhotos.count - idx - 1
-                let asset = self.allPhotos[reversedIndex]
-                let image = getOriginalUIImage(asset: asset)
-                //selectImage.append(image!)
-                let factor = scaleFactor[index]
-                let cropImage = self.cropImage(image!, factor)
-                selectImage.append(cropImage)
-                MakePostManager.shared.postList.append(UploadPostModel.init())
-                index += 1
+                MakePostManager.shared.postList = []
+                var index = 0
+                for idx in self.selectedIndex {
+                    
+                    let reversedIndex = allPhotos.count - idx - 1
+                    let asset = self.allPhotos[reversedIndex]
+                    let image = getOriginalUIImage(asset: asset)
+                    //selectImage.append(image!)
+                    let factor = scaleFactor[index]
+                    let cropImage = self.cropImage(image!, factor)
+                    selectImage.append(cropImage)
+                    MakePostManager.shared.postList.append(UploadPostModel.init())
+                    index += 1
+                }
+                
+                viewcontroller.selectedCategory = self.selectedCategory
+                viewcontroller.ratioType = self.ratioType
+                viewcontroller.imageList = selectImage
+                viewcontroller.modalPresentationStyle = .fullScreen
+                
+                self.present(viewcontroller, animated: true, completion: nil)
             }
-            
-            viewcontroller.selectedCategory = self.selectedCategory
-            viewcontroller.ratioType = self.ratioType
-            viewcontroller.imageList = selectImage
-            viewcontroller.modalPresentationStyle = .fullScreen
-            
-            self.present(viewcontroller, animated: true, completion: nil)
         }
+        
+        
         
     }
     @IBAction func selectAlbumBtnPressed(_ sender: Any) {

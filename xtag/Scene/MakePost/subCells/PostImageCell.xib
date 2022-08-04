@@ -82,6 +82,7 @@
             </constraints>
             <size key="customSize" width="299" height="538"/>
             <connections>
+                <outlet property="deleteButton" destination="UNE-ix-n8o" id="aYD-pZ-gLa"/>
                 <outlet property="postImageView" destination="Ea9-H2-UgX" id="rEd-TR-JZq"/>
                 <outlet property="productCountLabel" destination="Mhi-w5-3g9" id="zDX-4A-zMl"/>
                 <outlet property="productCountView" destination="flc-iv-lu0" id="8ru-tH-vJG"/>

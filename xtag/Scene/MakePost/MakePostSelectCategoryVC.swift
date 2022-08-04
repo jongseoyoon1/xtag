@@ -14,10 +14,14 @@ class MakePostSelectCategoryVC: UIViewController {
     public var smallCategoryList: [SmallCategoryModel] = []
     public var selectedSmallCategoryList: [SmallCategoryModel] = [] {
         didSet {
-            collectionView.reloadData()
+            if collectionView != nil {
+                collectionView.reloadData()
+                
+            }
         }
     }
     public var makePostSelectImageVC: MakePostSelectImageVC!
+    public var makePostUploadVC: MakePostUploadVC!
     
     public var CELL_WIDTH: CGFloat = 0
     
@@ -50,8 +54,18 @@ class MakePostSelectCategoryVC: UIViewController {
     @IBAction func selectBtnPressed(_ sender: Any) {
         
         MakePostManager.shared.selectedCategory = selectedSmallCategoryList
-        makePostSelectImageVC.selectedCategory = selectedSmallCategoryList
-        makePostSelectImageVC.updateCategoryCollectionView()
+        if makePostSelectImageVC != nil {
+            
+            makePostSelectImageVC.selectedCategory = selectedSmallCategoryList
+            makePostSelectImageVC.updateCategoryCollectionView()
+        }
+        
+        if makePostUploadVC != nil {
+            
+            makePostUploadVC.selectedCategory = selectedSmallCategoryList
+            makePostUploadVC.updateCategoryCollectionView()
+        }
+        
         self.dismiss(animated: true)
     }
 }
