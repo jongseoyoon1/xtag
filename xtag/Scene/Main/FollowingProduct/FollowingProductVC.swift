@@ -50,7 +50,7 @@ class FollowingProductVC: UIViewController {
     }
     
     private func getPost() {
-        HTTPSession.shared.feed(smallCategoryId: nil, page: nil, size: nil) { result, error in
+        HTTPSession.shared.feedFollowings(page: "", size: "") { result, error in
             if error == nil {
                 guard let result = result else {
                     return
@@ -74,7 +74,7 @@ class FollowingProductVC: UIViewController {
     }
     
     private func updatePost(smallCategoryId: String) {
-        HTTPSession.shared.feedFollowings(page: "", size: "") { result, error in
+        HTTPSession.shared.feed(smallCategoryId: smallCategoryId, page: nil, size: nil) { result, error in
             if error == nil {
                 guard let result = result else {
                     return

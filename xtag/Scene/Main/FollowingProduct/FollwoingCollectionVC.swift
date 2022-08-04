@@ -40,6 +40,7 @@ class FollwoingCollectionVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         selectedSmallCategory = nil
+        CategoryManager.shared.mainSelectedSmallCategory = nil
         
         getCategory()
         getFollowUser()
@@ -116,7 +117,6 @@ extension FollwoingCollectionVC: UICollectionViewDelegate, UICollectionViewDataS
         
         let smallCategory = smallCategoryList[indexPath.row]
         cell.name = smallCategory.smallCategoryName ?? ""
-        cell.nameLabel.textColor = .white
         if let selectedSmallCategory = selectedSmallCategory,
            selectedSmallCategory.smallCategoryId == smallCategory.smallCategoryId {
             cell.isSelectedCategory = true
@@ -175,6 +175,7 @@ extension FollwoingCollectionVC: UITableViewDelegate, UITableViewDataSource {
         
         cell.profileImageView.kf.setImage(with: URL(string: user.userCdnImageUri ?? (user.userS3ImageUri ?? "")), placeholder: UIImage(named: "profile_image"))
         cell.nameLabel.text = user.userName
+        cell.nameLabel.textColor = .white
         cell.blockButton.isHidden = true
         
         return cell
