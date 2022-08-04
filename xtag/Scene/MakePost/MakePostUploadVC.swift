@@ -140,6 +140,16 @@ class MakePostUploadVC: UIViewController {
         
         return attributedString
     }
+    @IBAction func openAddImageBtnPressed(_ sender: Any) {
+        if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostAddImageVC") as? MakePostAddImageVC {
+            
+            viewcontroller.modalPresentationStyle = .fullScreen
+            viewcontroller.selectedCategory = self.selectedCategory
+            viewcontroller.makePostUploadVC = self
+            
+            self.present(viewcontroller, animated: true)
+        }
+    }
     @IBAction func uploadBtnPRessed(_ sender: Any) {
         
         var imageData :[Data] = []

@@ -12,6 +12,10 @@
 		55008122287BFD4500EFBA8D /* ProductLinkTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55008120287BFD4500EFBA8D /* ProductLinkTableCell.xib */; };
 		55008125287C234500EFBA8D /* ProductEvaluationTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55008123287C234500EFBA8D /* ProductEvaluationTableCell.swift */; };
 		55008126287C234500EFBA8D /* ProductEvaluationTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55008124287C234500EFBA8D /* ProductEvaluationTableCell.xib */; };
+		5500B909289B6EA1005CA09A /* MakePostAlbumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5500B908289B6EA1005CA09A /* MakePostAlbumVC.swift */; };
+		5500B90E289B6EE4005CA09A /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5500B90C289B6EE4005CA09A /* AlbumCell.swift */; };
+		5500B90F289B6EE4005CA09A /* AlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5500B90D289B6EE4005CA09A /* AlbumCell.xib */; };
+		5500B911289B80D1005CA09A /* MakePostAddImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5500B910289B80D1005CA09A /* MakePostAddImageVC.swift */; };
 		5504F31A286A803A0029C242 /* FollowingTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504F318286A803A0029C242 /* FollowingTableCell.swift */; };
 		5504F31B286A803A0029C242 /* FollowingTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5504F319286A803A0029C242 /* FollowingTableCell.xib */; };
 		550690F1288F73AB00C76E55 /* MakePostSelectCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550690F0288F73AB00C76E55 /* MakePostSelectCategoryVC.swift */; };
@@ -251,6 +255,10 @@
 		55008120287BFD4500EFBA8D /* ProductLinkTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductLinkTableCell.xib; sourceTree = "<group>"; };
 		55008123287C234500EFBA8D /* ProductEvaluationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductEvaluationTableCell.swift; sourceTree = "<group>"; };
 		55008124287C234500EFBA8D /* ProductEvaluationTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductEvaluationTableCell.xib; sourceTree = "<group>"; };
+		5500B908289B6EA1005CA09A /* MakePostAlbumVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostAlbumVC.swift; sourceTree = "<group>"; };
+		5500B90C289B6EE4005CA09A /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
+		5500B90D289B6EE4005CA09A /* AlbumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumCell.xib; sourceTree = "<group>"; };
+		5500B910289B80D1005CA09A /* MakePostAddImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostAddImageVC.swift; sourceTree = "<group>"; };
 		5504F318286A803A0029C242 /* FollowingTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableCell.swift; sourceTree = "<group>"; };
 		5504F319286A803A0029C242 /* FollowingTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowingTableCell.xib; sourceTree = "<group>"; };
 		550690F0288F73AB00C76E55 /* MakePostSelectCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostSelectCategoryVC.swift; sourceTree = "<group>"; };
@@ -536,6 +544,8 @@
 				55ECD88A2890BE5100F7E874 /* PostImageCell.xib */,
 				557D5FEC2890F3CE007D646F /* MakePostProductCell.swift */,
 				557D5FEB2890F3CE007D646F /* MakePostProductCell.xib */,
+				5500B90C289B6EE4005CA09A /* AlbumCell.swift */,
+				5500B90D289B6EE4005CA09A /* AlbumCell.xib */,
 			);
 			path = subCells;
 			sourceTree = "<group>";
@@ -1007,6 +1017,8 @@
 				55ECD8872890ABFF00F7E874 /* MakePostUploadVC.swift */,
 				55ECD88D2890C81400F7E874 /* MakePostTagVC.swift */,
 				557D5FEF2890FA52007D646F /* MakePostProductVC.swift */,
+				5500B908289B6EA1005CA09A /* MakePostAlbumVC.swift */,
+				5500B910289B80D1005CA09A /* MakePostAddImageVC.swift */,
 			);
 			path = MakePost;
 			sourceTree = "<group>";
@@ -1250,6 +1262,7 @@
 				550FE9392880D5F300623D0A /* ProductDetail.storyboard in Resources */,
 				55008122287BFD4500EFBA8D /* ProductLinkTableCell.xib in Resources */,
 				55FB4EED2859D1A300309FAC /* MyPageCollectionCell.xib in Resources */,
+				5500B90F289B6EE4005CA09A /* AlbumCell.xib in Resources */,
 				55F36AA62896CB8E00A5A426 /* SettingBlockUserCell.xib in Resources */,
 				5521B313287D1F7D008E5650 /* UserPostImageCell.xib in Resources */,
 				55B4DDC6284C2BE100F3C55A /* SpoqaHanSansNeo-Light.ttf in Resources */,
@@ -1291,6 +1304,7 @@
 				5511610A283E3225002B679E /* BaseViewController.swift in Sources */,
 				55DCB84C28559B53006997F2 /* CommonModel.swift in Sources */,
 				550690F7288F80AC00C76E55 /* MakePostTagPlusCell.swift in Sources */,
+				5500B911289B80D1005CA09A /* MakePostAddImageVC.swift in Sources */,
 				552148A728658A9C00205DD9 /* MakePostManager.swift in Sources */,
 				55B4DD56284484AF00F3C55A /* Extension+Designable.swift in Sources */,
 				55E1138F28695273007DC6DD /* FollowingProductContainerVC.swift in Sources */,
@@ -1319,6 +1333,7 @@
 				55B4DD57284484AF00F3C55A /* UITabBar+extension.swift in Sources */,
 				55F83A0A288C184700CC73B8 /* MakePostVC.swift in Sources */,
 				55ECD88B2890BE5100F7E874 /* PostImageCell.swift in Sources */,
+				5500B90E289B6EE4005CA09A /* AlbumCell.swift in Sources */,
 				55F36A8F2896BC1F00A5A426 /* SettingServiceTermVC.swift in Sources */,
 				55DDED5B288A38C700CAAEB1 /* AlarmVC.swift in Sources */,
 				55B4DD47284484AF00F3C55A /* UIButton+Extension.swift in Sources */,
@@ -1398,6 +1413,7 @@
 				5595004228894110004DF606 /* UserProfileCategoryVC.swift in Sources */,
 				55DCB84528558BB6006997F2 /* XTBottomBar.swift in Sources */,
 				55DA4EA0285855D5003F598A /* CustomLayout.swift in Sources */,
+				5500B909289B6EA1005CA09A /* MakePostAlbumVC.swift in Sources */,
 				55EAF7FD2863F26C00503526 /* AllProductContainerVC.swift in Sources */,
 				5588C63D284F6213006245BF /* HTTPSession+Category.swift in Sources */,
 				550DF2B62886F2BF00AD3B33 /* CommentCell.swift in Sources */,

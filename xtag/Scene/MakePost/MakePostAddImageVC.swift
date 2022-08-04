@@ -8,13 +8,8 @@
 import UIKit
 import Photos
 
-enum RatioType {
-    case ratio11
-    case ratio169
-    case ratio45
-}
 
-class MakePostSelectImageVC: UIViewController {
+class MakePostAddImageVC: UIViewController {
     
     struct ScaleFactor {
         var scale: CGFloat
@@ -79,6 +74,8 @@ class MakePostSelectImageVC: UIViewController {
     }
     private var scaleFactor: [ScaleFactor] = []
     
+    public var makePostUploadVC: MakePostUploadVC!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,11 +84,18 @@ class MakePostSelectImageVC: UIViewController {
         updateCollectionViewHeight()
         setupRatioView()
         
-        MakePostManager.shared.imageRatio = "1:1"
+        //MakePostManager.shared.imageRatio = "1:1"
+        
+        if MakePostManager.shared.imageRatio == "1:1" {
+            self.ratioType = .ratio11
+        } else if MakePostManager.shared.imageRatio == "4:5" {
+            self.ratioType = .ratio45
+        } else {
+            self.ratioType = .ratio169
+        }
         
         imageScrollView.delegate = self
         
-        openSelectCategory()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -102,23 +106,6 @@ class MakePostSelectImageVC: UIViewController {
     public func updateCategoryCollectionView() {
         
         self.categoryCollectionView.reloadData()
-    }
-    
-    private func openSelectCategory() {
-        DispatchQueue.main.async {
-            if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostSelectCategoryVC") as? MakePostSelectCategoryVC {
-                viewcontroller.makePostSelectImageVC = self
-                viewcontroller.modalPresentationStyle = .automatic
-                self.present(viewcontroller, animated: true)
-                
-                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostVC") as? MakePostVC {
-
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true)
-                }
-            }
-        }
-        
     }
     
     private func setupRatioView() {
@@ -293,38 +280,32 @@ class MakePostSelectImageVC: UIViewController {
         self.dismiss(animated: true)
     }
     @IBAction func nextBtnPressed(_ sender: Any) {
-        if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostUploadVC") as? MakePostUploadVC {
-            var selectImage : [UIImage] = []
+        var selectImage : [UIImage] = []
+        
+        var index = 0
+        for idx in self.selectedIndex {
             
-            MakePostManager.shared.postList = []
-            var index = 0
-            for idx in self.selectedIndex {
-                
-                let reversedIndex = allPhotos.count - idx - 1
-                let asset = self.allPhotos[reversedIndex]
-                let image = getOriginalUIImage(asset: asset)
-                //selectImage.append(image!)
-                let factor = scaleFactor[index]
-                let cropImage = self.cropImage(image!, factor)
-                selectImage.append(cropImage)
-                MakePostManager.shared.postList.append(UploadPostModel.init())
-                index += 1
-            }
-            
-            viewcontroller.selectedCategory = self.selectedCategory
-            viewcontroller.ratioType = self.ratioType
-            viewcontroller.imageList = selectImage
-            viewcontroller.modalPresentationStyle = .fullScreen
-            
-            self.present(viewcontroller, animated: true, completion: nil)
+            let reversedIndex = allPhotos.count - idx - 1
+            let asset = self.allPhotos[reversedIndex]
+            let image = getOriginalUIImage(asset: asset)
+            let factor = scaleFactor[index]
+            let cropImage = self.cropImage(image!, factor)
+            selectImage.append(cropImage)
+            MakePostManager.shared.postList.append(UploadPostModel.init())
+            index += 1
         }
+        
+        self.makePostUploadVC.ratioType = self.ratioType
+        self.makePostUploadVC.imageList.append(contentsOf: selectImage)
+        
+        self.dismiss(animated: true)
         
     }
     @IBAction func selectAlbumBtnPressed(_ sender: Any) {
         if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostAlbumVC") as? MakePostAlbumVC {
             
             viewcontroller.userCollections = self.userCollections
-            viewcontroller.makePostSelectImageVC = self
+            viewcontroller.makePostAddImageVC = self
             viewcontroller.modalPresentationStyle = .fullScreen
             
             self.present(viewcontroller, animated: true)
@@ -384,7 +365,7 @@ class MakePostSelectImageVC: UIViewController {
 }
 
 
-extension MakePostSelectImageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension MakePostAddImageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == categoryCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserPostTagCell.IDENTIFIER, for: indexPath) as! UserPostTagCell
@@ -497,7 +478,7 @@ extension MakePostSelectImageVC: UICollectionViewDelegate, UICollectionViewDataS
     }
 }
 
-extension MakePostSelectImageVC: UIScrollViewDelegate {
+extension MakePostAddImageVC: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         
         return self.postImageView
