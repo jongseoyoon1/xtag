@@ -14,7 +14,7 @@ class FollwoingCollectionVC: UIViewController {
     
     private var selectedSmallCategory: SmallCategoryModel? {
         didSet {
-            //self.collectionView.reloadData()
+            self.categoryCollectionView.reloadData()
         }
     }
     
@@ -39,6 +39,8 @@ class FollwoingCollectionVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        selectedSmallCategory = nil
+        
         getCategory()
         getFollowUser()
     }
@@ -114,7 +116,7 @@ extension FollwoingCollectionVC: UICollectionViewDelegate, UICollectionViewDataS
         
         let smallCategory = smallCategoryList[indexPath.row]
         cell.name = smallCategory.smallCategoryName ?? ""
-        
+        cell.nameLabel.textColor = .white
         if let selectedSmallCategory = selectedSmallCategory,
            selectedSmallCategory.smallCategoryId == smallCategory.smallCategoryId {
             cell.isSelectedCategory = true
@@ -167,6 +169,9 @@ extension FollwoingCollectionVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingBlockUserCell", for: indexPath) as! SettingBlockUserCell
         let user = followUserList[indexPath.row]
+        
+        cell.selectionStyle = .none
+        cell.backgroundColor = XTColor.GREY_900.getColorWithString()
         
         cell.profileImageView.kf.setImage(with: URL(string: user.userCdnImageUri ?? (user.userS3ImageUri ?? "")), placeholder: UIImage(named: "profile_image"))
         cell.nameLabel.text = user.userName

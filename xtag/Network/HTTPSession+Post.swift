@@ -20,6 +20,7 @@ extension HTTPSession {
         case writeComment(postId: String, comment:String)
         case writeReply(postCommentId: String, comment:String)
         case uploadPost
+        case feedFollowings(page: String, size: String)
         
         var path: String {
             switch self {
@@ -47,6 +48,8 @@ extension HTTPSession {
                 return "post/comment/\(postCommentId)/reply"
             case .uploadPost:
                 return "post"
+            case .feedFollowings(let page,let size):
+                return "post/feed/followings?page=\(page)&size=\(size)"
             default:
                 return ""
             }
@@ -73,6 +76,8 @@ extension HTTPSession {
                 return .post
             case .uploadPost:
                 return .post
+            case .feedFollowings:
+                return .get
             default:
                 return .get
             }
@@ -333,6 +338,37 @@ extension HTTPSession {
         }
     }
     
+    func feedFollowings(page: String, size: String, completion: @escaping([PostModel]?, Error?) -> Void) {
+        
+        request(request: Post.feedFollowings( page: page, size: size)).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    if let result = dict["result"] as? [Dictionary<String, Any>] {
+                        var tempPostList : [PostModel] = []
+                        
+                        for rst in result {
+                            let post = PostModel(JSON: rst as! [String:Any])
+                            tempPostList.append(post!)
+                        }
+                        
+                        completion(tempPostList,nil)
+                    }
+                    
+                    
+                } else {
+                    completion(nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, error)
+            }
+        
+        }
+    }
     
     func feed(smallCategoryId: String?, page: Int?, size: Int?, completion: @escaping([PostModel]?, Error?) -> Void) {
         
