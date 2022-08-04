@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Combine
 
 class MyProductVC: UIViewController {
+    private var subscriptions = Set<AnyCancellable>()
 
     private var postList: [PostModel] = [] {
         didSet {
@@ -26,6 +28,7 @@ class MyProductVC: UIViewController {
 
         setupCollectionView()
         getPost()
+        setupPublisher()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,6 +53,30 @@ class MyProductVC: UIViewController {
     private func getPost() {
         
         HTTPSession.shared.getMyFeed(smallCategoryId: self.smallCategoryId) { result, error in
+            if error == nil {
+                guard let result = result else {
+                    return
+                }
+
+                self.postList = result
+            }
+        }
+    }
+    
+    private func setupPublisher() {
+        let publisher = CategoryManager.shared.$mainSelectedSmallCategory
+        publisher.sink { smallCategoryModel in
+            if let smallCategoryModel = smallCategoryModel {
+                self.updatePost(smallCategoryId: smallCategoryModel.smallCategoryId ?? "")
+            } else {
+                self.updatePost(smallCategoryId: "")
+            }
+        }
+        .store(in: &subscriptions)
+    }
+    
+    private func updatePost(smallCategoryId: String) {
+        HTTPSession.shared.feed(smallCategoryId: smallCategoryId, page: nil, size: nil) { result, error in
             if error == nil {
                 guard let result = result else {
                     return
