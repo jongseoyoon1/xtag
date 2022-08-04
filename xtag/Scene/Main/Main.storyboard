@@ -2035,7 +2035,7 @@
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EeJ-Ya-JVG">
                                                 <rect key="frame" x="0.0" y="258" width="414" height="128"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="Grey900"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="Oq6-gt-k8T"/>
                                                 </constraints>
@@ -2067,6 +2067,7 @@
                         <outlet property="categoryCollectionView" destination="QMb-qX-tDF" id="AWB-qr-gyM"/>
                         <outlet property="categoryCollectionViewHeight" destination="n2L-CH-1G9" id="DH9-83-tCm"/>
                         <outlet property="tableView" destination="EeJ-Ya-JVG" id="G1G-1T-17a"/>
+                        <outlet property="tableViewHeight" destination="Oq6-gt-k8T" id="rvT-JU-oLa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uSU-PF-6uo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

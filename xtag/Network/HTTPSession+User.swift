@@ -22,6 +22,7 @@ extension HTTPSession {
         case updateNotification(type: String)
         case getBlockUser(page: String, size: String)
         case deleteBlockUser(userId: String)
+        case getFollowingUser(smallCategoryId: String, page: String, size: String)
         
         var path: String {
             switch self {
@@ -49,6 +50,9 @@ extension HTTPSession {
                 return "user/block?page=\(page)&size=\(size)"
             case .deleteBlockUser(let userId):
                 return "user/block/\(userId)"
+            case .getFollowingUser(let smallCategoryId,let  page,let  size):
+                print("user/followings/smallCategoryId=\(smallCategoryId)&page=\(page)&size=\(size)")
+                return "user/followings?smallCategoryId=\(smallCategoryId)&page=\(page)&size=\(size)"
             }
         }
         
@@ -78,6 +82,8 @@ extension HTTPSession {
                 return .get
             case .deleteBlockUser:
                 return .delete
+            case .getFollowingUser:
+                return .get
             }
         }
         
@@ -113,6 +119,38 @@ extension HTTPSession {
         
     }
     
+    func getFollowingUser(smallCategoryId: String, page: String, size: String, completion: @escaping([BlockUserModel]?, PagenationModel?,Error?) -> Void) {
+        request(request: User.getFollowingUser(smallCategoryId: smallCategoryId,page: page, size: size)).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    if let result = dict["result"] as? [Dictionary<String, Any>],
+                    let pagenation = dict["pagination"] as? Dictionary<String, Any> {
+                        let pagenation = PagenationModel(JSON: pagenation)
+                        
+                        var blockUserList : [BlockUserModel] = []
+                        
+                        for rst in result {
+                            blockUserList.append(BlockUserModel(JSON: rst)!)
+                        }
+                        
+                        completion(blockUserList, pagenation, nil)
+                    }
+                    
+                } else {
+                    completion(nil, nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, nil,error)
+            }
+        
+        }
+    }
+    
     func deleteBlockUser(userId: String, completion: @escaping(Dictionary<String, Any>?, Error?) -> Void) {
         
         request(request: User.deleteBlockUser(userId: userId)).responseJSON { response in
@@ -141,34 +179,34 @@ extension HTTPSession {
     
     func getBlockUser(page: String, size: String, completion: @escaping([BlockUserModel]?, PagenationModel?,Error?) -> Void) {
         request(request: User.getBlockUser(page: page, size: size)).responseJSON { response in
-        switch response.result {
-        case .success(let result):
-            if let dict = result as? Dictionary<String, Any> {
-                if let result = dict["result"] as? [Dictionary<String, Any>],
-                let pagenation = dict["pagination"] as? Dictionary<String, Any> {
-                    let pagenation = PagenationModel(JSON: pagenation)
-                    
-                    var blockUserList : [BlockUserModel] = []
-                    
-                    for rst in result {
-                        blockUserList.append(BlockUserModel(JSON: rst)!)
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    if let result = dict["result"] as? [Dictionary<String, Any>],
+                    let pagenation = dict["pagination"] as? Dictionary<String, Any> {
+                        let pagenation = PagenationModel(JSON: pagenation)
+                        
+                        var blockUserList : [BlockUserModel] = []
+                        
+                        for rst in result {
+                            blockUserList.append(BlockUserModel(JSON: rst)!)
+                        }
+                        
+                        completion(blockUserList, pagenation, nil)
                     }
                     
-                    completion(blockUserList, pagenation, nil)
+                } else {
+                    completion(nil, nil, nil)
                 }
                 
-            } else {
-                completion(nil, nil, nil)
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, nil,error)
             }
-            
-            
-            
-        case .failure(let error):
-            print("error message = \(error)")
-            completion(nil, nil,error)
+        
         }
-    
-    }
     }
     
     func updateNotification(type: String, completion: @escaping(Dictionary<String, Any>?, Error?) -> Void) {

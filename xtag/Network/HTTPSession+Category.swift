@@ -14,6 +14,8 @@ extension HTTPSession {
         case categorySearch(keyword: String)
         case getUserCategory(userId: String)
         
+        case getFollowCategoryAll
+        
         var path: String {
             switch self {
             case .categoryLarge:
@@ -24,6 +26,8 @@ extension HTTPSession {
                 return "category/small/search?keyword=\(keyword)"
             case .getUserCategory(let userId):
                 return "category/user/\(userId)/all"
+            case .getFollowCategoryAll:
+                return "category/user/follow/all"
             default:
                 return ""
             }
@@ -44,6 +48,39 @@ extension HTTPSession {
             }
             
             return param
+        }
+        
+    }
+    
+    func getFollowCategoryAll(completion: @escaping([SmallCategoryModel]?, Error?) -> Void) {
+        request(request: Category.getFollowCategoryAll).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    
+                    
+                    
+                    if let data = dict["result"] as? [Dictionary<String, Any>] {
+                        var result : [SmallCategoryModel] = []
+                        for dt in data {
+                            let rst = SmallCategoryModel(JSON: dt as! [String:Any])
+                            result.append(rst!)
+                        }
+                        
+                        completion(result,nil)
+                    } else {
+                        completion(nil, nil)
+                    }
+                } else {
+                    completion(nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                completion(nil, error)
+            }
+        
         }
         
     }

@@ -74,6 +74,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="blockButton" destination="xAm-tg-74v" id="ErX-G1-tgp"/>
                 <outlet property="nameLabel" destination="yO9-Bf-MfC" id="MHJ-nO-mmx"/>
                 <outlet property="profileImageView" destination="Tl1-AZ-URn" id="r0Q-YQ-CZz"/>
             </connections>

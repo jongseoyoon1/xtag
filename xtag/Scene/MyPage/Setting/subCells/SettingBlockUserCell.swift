@@ -9,6 +9,7 @@ import UIKit
 
 class SettingBlockUserCell: UITableViewCell {
 
+    @IBOutlet weak var blockButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     

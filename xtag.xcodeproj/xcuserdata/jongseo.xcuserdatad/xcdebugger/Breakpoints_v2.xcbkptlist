@@ -119,48 +119,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "29FAA2F0-8CA9-402A-9552-EA3DE18FBD64"
+            uuid = "952879E0-FEC6-44CA-B89E-FC2A69ADF02C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "xtag/Scene/Main/FollowingProduct/FollowingProductContainerVC.swift"
+            filePath = "xtag/Network/HTTPSession+User.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "cycle(from:to:)"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "getFollowingUser(smallCategoryId:page:size:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "07A97411-9742-4C75-AB19-9FC05A8E90FC"
+            uuid = "E559111D-2C26-484A-8B97-33DA5181D84A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "xtag/Scene/Main/FollowingProduct/FollowingProductContainerVC.swift"
+            filePath = "xtag/Scene/Main/FollowingProduct/FollwoingCollectionVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "display(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0A87F68E-7877-44CA-886A-957BEAA8BB41"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "xtag/Scene/Main/FollowingProduct/FollowingProductContainerVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
