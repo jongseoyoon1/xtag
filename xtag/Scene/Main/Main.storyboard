@@ -196,6 +196,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="im8-8l-ojY"/>
+                    <connections>
+                        <outlet property="containerView" destination="Pxj-tV-SUq" id="Lql-mh-fWj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jx6-wp-RK1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1958,6 +1961,117 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dgs-pL-pD8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2800" y="844"/>
+        </scene>
+        <!--Follwoing CollectionVC-->
+        <scene sceneID="0oS-Xq-aTf">
+            <objects>
+                <viewController storyboardIdentifier="FollwoingCollectionVC" id="Dea-uB-eve" customClass="FollwoingCollectionVC" customModule="xtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9mw-4i-qc6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUW-XZ-ZKA">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ahJ-WA-3eR">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="386"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXe-ys-2qq">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="38"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팔로우한 관심사" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sev-r7-tFr">
+                                                        <rect key="frame" x="20" y="8.5" width="113" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="18"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="Grey900"/>
+                                                <constraints>
+                                                    <constraint firstItem="sev-r7-tFr" firstAttribute="leading" secondItem="YXe-ys-2qq" secondAttribute="leading" constant="20" id="8Ai-xN-aeg"/>
+                                                    <constraint firstAttribute="height" constant="38" id="HpQ-ec-vt8"/>
+                                                    <constraint firstAttribute="bottom" secondItem="sev-r7-tFr" secondAttribute="bottom" constant="8" id="hua-w4-0qQ"/>
+                                                </constraints>
+                                            </view>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QMb-qX-tDF">
+                                                <rect key="frame" x="0.0" y="38" width="414" height="128"/>
+                                                <color key="backgroundColor" name="Grey900"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="n2L-CH-1G9"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zh5-tc-vjo">
+                                                    <size key="itemSize" width="128" height="128"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="EiN-YL-AEq">
+                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DFA-ca-8yn">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </collectionViewCellContentView>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6m-hS-og5">
+                                                <rect key="frame" x="0.0" y="166" width="414" height="92"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팔로우한 사용자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpt-he-dg5">
+                                                        <rect key="frame" x="20" y="62.5" width="113" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="18"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="Grey900"/>
+                                                <constraints>
+                                                    <constraint firstItem="hpt-he-dg5" firstAttribute="leading" secondItem="y6m-hS-og5" secondAttribute="leading" constant="20" id="U6A-XC-AdA"/>
+                                                    <constraint firstAttribute="bottom" secondItem="hpt-he-dg5" secondAttribute="bottom" constant="8" id="aQM-Au-nya"/>
+                                                    <constraint firstAttribute="height" constant="92" id="orx-pW-KwJ"/>
+                                                </constraints>
+                                            </view>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EeJ-Ya-JVG">
+                                                <rect key="frame" x="0.0" y="258" width="414" height="128"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="Oq6-gt-k8T"/>
+                                                </constraints>
+                                            </tableView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ahJ-WA-3eR" firstAttribute="leading" secondItem="KSV-9R-0a9" secondAttribute="leading" id="5f4-E5-OBA"/>
+                                    <constraint firstItem="ahJ-WA-3eR" firstAttribute="trailing" secondItem="KSV-9R-0a9" secondAttribute="trailing" id="6IX-6u-GbH"/>
+                                    <constraint firstItem="ahJ-WA-3eR" firstAttribute="bottom" secondItem="KSV-9R-0a9" secondAttribute="bottom" id="NSD-hs-fc2"/>
+                                    <constraint firstItem="KSV-9R-0a9" firstAttribute="top" secondItem="ahJ-WA-3eR" secondAttribute="top" id="U7h-Qq-e7b"/>
+                                    <constraint firstItem="ahJ-WA-3eR" firstAttribute="width" secondItem="jDv-9Q-fK5" secondAttribute="width" id="rDM-Ku-n7h"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="KSV-9R-0a9"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="jDv-9Q-fK5"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Mt7-e7-u1b"/>
+                        <color key="backgroundColor" name="Grey900"/>
+                        <constraints>
+                            <constraint firstItem="XUW-XZ-ZKA" firstAttribute="leading" secondItem="Mt7-e7-u1b" secondAttribute="leading" id="90c-ju-0AW"/>
+                            <constraint firstItem="Mt7-e7-u1b" firstAttribute="trailing" secondItem="XUW-XZ-ZKA" secondAttribute="trailing" id="Lb5-Vm-4jT"/>
+                            <constraint firstItem="XUW-XZ-ZKA" firstAttribute="top" secondItem="Mt7-e7-u1b" secondAttribute="top" id="UOo-NB-vzW"/>
+                            <constraint firstItem="Mt7-e7-u1b" firstAttribute="bottom" secondItem="XUW-XZ-ZKA" secondAttribute="bottom" id="Uwl-pC-swF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="categoryCollectionView" destination="QMb-qX-tDF" id="AWB-qr-gyM"/>
+                        <outlet property="categoryCollectionViewHeight" destination="n2L-CH-1G9" id="DH9-83-tCm"/>
+                        <outlet property="tableView" destination="EeJ-Ya-JVG" id="G1G-1T-17a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uSU-PF-6uo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3610" y="860"/>
         </scene>
         <!--Make Post UploadVC-->
         <scene sceneID="7qX-7y-i72">

@@ -119,32 +119,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C4251688-3063-4372-9AB9-001E766CE515"
+            uuid = "29FAA2F0-8CA9-402A-9552-EA3DE18FBD64"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "xtag/Scene/Main/MyProduct/MyCategoryCollectionVC.swift"
+            filePath = "xtag/Scene/Main/FollowingProduct/FollowingProductContainerVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "collectionView(_:didSelectItemAt:)"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "cycle(from:to:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DD163CE3-DE8A-4600-80C2-F768AAB2C7E8"
+            uuid = "07A97411-9742-4C75-AB19-9FC05A8E90FC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "xtag/Scene/Main/MyProduct/MyCategoryCollectionVC.swift"
+            filePath = "xtag/Scene/Main/FollowingProduct/FollowingProductContainerVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "collectionView(_:didSelectItemAt:)"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "display(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0A87F68E-7877-44CA-886A-957BEAA8BB41"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "xtag/Scene/Main/FollowingProduct/FollowingProductContainerVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
