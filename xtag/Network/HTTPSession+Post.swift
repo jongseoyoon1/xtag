@@ -21,6 +21,7 @@ extension HTTPSession {
         case writeReply(postCommentId: String, comment:String)
         case uploadPost
         case feedFollowings(page: String, size: String)
+        case updatePost(postId: String, smallCategoryIdList: [String], postBodyContentList: [String])
         
         var path: String {
             switch self {
@@ -50,6 +51,8 @@ extension HTTPSession {
                 return "post"
             case .feedFollowings(let page,let size):
                 return "post/feed/followings?page=\(page)&size=\(size)"
+            case .updatePost(let postId, let smallCategoryIdList, let postBodyContentList):
+                return "post/\(postId)"
             default:
                 return ""
             }
@@ -78,6 +81,8 @@ extension HTTPSession {
                 return .post
             case .feedFollowings:
                 return .get
+            case .updatePost:
+                return .patch
             default:
                 return .get
             }
@@ -98,6 +103,9 @@ extension HTTPSession {
                 param["comment"] = comment
             case .uploadPost:
                 break
+            case .updatePost(let postId, let smallCategoryIdList, let postBodyContentList):
+                param["smallCategoryIdList"] = smallCategoryIdList
+                param["postBodyContentList"] = postBodyContentList
             default: break
             }
             
@@ -105,6 +113,33 @@ extension HTTPSession {
         }
         
         
+    }
+    
+    func updatePost(postId: String, smallCategoryIdList: [String], postBodyContentList: [String], completion: @escaping(Dictionary<String, Any>?, Error?) -> Void) {
+        
+        request(request: Post.updatePost(postId: postId, smallCategoryIdList: smallCategoryIdList, postBodyContentList: postBodyContentList)).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    
+                    completion(dict,nil)
+                    if let result = dict["result"] as? Dictionary<String, Any> {
+                        
+                    }
+                    
+                    
+                } else {
+                    completion(nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, error)
+            }
+        
+        }
     }
     
     func uploadPost(image:[Data],upload_progress: @escaping(Progress, UploadRequest)->Void, completion: @escaping(Dictionary<String, Any>?, Error?) -> Void) {

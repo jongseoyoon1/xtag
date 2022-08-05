@@ -59,6 +59,10 @@ class UserPostVC: UIViewController {
         super.viewDidLoad()
         
         setupTableView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         getPostDetail()
     }
     
@@ -106,7 +110,17 @@ class UserPostVC: UIViewController {
             }))
             
             actions.append(XTBottomSheetAction(title: "수정", type: .COMMON, handler: {
-              
+                if let viewcontroller = UIStoryboard(name: "UserPost", bundle: nil).instantiateViewController(withIdentifier: "UpdateUserPostVC") as? UpdateUserPostVC {
+                    viewcontroller.modalPresentationStyle = .fullScreen
+                    viewcontroller.postId = self.postId
+                    viewcontroller.selectedCategory = self.postDetailModel.postCategoryList
+                    
+                    
+                    self.present(viewcontroller, animated: true)
+                    
+                    
+                    //viewcontroller.postDetailModel = self.postDetailModel
+                }
             }))
             
             showCommonBottomSheet(actions: actions) {

@@ -20,9 +20,12 @@ class UserPostImageTableCell: UITableViewCell {
     public var updateSelectedPostBody: ((PostBodyModel)->Void)?
     public var updateSelectedProduct: ((ProductModel?)->Void)?
     
+    public var updateInndex: ((Int)->Void)?
+    
     public var categoryList: [SmallCategoryModel] = []
     
     private var tagViews: [UIImageView] = []
+    
     
     var selectedProduct : ProductModel? {
         didSet {
@@ -276,7 +279,11 @@ extension UserPostImageTableCell : UIScrollViewDelegate
 //            offset = CGPoint(x: currentIdx * cellWidth - cv.contentInset.left, y: 0)
 //
 //            targetContentOffset.pointee = offset
+            
             print("printCurrentIdx ", currentIdx)
+            
+            guard let updateIndex = self.updateInndex else { return }
+            updateIndex(currentIndex)
         }
     }
 }

@@ -66,6 +66,8 @@
 		5515BA70286AE80300785D21 /* MakeProductLinkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5515BA6F286AE80300785D21 /* MakeProductLinkVC.swift */; };
 		5515BA72286B106500785D21 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5515BA71286B106500785D21 /* ProductModel.swift */; };
 		551D6ABB289CB5A700797D5A /* UpdateUserPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D6ABA289CB5A700797D5A /* UpdateUserPostVC.swift */; };
+		551D6ABE289D0B4B00797D5A /* UserPostUpdateTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D6ABC289D0B4B00797D5A /* UserPostUpdateTextViewCell.swift */; };
+		551D6ABF289D0B4B00797D5A /* UserPostUpdateTextViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551D6ABD289D0B4B00797D5A /* UserPostUpdateTextViewCell.xib */; };
 		552148A328655D1600205DD9 /* MyProductContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552148A228655D1600205DD9 /* MyProductContainerVC.swift */; };
 		552148A5286573FA00205DD9 /* MyCategoryCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552148A4286573FA00205DD9 /* MyCategoryCollectionVC.swift */; };
 		552148A728658A9C00205DD9 /* MakePostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552148A628658A9C00205DD9 /* MakePostManager.swift */; };
@@ -130,6 +132,7 @@
 		55B4DDC9284C2BE100F3C55A /* SpoqaHanSansNeo-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55B4DDC4284C2BE100F3C55A /* SpoqaHanSansNeo-Thin.ttf */; };
 		55B4DDCB284CF37E00F3C55A /* XTNextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4DDCA284CF37E00F3C55A /* XTNextButton.swift */; };
 		55B4DDCD284CF39E00F3C55A /* XTNextButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B4DDCC284CF39E00F3C55A /* XTNextButton.xib */; };
+		55B932C5289D49B7007BFB72 /* UpdatePostCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B932C4289D49B7007BFB72 /* UpdatePostCategoryVC.swift */; };
 		55BCB98C284DA155005A60F2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 55BCB98B284DA155005A60F2 /* FirebaseAuth */; };
 		55BCB98E284DA155005A60F2 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 55BCB98D284DA155005A60F2 /* FirebaseAuthCombine-Community */; };
 		55BCB990284DA155005A60F2 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 55BCB98F284DA155005A60F2 /* FirebaseDatabase */; };
@@ -318,6 +321,8 @@
 		5515BA6F286AE80300785D21 /* MakeProductLinkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeProductLinkVC.swift; sourceTree = "<group>"; };
 		5515BA71286B106500785D21 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		551D6ABA289CB5A700797D5A /* UpdateUserPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserPostVC.swift; sourceTree = "<group>"; };
+		551D6ABC289D0B4B00797D5A /* UserPostUpdateTextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostUpdateTextViewCell.swift; sourceTree = "<group>"; };
+		551D6ABD289D0B4B00797D5A /* UserPostUpdateTextViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserPostUpdateTextViewCell.xib; sourceTree = "<group>"; };
 		552148A228655D1600205DD9 /* MyProductContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProductContainerVC.swift; sourceTree = "<group>"; };
 		552148A4286573FA00205DD9 /* MyCategoryCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCategoryCollectionVC.swift; sourceTree = "<group>"; };
 		552148A628658A9C00205DD9 /* MakePostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostManager.swift; sourceTree = "<group>"; };
@@ -378,6 +383,7 @@
 		55B4DDC4284C2BE100F3C55A /* SpoqaHanSansNeo-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Thin.ttf"; sourceTree = "<group>"; };
 		55B4DDCA284CF37E00F3C55A /* XTNextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTNextButton.swift; sourceTree = "<group>"; };
 		55B4DDCC284CF39E00F3C55A /* XTNextButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XTNextButton.xib; sourceTree = "<group>"; };
+		55B932C4289D49B7007BFB72 /* UpdatePostCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePostCategoryVC.swift; sourceTree = "<group>"; };
 		55BCB9A2284DA4BA005A60F2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		55BCB9A5284DA51B005A60F2 /* SelectCategory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectCategory.storyboard; sourceTree = "<group>"; };
 		55BCB9A7284DA52B005A60F2 /* SelectCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryVC.swift; sourceTree = "<group>"; };
@@ -992,6 +998,8 @@
 				55EF6C98287D721400C7AD76 /* UserPostProductCell.swift */,
 				5521B315287D205E008E5650 /* UserPostTagCell.xib */,
 				5521B314287D205E008E5650 /* UserPostTagCell.swift */,
+				551D6ABD289D0B4B00797D5A /* UserPostUpdateTextViewCell.xib */,
+				551D6ABC289D0B4B00797D5A /* UserPostUpdateTextViewCell.swift */,
 			);
 			path = subCells;
 			sourceTree = "<group>";
@@ -1055,6 +1063,7 @@
 				55FB4EEF2859DCE400309FAC /* UserPost.storyboard */,
 				55FB4EF12859DCF100309FAC /* UserPostVC.swift */,
 				551D6ABA289CB5A700797D5A /* UpdateUserPostVC.swift */,
+				55B932C4289D49B7007BFB72 /* UpdatePostCategoryVC.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -1271,6 +1280,7 @@
 				55B4DDC6284C2BE100F3C55A /* SpoqaHanSansNeo-Light.ttf in Resources */,
 				55B4DDC9284C2BE100F3C55A /* SpoqaHanSansNeo-Thin.ttf in Resources */,
 				55F95D95287EA55D00CD2B93 /* UserPostProductTitleTableCell.xib in Resources */,
+				551D6ABF289D0B4B00797D5A /* UserPostUpdateTextViewCell.xib in Resources */,
 				55DDED60288A394C00CAAEB1 /* AlarmCell.xib in Resources */,
 				55DCB83A28520FF6006997F2 /* Tab.storyboard in Resources */,
 				55B4DDC8284C2BE100F3C55A /* SpoqaHanSansNeo-Medium.ttf in Resources */,
@@ -1319,6 +1329,7 @@
 				55DCB84A28559AC8006997F2 /* SplashVC.swift in Sources */,
 				550DF2B22886EAD900AD3B33 /* CommentVC.swift in Sources */,
 				55BCB9AA284DA55B005A60F2 /* MainVC.swift in Sources */,
+				551D6ABE289D0B4B00797D5A /* UserPostUpdateTextViewCell.swift in Sources */,
 				55B4DD4A284484AF00F3C55A /* Extension+UIView.swift in Sources */,
 				55ECD8882890ABFF00F7E874 /* MakePostUploadVC.swift in Sources */,
 				55F95D98287EA7AF00CD2B93 /* ProductEvaluationResultTableCell.swift in Sources */,
@@ -1384,6 +1395,7 @@
 				55E85F84287C2E4700BE6ABF /* ProductMemoTableCell.swift in Sources */,
 				5515BA6D286AE76400785D21 /* HTTPSession+Product.swift in Sources */,
 				55DCB841285589E0006997F2 /* MyPageVC.swift in Sources */,
+				55B932C5289D49B7007BFB72 /* UpdatePostCategoryVC.swift in Sources */,
 				55FB4EF22859DCF100309FAC /* UserPostVC.swift in Sources */,
 				55B4DD4C284484AF00F3C55A /* UIBezierPath+Extension.swift in Sources */,
 				55F36A942896BEDF00A5A426 /* XTCommonPopup.swift in Sources */,
