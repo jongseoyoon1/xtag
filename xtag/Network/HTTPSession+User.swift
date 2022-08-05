@@ -23,6 +23,7 @@ extension HTTPSession {
         case getBlockUser(page: String, size: String)
         case deleteBlockUser(userId: String)
         case getFollowingUser(smallCategoryId: String, page: String, size: String)
+        case withDrawal(content: String)
         
         var path: String {
             switch self {
@@ -53,6 +54,8 @@ extension HTTPSession {
             case .getFollowingUser(let smallCategoryId,let  page,let  size):
                 print("user/followings/smallCategoryId=\(smallCategoryId)&page=\(page)&size=\(size)")
                 return "user/followings?smallCategoryId=\(smallCategoryId)&page=\(page)&size=\(size)"
+            case .withDrawal:
+                return "/user/sign-up/v1/user/withdrawal"
             }
         }
         
@@ -84,6 +87,8 @@ extension HTTPSession {
                 return .delete
             case .getFollowingUser:
                 return .get
+            case .withDrawal:
+                return .post
             }
         }
         
@@ -109,6 +114,8 @@ extension HTTPSession {
             case .updateNotification:
                 //param["type"] = type
                 break
+            case .withDrawal(let content):
+                param["content"] = content
                 
             default: break
             }
@@ -146,6 +153,32 @@ extension HTTPSession {
             case .failure(let error):
                 print("error message = \(error)")
                 completion(nil, nil,error)
+            }
+        
+        }
+    }
+    
+    func withDrawal(content: String, completion: @escaping(Dictionary<String, Any>?, Error?) -> Void) {
+        
+        request(request: User.withDrawal(content: content)).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    if let result = dict["result"] as? Dictionary<String, Any> {
+                        
+                        
+                    }
+                    
+                    completion(dict,nil)
+                } else {
+                    completion(nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, error)
             }
         
         }

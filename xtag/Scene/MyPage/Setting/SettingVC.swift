@@ -454,7 +454,11 @@ extension SettingVC: UITableViewDelegate, UITableViewDataSource {
                 }
                 
             } else if indexPath.row == 5 {
-                
+                if let viewcontroller = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(withIdentifier: "WithDrawalVC") as? WithDrawalVC {
+                    viewcontroller.modalPresentationStyle = .fullScreen
+                    
+                    self.present(viewcontroller, animated: true)
+                }
             }
             
         default:

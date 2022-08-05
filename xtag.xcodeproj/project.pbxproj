@@ -44,7 +44,6 @@
 		55116144283E352F002B679E /* Pretendard-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5511613B283E352F002B679E /* Pretendard-Light.ttf */; };
 		55116148283E352F002B679E /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5511613F283E352F002B679E /* Pretendard-Medium.ttf */; };
 		55116149283E352F002B679E /* Pretendard-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55116140283E352F002B679E /* Pretendard-Thin.ttf */; };
-		5511614A283E352F002B679E /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55116141283E352F002B679E /* Pretendard-SemiBold.ttf */; };
 		5511614E283E383B002B679E /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511614D283E383B002B679E /* LoginVC.swift */; };
 		55116155283E3972002B679E /* XTNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55116154283E3972002B679E /* XTNavigationBar.swift */; };
 		55116158283E3A1A002B679E /* XIBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55116157283E3A1A002B679E /* XIBView.swift */; };
@@ -133,6 +132,7 @@
 		55B4DDCB284CF37E00F3C55A /* XTNextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4DDCA284CF37E00F3C55A /* XTNextButton.swift */; };
 		55B4DDCD284CF39E00F3C55A /* XTNextButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B4DDCC284CF39E00F3C55A /* XTNextButton.xib */; };
 		55B932C5289D49B7007BFB72 /* UpdatePostCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B932C4289D49B7007BFB72 /* UpdatePostCategoryVC.swift */; };
+		55B932C7289D571B007BFB72 /* WithDrawalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B932C6289D571B007BFB72 /* WithDrawalVC.swift */; };
 		55BCB98C284DA155005A60F2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 55BCB98B284DA155005A60F2 /* FirebaseAuth */; };
 		55BCB98E284DA155005A60F2 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 55BCB98D284DA155005A60F2 /* FirebaseAuthCombine-Community */; };
 		55BCB990284DA155005A60F2 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 55BCB98F284DA155005A60F2 /* FirebaseDatabase */; };
@@ -156,7 +156,6 @@
 		55D20CA52862E34800BA5480 /* SignUpNickNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D20CA42862E34800BA5480 /* SignUpNickNameVC.swift */; };
 		55D20CA82862E9D100BA5480 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 55D20CA72862E9D100BA5480 /* Toast */; };
 		55D20CAA2862F92800BA5480 /* SignUpCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D20CA92862F92800BA5480 /* SignUpCategoryVC.swift */; };
-		55D6FECA2886F9C5007426A9 /* Pretendard-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5511613C283E352F002B679E /* Pretendard-ExtraBold.ttf */; };
 		55D6FECC28877707007426A9 /* ReplyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6FECB28877707007426A9 /* ReplyVC.swift */; };
 		55D6FECE28878854007426A9 /* SecretProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6FECD28878854007426A9 /* SecretProductVC.swift */; };
 		55D6FED128878CD5007426A9 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D6FED028878CD5007426A9 /* UserProfile.storyboard */; };
@@ -167,6 +166,12 @@
 		55DA4E9D28582E04003F598A /* HTTPSession+Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DA4E9C28582E04003F598A /* HTTPSession+Post.swift */; };
 		55DA4EA0285855D5003F598A /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DA4E9F285855D5003F598A /* CustomLayout.swift */; };
 		55DB7389284D00F100A54790 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 55DB7388284D00F100A54790 /* Tabman */; };
+		55DBB757289D67D8001ED697 /* WithDrawalReasonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DBB755289D67D8001ED697 /* WithDrawalReasonCell.swift */; };
+		55DBB758289D67D8001ED697 /* WithDrawalReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55DBB756289D67D8001ED697 /* WithDrawalReasonCell.xib */; };
+		55DBB759289D6DE3001ED697 /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55116139283E352E002B679E /* Pretendard-Bold.ttf */; };
+		55DBB75A289D6DFE001ED697 /* Pretendard-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5511613C283E352F002B679E /* Pretendard-ExtraBold.ttf */; };
+		55DBB75B289D6E01001ED697 /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55116141283E352F002B679E /* Pretendard-SemiBold.ttf */; };
+		55DBB75D289D7039001ED697 /* WithDrawalInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DBB75C289D7039001ED697 /* WithDrawalInfoVC.swift */; };
 		55DCB83A28520FF6006997F2 /* Tab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55DCB83928520FF6006997F2 /* Tab.storyboard */; };
 		55DCB83C2852101D006997F2 /* TabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DCB83B2852101D006997F2 /* TabVC.swift */; };
 		55DCB83F285589CC006997F2 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55DCB83E285589CC006997F2 /* MyPage.storyboard */; };
@@ -207,7 +212,6 @@
 		55EAF7FD2863F26C00503526 /* AllProductContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EAF7FC2863F26C00503526 /* AllProductContainerVC.swift */; };
 		55ECD8832890323500F7E874 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ECD8812890323500F7E874 /* PhotoCell.swift */; };
 		55ECD8842890323500F7E874 /* PhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55ECD8822890323500F7E874 /* PhotoCell.xib */; };
-		55ECD8852890A1CA00F7E874 /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55116139283E352E002B679E /* Pretendard-Bold.ttf */; };
 		55ECD8882890ABFF00F7E874 /* MakePostUploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ECD8872890ABFF00F7E874 /* MakePostUploadVC.swift */; };
 		55ECD88B2890BE5100F7E874 /* PostImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ECD8892890BE5100F7E874 /* PostImageCell.swift */; };
 		55ECD88C2890BE5100F7E874 /* PostImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55ECD88A2890BE5100F7E874 /* PostImageCell.xib */; };
@@ -384,6 +388,7 @@
 		55B4DDCA284CF37E00F3C55A /* XTNextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTNextButton.swift; sourceTree = "<group>"; };
 		55B4DDCC284CF39E00F3C55A /* XTNextButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XTNextButton.xib; sourceTree = "<group>"; };
 		55B932C4289D49B7007BFB72 /* UpdatePostCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePostCategoryVC.swift; sourceTree = "<group>"; };
+		55B932C6289D571B007BFB72 /* WithDrawalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawalVC.swift; sourceTree = "<group>"; };
 		55BCB9A2284DA4BA005A60F2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		55BCB9A5284DA51B005A60F2 /* SelectCategory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectCategory.storyboard; sourceTree = "<group>"; };
 		55BCB9A7284DA52B005A60F2 /* SelectCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryVC.swift; sourceTree = "<group>"; };
@@ -404,6 +409,9 @@
 		55DA4E9928582C8D003F598A /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCollectionViewCell.xib; sourceTree = "<group>"; };
 		55DA4E9C28582E04003F598A /* HTTPSession+Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPSession+Post.swift"; sourceTree = "<group>"; };
 		55DA4E9F285855D5003F598A /* CustomLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
+		55DBB755289D67D8001ED697 /* WithDrawalReasonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawalReasonCell.swift; sourceTree = "<group>"; };
+		55DBB756289D67D8001ED697 /* WithDrawalReasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithDrawalReasonCell.xib; sourceTree = "<group>"; };
+		55DBB75C289D7039001ED697 /* WithDrawalInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawalInfoVC.swift; sourceTree = "<group>"; };
 		55DCB83928520FF6006997F2 /* Tab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tab.storyboard; sourceTree = "<group>"; };
 		55DCB83B2852101D006997F2 /* TabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabVC.swift; sourceTree = "<group>"; };
 		55DCB83E285589CC006997F2 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
@@ -950,6 +958,8 @@
 				554D56FE2887F309002092EF /* EditProfileVC.swift */,
 				55DDED57288A334E00CAAEB1 /* MyPageEditCategoryVC.swift */,
 				55E828FE28978A48009EB4CC /* FollowingVC.swift */,
+				55B932C6289D571B007BFB72 /* WithDrawalVC.swift */,
+				55DBB75C289D7039001ED697 /* WithDrawalInfoVC.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1052,6 +1062,8 @@
 				552148A82865972800205DD9 /* MyPageFilterCell.swift */,
 				55AD52892865A0210040D0A3 /* MyPageMoreCollectionCell.xib */,
 				55AD52882865A0210040D0A3 /* MyPageMoreCollectionCell.swift */,
+				55DBB756289D67D8001ED697 /* WithDrawalReasonCell.xib */,
+				55DBB755289D67D8001ED697 /* WithDrawalReasonCell.swift */,
 			);
 			path = subCells;
 			sourceTree = "<group>";
@@ -1219,7 +1231,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5511614A283E352F002B679E /* Pretendard-SemiBold.ttf in Resources */,
 				55116165283F289D002B679E /* XTTextField.xib in Resources */,
 				55008126287C234500EFBA8D /* ProductEvaluationTableCell.xib in Resources */,
 				55BCB9A6284DA51B005A60F2 /* SelectCategory.storyboard in Resources */,
@@ -1232,13 +1243,16 @@
 				55EF6C9B287D721400C7AD76 /* UserPostProductCell.xib in Resources */,
 				55DCB84828559AB7006997F2 /* Splash.storyboard in Resources */,
 				55BCB9A3284DA4BA005A60F2 /* Main.storyboard in Resources */,
+				55DBB75B289D6E01001ED697 /* Pretendard-SemiBold.ttf in Resources */,
 				55116144283E352F002B679E /* Pretendard-Light.ttf in Resources */,
 				55DCB84328558B93006997F2 /* XTBottomBar.xib in Resources */,
 				55AD528B2865A0210040D0A3 /* MyPageMoreCollectionCell.xib in Resources */,
 				55116115283E3226002B679E /* LaunchScreen.storyboard in Resources */,
 				55116112283E3226002B679E /* Assets.xcassets in Resources */,
+				55DBB759289D6DE3001ED697 /* Pretendard-Bold.ttf in Resources */,
 				55E85F85287C2E4700BE6ABF /* ProductMemoTableCell.xib in Resources */,
 				55E8103F2888E78A001C6018 /* ProductCategoryCell.xib in Resources */,
+				55DBB758289D67D8001ED697 /* WithDrawalReasonCell.xib in Resources */,
 				5595005228894E93004DF606 /* UserProfileSelectCategoryCell.xib in Resources */,
 				55ECD88C2890BE5100F7E874 /* PostImageCell.xib in Resources */,
 				55ECD8842890323500F7E874 /* PhotoCell.xib in Resources */,
@@ -1249,10 +1263,10 @@
 				556B5FE4284F4CFA009A96FE /* XTCommonButton.xib in Resources */,
 				552148AB2865972800205DD9 /* MyPageFilterCell.xib in Resources */,
 				55116148283E352F002B679E /* Pretendard-Medium.ttf in Resources */,
-				55D6FECA2886F9C5007426A9 /* Pretendard-ExtraBold.ttf in Resources */,
 				5511F8AA286AD03E0049EBD5 /* SettingContentCell.xib in Resources */,
 				5511F8A2286ACFE10049EBD5 /* SettingHeaderCell.xib in Resources */,
 				55116143283E352F002B679E /* Pretendard-ExtraLight.ttf in Resources */,
+				55DBB75A289D6DFE001ED697 /* Pretendard-ExtraBold.ttf in Resources */,
 				5504F31B286A803A0029C242 /* FollowingTableCell.xib in Resources */,
 				55F36A992896C01A00A5A426 /* Pretendard-Black.ttf in Resources */,
 				CEB38DA9286FD73C006CA23A /* GoogleService-Info.plist in Resources */,
@@ -1269,7 +1283,6 @@
 				55D6FED128878CD5007426A9 /* UserProfile.storyboard in Resources */,
 				55116163283F2511002B679E /* XTNavigationBar.xib in Resources */,
 				55DA4E9B28582C8D003F598A /* PostCollectionViewCell.xib in Resources */,
-				55ECD8852890A1CA00F7E874 /* Pretendard-Bold.ttf in Resources */,
 				5521B30F287D1D99008E5650 /* UserPostImageTableCell.xib in Resources */,
 				550FE9392880D5F300623D0A /* ProductDetail.storyboard in Resources */,
 				55008122287BFD4500EFBA8D /* ProductLinkTableCell.xib in Resources */,
@@ -1356,6 +1369,7 @@
 				55BCB9A8284DA52B005A60F2 /* SelectCategoryVC.swift in Sources */,
 				55B4DD4B284484AF00F3C55A /* UIViewController+Extension.swift in Sources */,
 				55B4DD55284484AF00F3C55A /* Date+Extension.swift in Sources */,
+				55DBB757289D67D8001ED697 /* WithDrawalReasonCell.swift in Sources */,
 				55ECD88E2890C81400F7E874 /* MakePostTagVC.swift in Sources */,
 				557AB656285FDCEB007BAB32 /* CategoryCollectionVC.swift in Sources */,
 				557D5FF02890FA52007D646F /* MakePostProductVC.swift in Sources */,
@@ -1385,6 +1399,7 @@
 				55F36AA52896CB8E00A5A426 /* SettingBlockUserCell.swift in Sources */,
 				554D56FF2887F309002092EF /* EditProfileVC.swift in Sources */,
 				55008121287BFD4500EFBA8D /* ProductLinkTableCell.swift in Sources */,
+				55B932C7289D571B007BFB72 /* WithDrawalVC.swift in Sources */,
 				5521B30E287D1D99008E5650 /* UserPostImageTableCell.swift in Sources */,
 				55DA4E9A28582C8D003F598A /* PostCollectionViewCell.swift in Sources */,
 				5595005128894E93004DF606 /* UserProfileSelectCategoryCell.swift in Sources */,
@@ -1438,6 +1453,7 @@
 				55D6FECC28877707007426A9 /* ReplyVC.swift in Sources */,
 				55116161283F1B71002B679E /* SignUpVC.swift in Sources */,
 				5511615D283E4B4B002B679E /* Color.swift in Sources */,
+				55DBB75D289D7039001ED697 /* WithDrawalInfoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
