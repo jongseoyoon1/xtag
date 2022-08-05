@@ -97,39 +97,36 @@ class UserPostVC: UIViewController {
     
     @IBAction func moreBtnPressed(_ sender: Any) {
         
-//        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//        let deleteAction = UIAlertAction(title: "", style: .default, handler: {
-//
-//            (alert: UIAlertAction!) -> Void in
-//
-//        })
-//
-//
-//        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: {
-//
-//            (alert: UIAlertAction!) -> Void in
-//
-//        })
-//
-//        optionMenu.addAction(deleteAction)
-//        optionMenu.addAction(cancelAction)
-//
-//        optionMenu.viewDidLayoutSubviews()
-//
-//        self.present(optionMenu, animated: true, completion: nil)
-        
-        var actions : [XTBottomSheetAction] = []
-        actions.append(XTBottomSheetAction(title: "신고", type: .ALERT, handler: {
-            print("신고")
+        if self.postDetailModel.userId! == UserManager.shared.userInfo!.userId! {
+            var actions : [XTBottomSheetAction] = []
+            actions.append(XTBottomSheetAction(title: "삭제", type: .ALERT, handler: {
+                self.showCommonPopup(title: "게시물 삭제", content: "게시물을 삭제하시겠습니까?", confirmButtonTitle: "삭제", popupType: .ALERT) {
+                    
+                }
+            }))
             
-            self.showCommonPopup(title: "게시물 신고", content: "게시물을 신고하시겠습니까?", confirmButtonTitle: "신고", popupType: .ALERT) {
+            actions.append(XTBottomSheetAction(title: "수정", type: .COMMON, handler: {
+              
+            }))
+            
+            showCommonBottomSheet(actions: actions) {
                 
             }
-        }))
-        
-        showCommonBottomSheet(actions: actions) {
+        } else {
+            var actions : [XTBottomSheetAction] = []
+            actions.append(XTBottomSheetAction(title: "신고", type: .ALERT, handler: {
+                print("신고")
+                
+                self.showCommonPopup(title: "게시물 신고", content: "게시물을 신고하시겠습니까?", confirmButtonTitle: "신고", popupType: .ALERT) {
+                    
+                }
+            }))
             
+            showCommonBottomSheet(actions: actions) {
+                
+            }
         }
+        
         
         
     }

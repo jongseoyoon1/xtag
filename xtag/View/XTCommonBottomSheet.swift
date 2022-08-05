@@ -26,6 +26,7 @@ class XTCommonBottomSheet: UIViewController {
 
         // Do any additional setup after loading the view.
         var idx = 1
+        var height : CGFloat = 0
         for act in actions {
             
             let button = UIButton(type: .system)
@@ -45,9 +46,11 @@ class XTCommonBottomSheet: UIViewController {
                         return
                     }
                     guard let onCancel = self.onCancel else { return }
-                    handler()
+                    
                     onCancel()
                     self.dismiss(animated: true)
+                    
+                    handler()
                 }
             } else {
                 // Fallback on earlier versions
@@ -55,7 +58,7 @@ class XTCommonBottomSheet: UIViewController {
             button.titleLabel?.font = UIFont(name: XTFont.PRETENDARD_EXTRABOLD, size: 14)
             
             self.stackView.addArrangedSubview(button)
-            
+            height = height + 56
             if idx == actions.count {
                 
             } else {
@@ -63,10 +66,14 @@ class XTCommonBottomSheet: UIViewController {
                 view.backgroundColor = XTColor.GREY_300.getColorWithString()
                 
                 self.stackView.addArrangedSubview(view)
+                height = height + 1
             }
             
             idx += 1
         }
+        
+        stackViewHeight.constant = height
+        view.layoutSubviews()
     }
 
     @IBAction func cancelBtnPressed(_ sender: Any) {

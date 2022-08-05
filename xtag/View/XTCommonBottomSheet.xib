@@ -17,7 +17,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XTCommonBottomSheet" customModule="xtag" customModuleProvider="target">
             <connections>
                 <outlet property="stackView" destination="511-JT-ulM" id="WDP-RY-AtU"/>
-                <outlet property="stackViewHeight" destination="iHQ-PY-z2O" id="oCa-6C-HMM"/>
+                <outlet property="stackViewHeight" destination="iB1-7X-htj" id="gxd-ZA-9RZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -46,11 +46,11 @@
                         <action selector="cancelBtnPressed:" destination="-1" eventType="touchUpInside" id="rct-Rd-62Q"/>
                     </connections>
                 </button>
-                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="511-JT-ulM">
-                    <rect key="frame" x="16" y="512" width="382" height="200"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="511-JT-ulM">
+                    <rect key="frame" x="16" y="698" width="382" height="56"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="450" constant="56" id="iHQ-PY-z2O"/>
+                        <constraint firstAttribute="height" constant="56" id="iB1-7X-htj"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerradius">
