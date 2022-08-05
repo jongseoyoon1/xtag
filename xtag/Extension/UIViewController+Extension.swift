@@ -18,6 +18,25 @@ extension UIViewController {
         self.view.endEditing(true)
     }
     
+    func showCommonBottomSheet(actions: [XTBottomSheetAction], confirmFunc: (()->Void)?) {
+        let bottomSheet = XTCommonBottomSheet.create()
+        
+        let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        bottomSheet.modalPresentationStyle = .overFullScreen
+        bottomSheet.view.backgroundColor = .clear
+        //bottomSheet.onCancel = confirmFunc
+        
+        bottomSheet.actions = actions
+        self.present(bottomSheet, animated: true)
+        
+        backgroundView.backgroundColor = #colorLiteral(red: 0.1058823529, green: 0.1137254902, blue: 0.1215686275, alpha: 0.3)
+        self.view.addSubview(backgroundView)
+        
+        bottomSheet.onCancel = {
+            backgroundView.removeFromSuperview()
+        }
+    }
+    
     func showCommonPopup(title: String, content: String, confirmButtonTitle: String, popupType: PopupType, confirmFunc: (()->Void)?) {
         let commonPopup = XTCommonPopup.create()
         let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))

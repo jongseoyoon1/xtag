@@ -4,12 +4,20 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-ExtraBold.ttf">
+            <string>Pretendard-ExtraBold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XTCommonBottomSheet" customModule="xtag" customModuleProvider="target">
             <connections>
+                <outlet property="stackView" destination="511-JT-ulM" id="WDP-RY-AtU"/>
+                <outlet property="stackViewHeight" destination="iHQ-PY-z2O" id="oCa-6C-HMM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,21 +28,53 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0q-u2-rQi">
                     <rect key="frame" x="16" y="766" width="382" height="56"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="oVa-rq-qGp"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                    <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="14"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="취소">
+                        <color key="titleColor" name="Grey900"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerradius">
+                            <real key="value" value="14"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="cancelBtnPressed:" destination="-1" eventType="touchUpInside" id="rct-Rd-62Q"/>
+                    </connections>
                 </button>
+                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="511-JT-ulM">
+                    <rect key="frame" x="16" y="512" width="382" height="200"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="450" constant="56" id="iHQ-PY-z2O"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerradius">
+                            <real key="value" value="14"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <constraints>
+                <constraint firstItem="511-JT-ulM" firstAttribute="trailing" secondItem="J0q-u2-rQi" secondAttribute="trailing" id="A1r-uC-kCI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="J0q-u2-rQi" secondAttribute="trailing" constant="16" id="CNZ-2H-aOn"/>
                 <constraint firstItem="J0q-u2-rQi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="HyY-Ub-E47"/>
                 <constraint firstItem="J0q-u2-rQi" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="N9z-Uq-wuJ"/>
+                <constraint firstItem="511-JT-ulM" firstAttribute="leading" secondItem="J0q-u2-rQi" secondAttribute="leading" id="Pg8-nX-ePQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="J0q-u2-rQi" secondAttribute="bottom" constant="40" id="cml-UL-9h2"/>
+                <constraint firstItem="J0q-u2-rQi" firstAttribute="top" secondItem="511-JT-ulM" secondAttribute="bottom" constant="54" id="zsp-hz-yux"/>
             </constraints>
             <point key="canvasLocation" x="139" y="135"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="Grey900">
+            <color red="0.10588235294117647" green="0.11372549019607843" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

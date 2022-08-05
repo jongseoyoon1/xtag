@@ -97,26 +97,36 @@ class UserPostVC: UIViewController {
     
     @IBAction func moreBtnPressed(_ sender: Any) {
         
-        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let deleteAction = UIAlertAction(title: "", style: .default, handler: {
+//        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//        let deleteAction = UIAlertAction(title: "", style: .default, handler: {
+//
+//            (alert: UIAlertAction!) -> Void in
+//
+//        })
+//
+//
+//        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: {
+//
+//            (alert: UIAlertAction!) -> Void in
+//
+//        })
+//
+//        optionMenu.addAction(deleteAction)
+//        optionMenu.addAction(cancelAction)
+//
+//        optionMenu.viewDidLayoutSubviews()
+//
+//        self.present(optionMenu, animated: true, completion: nil)
+        
+        var actions : [XTBottomSheetAction] = []
+        actions.append(XTBottomSheetAction(title: "신고", type: .ALERT, handler: {
             
-            (alert: UIAlertAction!) -> Void in
+        }))
+        
+        showCommonBottomSheet(actions: actions) {
             
-        })
+        }
         
-        
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: {
-            
-            (alert: UIAlertAction!) -> Void in
-            
-        })
-        
-        optionMenu.addAction(deleteAction)
-        optionMenu.addAction(cancelAction)
-        
-        optionMenu.viewDidLayoutSubviews()
-        
-        self.present(optionMenu, animated: true, completion: nil)
         
     }
     @IBAction func gotoProfileBtnPressed(_ sender: Any) {
