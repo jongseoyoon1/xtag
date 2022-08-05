@@ -9,6 +9,7 @@ import UIKit
 
 class AlarmCell: UITableViewCell {
 
+    @IBOutlet weak var countView: UIView!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!

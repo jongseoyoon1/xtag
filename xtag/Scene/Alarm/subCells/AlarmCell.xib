@@ -22,11 +22,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlarmCell" rowHeight="158" id="KGk-i7-Jjw" customClass="AlarmCell" customModule="xtag" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="158"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlarmCell" rowHeight="66" id="KGk-i7-Jjw" customClass="AlarmCell" customModule="xtag" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="158"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="atr-Ps-Lmi">
@@ -41,14 +41,14 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lorem" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4d-E5-iqc">
-                        <rect key="frame" x="72" y="8" width="37.5" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lorem" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4d-E5-iqc">
+                        <rect key="frame" x="72" y="8" width="176" height="17"/>
                         <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSP-cC-PPx">
-                        <rect key="frame" x="72" y="133" width="27.5" height="17"/>
+                        <rect key="frame" x="72" y="27" width="27.5" height="17"/>
                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                         <color key="textColor" name="Grey500"/>
                         <nil key="highlightedColor"/>
@@ -87,9 +87,10 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="zmG-7q-2Jy" secondAttribute="trailing" constant="20" id="64J-AB-QHA"/>
                     <constraint firstItem="Z4d-E5-iqc" firstAttribute="top" secondItem="atr-Ps-Lmi" secondAttribute="top" id="7WP-A8-7gH"/>
+                    <constraint firstItem="YSP-cC-PPx" firstAttribute="top" secondItem="Z4d-E5-iqc" secondAttribute="bottom" constant="2" id="8tk-iD-bpF"/>
                     <constraint firstItem="LGV-gC-OAJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="CvF-7J-bbf"/>
                     <constraint firstItem="zmG-7q-2Jy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="Enf-V7-VZJ"/>
-                    <constraint firstAttribute="bottom" secondItem="YSP-cC-PPx" secondAttribute="bottom" constant="8" id="YLY-9U-phS"/>
+                    <constraint firstItem="zmG-7q-2Jy" firstAttribute="leading" secondItem="Z4d-E5-iqc" secondAttribute="trailing" constant="16" id="PVk-wR-m3n"/>
                     <constraint firstItem="YSP-cC-PPx" firstAttribute="leading" secondItem="Z4d-E5-iqc" secondAttribute="leading" id="hjQ-No-eld"/>
                     <constraint firstItem="atr-Ps-Lmi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="iiH-6e-427"/>
                     <constraint firstAttribute="trailing" secondItem="LGV-gC-OAJ" secondAttribute="trailing" constant="20" id="jdI-kl-asp"/>
@@ -100,11 +101,12 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="contentLabel" destination="Z4d-E5-iqc" id="FAa-cg-1PX"/>
+                <outlet property="countView" destination="zmG-7q-2Jy" id="V6R-Cf-NZC"/>
                 <outlet property="postImageView" destination="LGV-gC-OAJ" id="ilD-so-LUB"/>
                 <outlet property="profileImageView" destination="atr-Ps-Lmi" id="tze-7j-Ana"/>
                 <outlet property="timeLabel" destination="YSP-cC-PPx" id="Qmo-eW-vj1"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="169.41964285714286"/>
+            <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
         </tableViewCell>
     </objects>
     <resources>

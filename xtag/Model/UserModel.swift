@@ -198,6 +198,19 @@ class NotificationPostModel: Mappable {
     }
 }
 
+class PostCommentReplyModel: Mappable {
+    var postCommentReplyId: String?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        postCommentReplyId <- map["postCommentReplyId"]
+        
+    }
+}
+
 class NotificationModel: Mappable {
     required init?(map: Map) {
         
@@ -208,6 +221,7 @@ class NotificationModel: Mappable {
     var sender: SenderModel?
     var post: NotificationPostModel?
     var postComment: PostCommentModel?
+    var postCommentReply: PostCommentReplyModel?
     
     var registerDate: String?
     var registerDateEn: String?
@@ -220,7 +234,11 @@ class NotificationModel: Mappable {
         sender <- map["sender"]
         post <- map["post"]
         postComment <- map["postComment"]
-    
         
+        postCommentReply <- map["postCommentReply"]
+        registerDate <- map["registerDate"]
+        registerDateEn <- map["registerDateEn"]
+        smallCategoryNameList <- map["smallCategoryNameList"]
+        smallCategoryNameEnList <- map["smallCategoryNameEnList"]
     }
 }

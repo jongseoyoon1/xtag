@@ -8,7 +8,7 @@
 import UIKit
 
 class AlarmVC: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var emptyLabel: UILabel!
@@ -17,7 +17,7 @@ class AlarmVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupTableView()
         getAlarm()
     }
@@ -51,9 +51,28 @@ class AlarmVC: UIViewController {
         self.tableView.register(UINib(nibName: "AlarmCell", bundle: nil), forCellReuseIdentifier: "AlarmCell")
     }
     
-
+    
     @IBAction func dismissBtnPressed(_ sender: Any) {
         self.dismiss(animated: true)
+    }
+    
+    fileprivate func applyBoldAttributedStringSelected(_ originalText: String, highlightText: String) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: originalText, attributes: [
+            .font: UIFont(name: XTFont.PRETENDARD_REGULAR, size: 13)!,
+            .foregroundColor: XTColor.GREY_900.getColorWithString()
+            
+        ])
+        
+        let range = (originalText as NSString).range(of:highlightText)
+        attributedString.addAttribute(
+            .font,
+            value: UIFont(name: XTFont.PRETENDARD_EXTRABOLD, size: 13.0)!,
+            range: range)
+        
+        attributedString.addAttribute(.foregroundColor, value: XTColor.GREY_900.getColorWithString(), range: range)
+                                      
+        return attributedString
+        
     }
     
 }
@@ -75,9 +94,9 @@ extension AlarmVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell", for: indexPath) as! AlarmCell
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell", for: indexPath) as! AlarmCell
+        cell.selectionStyle = .none
         var noti: NotificationModel!
         
         if indexPath.section == 0 {
@@ -92,10 +111,59 @@ extension AlarmVC : UITableViewDelegate, UITableViewDataSource {
             noti = pastNotificationList[indexPath.row]
         }
         
+        
+        if noti.type! == "FOLLOW" {
+            
+            cell.postImageView.isHidden = true
+            cell.countView.isHidden = false
+            
+            if noti.smallCategoryNameList.count > 1 {
+                let originText = (noti.sender?.userName ?? "") + " 님이 회원님의 \(noti.smallCategoryNameList.first ?? "") 관심사 외 \(noti.smallCategoryNameList.count)개를 팔로우 합니다."
+                cell.contentLabel.attributedText = applyBoldAttributedStringSelected(originText, highlightText: (noti.sender?.userName ?? ""))
+            } else {
+                let originText = (noti.sender?.userName ?? "") + " 님이 회원님의 \(noti.smallCategoryNameList.first ?? "") 관심사를 팔로우 합니다."
+                cell.contentLabel.attributedText = applyBoldAttributedStringSelected(originText, highlightText: (noti.sender?.userName ?? ""))
+            }
+            
+            cell.timeLabel.text = noti.registerDate
+            cell.profileImageView.kf.setImage(with: URL(string: noti.sender?.userCdnImageUri ?? (noti.sender?.userS3ImageUri ?? "")), placeholder: UIImage(named: "profile_image"))
+        } else if noti.type! == "COMMENT" {
+            cell.postImageView.isHidden = false
+            cell.countView.isHidden = true
+            
+            let originText = (noti.sender?.userName ?? "") + " 님이 댓글을 남겼습니다. \"\(noti.postComment?.comment ?? "")\""
+            
+            cell.contentLabel.attributedText = applyBoldAttributedStringSelected(originText, highlightText: (noti.sender?.userName ?? ""))
+            cell.postImageView.kf.setImage(with: URL(string: noti.post?.postCdnImageUri ?? (noti.post?.postS3ImageUri ?? "")))
+            cell.timeLabel.text = noti.registerDate
+            cell.profileImageView.kf.setImage(with: URL(string: noti.sender?.userCdnImageUri ?? (noti.sender?.userS3ImageUri ?? "")), placeholder: UIImage(named: "profile_image"))
+        } else if noti.type! == "LIKES" {
+            cell.postImageView.isHidden = false
+            cell.countView.isHidden = true
+            
+            let originText = (noti.sender?.userName ?? "") + " 님이 회원님의 게시물을 좋아합니다."
+            
+            cell.contentLabel.attributedText = applyBoldAttributedStringSelected(originText, highlightText: (noti.sender?.userName ?? ""))
+            cell.postImageView.kf.setImage(with: URL(string: noti.post?.postCdnImageUri ?? (noti.post?.postS3ImageUri ?? "")))
+            cell.timeLabel.text = noti.registerDate
+            cell.profileImageView.kf.setImage(with: URL(string: noti.sender?.userCdnImageUri ?? (noti.sender?.userS3ImageUri ?? "")), placeholder: UIImage(named: "profile_image"))
+        } else {
+            cell.postImageView.isHidden = false
+            cell.countView.isHidden = true
+            
+            let originText = (noti.sender?.userName ?? "") + " 님이 대댓글을 남겼습니다."
+            
+            cell.contentLabel.attributedText = applyBoldAttributedStringSelected(originText, highlightText: (noti.sender?.userName ?? ""))
+            cell.postImageView.kf.setImage(with: URL(string: noti.post?.postCdnImageUri ?? (noti.post?.postS3ImageUri ?? "")))
+            cell.timeLabel.text = noti.registerDate
+            cell.profileImageView.kf.setImage(with: URL(string: noti.sender?.userCdnImageUri ?? (noti.sender?.userS3ImageUri ?? "")), placeholder: UIImage(named: "profile_image"))
+        }
+        
+        
         cell.profileImageView.kf.setImage(with: URL(string: noti.sender?.userS3ImageUri ?? (noti.sender?.userCdnImageUri ?? "")), placeholder: UIImage(named: "profile_image"))
         return cell
     }
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         if todayNotificationList.count == 0 && pastNotificationList.count == 0 {
             return 0
