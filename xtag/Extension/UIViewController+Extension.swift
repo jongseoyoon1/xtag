@@ -22,11 +22,11 @@ extension UIViewController {
         let bottomSheet = XTCommonBottomSheet.create()
         
         let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        bottomSheet.actions = actions
         bottomSheet.modalPresentationStyle = .overFullScreen
         bottomSheet.view.backgroundColor = .clear
         //bottomSheet.onCancel = confirmFunc
         
-        bottomSheet.actions = actions
         self.present(bottomSheet, animated: true)
         
         backgroundView.backgroundColor = #colorLiteral(red: 0.1058823529, green: 0.1137254902, blue: 0.1215686275, alpha: 0.3)

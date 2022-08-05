@@ -67,7 +67,7 @@
                 <constraint firstItem="J0q-u2-rQi" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="N9z-Uq-wuJ"/>
                 <constraint firstItem="511-JT-ulM" firstAttribute="leading" secondItem="J0q-u2-rQi" secondAttribute="leading" id="Pg8-nX-ePQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="J0q-u2-rQi" secondAttribute="bottom" constant="40" id="cml-UL-9h2"/>
-                <constraint firstItem="J0q-u2-rQi" firstAttribute="top" secondItem="511-JT-ulM" secondAttribute="bottom" constant="54" id="zsp-hz-yux"/>
+                <constraint firstItem="J0q-u2-rQi" firstAttribute="top" secondItem="511-JT-ulM" secondAttribute="bottom" constant="12" id="zsp-hz-yux"/>
             </constraints>
             <point key="canvasLocation" x="139" y="135"/>
         </view>

@@ -12,6 +12,7 @@ struct XTColor {
     public static let BLUE_800 = "Blue800"
     public static let GREY_100 = "Grey100"
     public static let GREY_200 = "Grey200"
+    public static let GREY_300 = "Grey300"
     public static let GREY_400 = "Grey400"
     public static let GREY_500 = "Grey500"
     public static let GREY_600 = "Grey600"

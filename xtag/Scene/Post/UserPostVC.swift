@@ -120,7 +120,11 @@ class UserPostVC: UIViewController {
         
         var actions : [XTBottomSheetAction] = []
         actions.append(XTBottomSheetAction(title: "신고", type: .ALERT, handler: {
+            print("신고")
             
+            self.showCommonPopup(title: "게시물 신고", content: "게시물을 신고하시겠습니까?", confirmButtonTitle: "신고", popupType: .ALERT) {
+                
+            }
         }))
         
         showCommonBottomSheet(actions: actions) {

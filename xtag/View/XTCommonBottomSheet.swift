@@ -25,9 +25,12 @@ class XTCommonBottomSheet: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        var idx = 1
         for act in actions {
-            let button = UIButton(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 32, height: 56))
+            
+            let button = UIButton(type: .system)
+            button.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 32, height: 56)
+            
             button.setTitle(act.title, for: [])
             
             if act.type == .ALERT {
@@ -36,10 +39,33 @@ class XTCommonBottomSheet: UIViewController {
             } else {
                 button.setTitleColor(XTColor.GREY_900.getColorWithString(), for: [])
             }
-            
+            if #available(iOS 14.0, *) {
+                button.addAction {
+                    guard let handler = act.handler else {
+                        return
+                    }
+                    guard let onCancel = self.onCancel else { return }
+                    handler()
+                    onCancel()
+                    self.dismiss(animated: true)
+                }
+            } else {
+                // Fallback on earlier versions
+            }
             button.titleLabel?.font = UIFont(name: XTFont.PRETENDARD_EXTRABOLD, size: 14)
             
             self.stackView.addArrangedSubview(button)
+            
+            if idx == actions.count {
+                
+            } else {
+                let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 32, height: 1))
+                view.backgroundColor = XTColor.GREY_300.getColorWithString()
+                
+                self.stackView.addArrangedSubview(view)
+            }
+            
+            idx += 1
         }
     }
 
@@ -54,5 +80,12 @@ class XTCommonBottomSheet: UIViewController {
     static func create() -> XTCommonBottomSheet {
       let controller = XTCommonBottomSheet(nibName: "XTCommonBottomSheet", bundle: nil)
       return controller
+    }
+}
+
+@available(iOS 14.0, *)
+extension UIControl {
+    func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping()->()) {
+        addAction(UIAction { (action: UIAction) in closure() }, for: controlEvents)
     }
 }
