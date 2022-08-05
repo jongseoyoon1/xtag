@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Pretendard-ExtraBold.ttf">
+            <string>Pretendard-ExtraBold</string>
+        </array>
         <array key="Pretendard-Regular.ttf">
             <string>Pretendard-Regular</string>
         </array>
@@ -92,6 +95,43 @@
                                 <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6zH-WB-Zq2">
+                                <rect key="frame" x="107" y="772" width="200" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N87-Pk-k86">
+                                        <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="5sI-Gf-eNs"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="icon_delete"/>
+                                        <connections>
+                                            <action selector="deleteBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="F50-7D-YcB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vbq-2G-umi">
+                                        <rect key="frame" x="72" y="0.0" width="128" height="56"/>
+                                        <color key="backgroundColor" name="Grey900"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-ExtraBold" family="Pretendard" pointSize="16"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="비공개로 전환">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerradius">
+                                                <real key="value" value="28"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="openBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="mbu-Jk-gOb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="HFK-nK-1n4"/>
+                                    <constraint firstAttribute="width" constant="200" id="S5o-WG-fEd"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -101,12 +141,16 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rVq-Bx-pUX" secondAttribute="bottom" id="ER0-uS-OBJ"/>
                             <constraint firstItem="mnZ-if-rdr" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Efy-KK-i6C"/>
                             <constraint firstItem="rVq-Bx-pUX" firstAttribute="top" secondItem="mnZ-if-rdr" secondAttribute="bottom" id="IjN-Jx-Cf8"/>
+                            <constraint firstItem="6zH-WB-Zq2" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="NqB-kO-mfM"/>
                             <constraint firstItem="mnZ-if-rdr" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="QxD-by-aeK"/>
+                            <constraint firstItem="6zH-WB-Zq2" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="-34" id="avt-Ho-pyQ"/>
                             <constraint firstItem="mnZ-if-rdr" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="y4b-2x-mYq"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomStackView" destination="6zH-WB-Zq2" id="6iu-SU-of2"/>
                         <outlet property="nameLabel" destination="B7a-gR-iNm" id="iWj-qV-cpc"/>
+                        <outlet property="openButton" destination="Vbq-2G-umi" id="WyV-NG-LdC"/>
                         <outlet property="profileImageView" destination="3fM-r3-fDU" id="WU3-Wo-Y66"/>
                         <outlet property="tableView" destination="rVq-Bx-pUX" id="nYU-L3-6eg"/>
                     </connections>
@@ -118,6 +162,7 @@
     </scenes>
     <resources>
         <image name="chevron-left-back" width="11" height="20"/>
+        <image name="icon_delete" width="56" height="56"/>
         <image name="more" width="22" height="4"/>
         <namedColor name="Grey900">
             <color red="0.10588235294117647" green="0.11372549019607843" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -69,6 +69,7 @@ class ProductModel: Mappable {
     var productS3ImageUri: String?
     var userProductS3ImageUri: String?
     var productImageUri: String?
+    var userProductStatus: String?
     
     var productLink: String?
     
@@ -90,7 +91,7 @@ class ProductModel: Mappable {
         productS3ImageUri <- map["productS3ImageUri"]
         userProductS3ImageUri <- map["userProductS3ImageUri"]
         productImageUri <- map["productImageUri"]
-        
+        userProductStatus <- map["userProductStatus"]
         productLink <- map["productLink"]
     }
 }

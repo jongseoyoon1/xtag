@@ -30,6 +30,7 @@ class XTCommonBottomSheet: UIViewController {
         for act in actions {
             
             let button = UIButton(type: .system)
+            button.translatesAutoresizingMaskIntoConstraints = false
             button.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 32, height: 56)
             
             button.setTitle(act.title, for: [])
@@ -58,6 +59,7 @@ class XTCommonBottomSheet: UIViewController {
             button.titleLabel?.font = UIFont(name: XTFont.PRETENDARD_EXTRABOLD, size: 14)
             
             self.stackView.addArrangedSubview(button)
+            button.heightAnchor.constraint(equalToConstant: 56).isActive = true
             height = height + 56
             if idx == actions.count {
                 

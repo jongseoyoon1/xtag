@@ -13,20 +13,50 @@ class ProductDetailVC: UIViewController {
     public var productReview: ProductReviewModel!
     public var postDetailModel: PostDetailModel!
     public var PostBodyModel : PostBodyModel!
-    
+    public var myPage: MyPageVC?
     public var postList : [PostModel] = []
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var bottomStackView: UIStackView!
+    @IBOutlet weak var openButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        updateOpenButtonState()
         setupTableView()
         
         getProductWithTag()
+        getProductDetail()
+        
         setupUI()
+    }
+    
+    private func getProductDetail() {
+        HTTPSession.shared.getProductDetail(userProductId: product.userProductId!) { result, error in
+            if error == nil {
+                guard let result = result else {
+                    return
+                }
+
+                self.product.userProductStatus = result.userProductStatus
+                self.nameLabel.text = UserManager.shared.userInfo?.name
+                self.profileImageView.kf.setImage(with: URL(string: UserManager.shared.userInfo?.cdnImageUri ?? (UserManager.shared.userInfo?.s3ImageUri ?? "")), placeholder: UIImage(named: "profile_image"))
+            }
+        }
+    }
+    
+    private func updateOpenButtonState() {
+        
+        if let status = product.userProductStatus {
+            if status == "ACTIVE" {
+                openButton.setTitle("비공개로 전환", for: [])
+            } else {
+                openButton.setTitle("공개로 전환", for: [])
+            }
+        }
     }
     
     private func setupUI() {
@@ -61,6 +91,51 @@ class ProductDetailVC: UIViewController {
     @IBAction func dismissBtnPressed(_ sender: Any) {
         //self.dismiss(animated: true)
         self.navigationController?.popViewController(animated: true)
+        
+        if self.navigationController == nil {
+            self.dismiss(animated: true)
+        }
+    }
+    @IBAction func openBtnPressed(_ sender: Any) {
+        if product.userProductStatus! == "ACTIVE" {
+            
+            showCommonPopup(title: "비공개 상품으로 전환", content: "이 상품이 다른 사용자들에게 보이지 않으며, 다시 공개로 전환할 수 있습니다.", confirmButtonTitle: "전환", popupType: .COMMON) {
+                HTTPSession.shared.updateProductStatus(userProductId: self.product.userProductId!) { _, error in
+                    if error == nil {
+                        self.view.makeToast("비공개 상품으로 전환 되었습니다.", duration: 0.5, position: .center)
+                    }
+                }
+            }
+            product.userProductStatus = "DEACTIVE"
+            updateOpenButtonState()
+        } else {
+            showCommonPopup(title: "공개 상품으로 전환", content: "이 상품이 다른 사용자들에게 보여지며, 다시 비공개로 전환할 수 있습니다.", confirmButtonTitle: "전환", popupType: .COMMON) {
+                HTTPSession.shared.updateProductStatus(userProductId: self.product.userProductId!) { _, error in
+                    if error == nil {
+                        self.view.makeToast("공개 상품으로 전환 되었습니다.", duration: 0.5, position: .center)
+                    }
+                }
+            }
+            product.userProductStatus = "ACTIVE"
+            updateOpenButtonState()
+        }
+    }
+    @IBAction func deleteBtnPressed(_ sender: Any) {
+        
+        showCommonPopup(title: "상품 삭제", content: "게시물과 프로필에서 이 상품이 영구적으로 삭제됩니다.", confirmButtonTitle: "삭제", popupType: .ALERT) {
+            HTTPSession.shared.deleteProduct(userProductId: self.product.userProductId!) { _, error in
+                if error == nil {
+                    self.dismiss(animated: false) {
+                        
+                        if let myPage = self.myPage {
+                            
+                            myPage.view.makeToast("상품이 삭제되었습니다.", duration: 0.5, position: .center)
+                        }
+                    }
+                    
+                }
+            }
+        }
     }
 }
 

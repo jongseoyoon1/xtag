@@ -15,8 +15,11 @@ extension HTTPSession {
         case getProductWithTag(userProductId: String)
         case getUserProduct(userId: String, smallCategoryId: String)
         case getUserProductWithReview(userId: String, smallCategoryId: String)
-        case getProductDetail(userProductId: String)
+        //case getProductDetail(userProductId: String)
         case makeProduct(title: String, imageUri: String, link: String, satisfied: String, smallCategoryList: [String], type: String, content: String)
+        case updateProductStatus(userProductId: String)
+        case getProductDetail(userProductId: String)
+        case deleteProduct(userProductId: String)
         
         var path: String {
             switch self {
@@ -32,6 +35,12 @@ extension HTTPSession {
                 return "product/user/\(userId)?smallCategoryId=\(smallCategoryId)&status=reviewed"
             case .makeProduct:
                 return "product"
+            case .updateProductStatus(let userProductId):
+                return "product/user/\(userProductId)/status"
+            case .getProductDetail(let userProductId):
+                return "product/user/\(userProductId)/detail"
+            case .deleteProduct(let userProductId):
+                return "product/user/\(userProductId)"
             default:
                 return ""
             }
@@ -43,6 +52,12 @@ extension HTTPSession {
                 return .get
             case .makeProduct:
                 return .post
+            case .updateProductStatus:
+                return .patch
+            case .getProductDetail:
+                return .get
+            case .deleteProduct:
+                return .delete
             default:
                 return .get
             }
@@ -89,6 +104,84 @@ extension HTTPSession {
         }
         
         
+    }
+    
+    func getProductDetail(userProductId: String, completion: @escaping(ProductModel?, Error?) -> Void) {
+        
+        request(request: Product.getProductDetail(userProductId: userProductId)).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    if let result = dict["result"] as? Dictionary<String, Any> {
+                        completion(ProductModel(JSON: result), nil)
+                        
+                    }
+                    
+                    completion(nil,nil)
+                } else {
+                    completion(nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, error)
+            }
+        
+        }
+    }
+    
+    func deleteProduct(userProductId: String, completion: @escaping(Dictionary<String, Any>?, Error?) -> Void) {
+        
+        request(request: Product.deleteProduct(userProductId: userProductId)).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    if let result = dict["result"] as? Dictionary<String, Any> {
+                        
+                        
+                    }
+                    
+                    completion(dict,nil)
+                } else {
+                    completion(nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, error)
+            }
+        
+        }
+    }
+    
+    func updateProductStatus(userProductId: String, completion: @escaping(Dictionary<String, Any>?, Error?) -> Void) {
+        
+        request(request: Product.updateProductStatus(userProductId: userProductId)).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    if let result = dict["result"] as? Dictionary<String, Any> {
+                        
+                        
+                    }
+                    
+                    completion(dict,nil)
+                } else {
+                    completion(nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, error)
+            }
+        
+        }
     }
     
     func makeProduct(title: String, imageUri: String, link: String, satisfied: String, smallCategoryList: [String], type: String, content: String,completion: @escaping(Dictionary<String, Any>?, Error?) -> Void) {

@@ -603,13 +603,13 @@ extension MyPageVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
                     if let viewcontroller = UIStoryboard(name: "ProductDetail", bundle: nil).instantiateViewController(withIdentifier: "ProductDetailVC") as? ProductDetailVC {
                         viewcontroller.modalPresentationStyle = .fullScreen
                         
-                        
                         viewcontroller.product = product
                         viewcontroller.productReview = result!
+                        viewcontroller.myPage = self
                         
-                        
-                        self.navigationController?.pushViewController(viewcontroller, animated: true)
-                        //self.present(viewcontroller, animated: true, completion: nil)
+                        //self.navigationController?.pushViewController(viewcontroller, animated: true)
+                        self.present(viewcontroller, animated: true, completion: nil)
+                        viewcontroller.bottomStackView.isHidden = false
                     }
                 }
             }
