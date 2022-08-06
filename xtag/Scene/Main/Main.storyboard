@@ -932,14 +932,6 @@
                                             <action selector="dismissBtnPressed:" destination="76n-9C-izp" eventType="touchUpInside" id="6B2-b8-Wli"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfE-VO-eMM">
-                                        <rect key="frame" x="356" y="13" width="40" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="gsz-wh-08p"/>
-                                        </constraints>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="more"/>
-                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="u6q-2W-oDi">
                                         <rect key="frame" x="162" y="8" width="90" height="32"/>
                                         <subviews>
@@ -973,8 +965,6 @@
                                     <constraint firstItem="u6q-2W-oDi" firstAttribute="centerY" secondItem="ao0-YT-aiC" secondAttribute="centerY" id="9QN-eP-Jo8"/>
                                     <constraint firstAttribute="height" constant="48" id="Enf-rr-Beg"/>
                                     <constraint firstItem="pH5-yM-QCe" firstAttribute="centerY" secondItem="ao0-YT-aiC" secondAttribute="centerY" id="Ru2-aG-Ate"/>
-                                    <constraint firstAttribute="trailing" secondItem="OfE-VO-eMM" secondAttribute="trailing" constant="18" id="Y4k-8J-MjL"/>
-                                    <constraint firstItem="OfE-VO-eMM" firstAttribute="centerY" secondItem="ao0-YT-aiC" secondAttribute="centerY" id="az9-9q-IUW"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isBackButton" value="YES"/>
@@ -987,7 +977,7 @@
                                 <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DOz-Wt-Aof">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="770"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="771"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4GC-XU-LYP">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
@@ -995,15 +985,16 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="86" id="1h3-iR-adg"/>
                                                 </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Y1U-cG-NoF">
+                                                <inset key="scrollIndicatorInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Y1U-cG-NoF">
                                                     <size key="itemSize" width="128" height="128"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="XBJ-19-Y0P">
-                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                        <rect key="frame" x="20" y="0.0" width="128" height="128"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CsW-nU-LdI">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -1014,12 +1005,48 @@
                                             </collectionView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l0x-8d-BHK">
                                                 <rect key="frame" x="0.0" y="86" width="414" height="48"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anm-MT-DcS">
+                                                        <rect key="frame" x="0.0" y="0.0" width="207" height="48"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="팔로워"/>
+                                                        <connections>
+                                                            <action selector="followerBtnPressed:" destination="76n-9C-izp" eventType="touchUpInside" id="ZKQ-cc-LHV"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RlS-iu-Ard">
+                                                        <rect key="frame" x="207" y="0.0" width="207" height="48"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="팔로잉"/>
+                                                        <connections>
+                                                            <action selector="followingBtnPressed:" destination="76n-9C-izp" eventType="touchUpInside" id="AWo-fh-0yr"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="K0k-hO-Q9B"/>
+                                                    <constraint firstItem="anm-MT-DcS" firstAttribute="width" secondItem="l0x-8d-BHK" secondAttribute="width" multiplier="0.5" id="ujR-M6-Tw3"/>
                                                 </constraints>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tg4-Iy-aT0">
+                                                <rect key="frame" x="0.0" y="134" width="414" height="1"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vrq-GK-7hh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="207" height="1"/>
+                                                        <color key="backgroundColor" name="Grey900"/>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="Ko6-Wu-3Oz"/>
+                                                    <constraint firstItem="vrq-GK-7hh" firstAttribute="leading" secondItem="tg4-Iy-aT0" secondAttribute="leading" id="V9E-Ls-g2g"/>
+                                                    <constraint firstItem="vrq-GK-7hh" firstAttribute="height" secondItem="tg4-Iy-aT0" secondAttribute="height" id="cIM-9X-H0b"/>
+                                                    <constraint firstItem="vrq-GK-7hh" firstAttribute="centerY" secondItem="tg4-Iy-aT0" secondAttribute="centerY" id="qrG-qB-qYx"/>
+                                                    <constraint firstItem="vrq-GK-7hh" firstAttribute="width" secondItem="tg4-Iy-aT0" secondAttribute="width" multiplier="0.5" id="v3Q-7M-xFE"/>
+                                                </constraints>
+                                            </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZZf-SZ-Niw">
-                                                <rect key="frame" x="0.0" y="134" width="414" height="636"/>
+                                                <rect key="frame" x="0.0" y="135" width="414" height="636"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </tableView>
                                         </subviews>
@@ -1049,6 +1076,15 @@
                             <constraint firstItem="ao0-YT-aiC" firstAttribute="trailing" secondItem="Wxd-8U-JTt" secondAttribute="trailing" id="z16-QH-rXD"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="categoryCollectionView" destination="4GC-XU-LYP" id="YAR-zT-pGr"/>
+                        <outlet property="followerButton" destination="anm-MT-DcS" id="kba-dI-QOh"/>
+                        <outlet property="followingButton" destination="RlS-iu-Ard" id="naz-je-uMy"/>
+                        <outlet property="indexLeadingConstraint" destination="V9E-Ls-g2g" id="QbC-iZ-8rD"/>
+                        <outlet property="nameLabel" destination="w10-mn-zsH" id="Ba4-ep-M5Q"/>
+                        <outlet property="profileImageView" destination="cdu-Yz-2ux" id="n9Y-qC-ppU"/>
+                        <outlet property="tableView" destination="ZZf-SZ-Niw" id="4Ko-gi-IVd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SCv-Hu-dFo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2713,7 +2749,6 @@
         <image name="close-black" width="18" height="18"/>
         <image name="icon_circle_check_off" width="32" height="32"/>
         <image name="icon_circle_check_on" width="32" height="32"/>
-        <image name="more" width="22" height="4"/>
         <image name="ratio_11" width="32" height="32"/>
         <image name="tag_45" width="37.5" height="37.5"/>
         <namedColor name="Blue800">

@@ -171,6 +171,14 @@ class MyPageVC: UIViewController {
         
         self.collectionView.reloadData()
     }
+    @IBAction func gotoFollow(_ sender: Any) {
+        if let viewcontroller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FollowingVC") as? FollowingVC {
+            viewcontroller.modalPresentationStyle = .fullScreen
+            viewcontroller.userId = UserManager.shared.userInfo?.userId ?? ""
+            
+            self.present(viewcontroller, animated: true)
+        }
+    }
     
     @IBAction func alarmBtnPressed(_ sender: Any) {
         if let viewcontroller = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(withIdentifier: "AlarmVC") as? AlarmVC {

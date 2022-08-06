@@ -126,9 +126,25 @@
             filePath = "xtag/Network/HTTPSession+User.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "getFollowingUser(smallCategoryId:page:size:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "31865DFB-0DEA-476B-8C2B-905A58CE3997"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "xtag/Scene/MyPage/FollowingVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "setupUI(userInfo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

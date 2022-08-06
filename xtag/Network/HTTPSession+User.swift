@@ -24,6 +24,7 @@ extension HTTPSession {
         case deleteBlockUser(userId: String)
         case getFollowingUser(smallCategoryId: String, page: String, size: String)
         case withDrawal(content: String)
+        case getFollowerUser(smallCategoryId: String, page: String, size: String)
         
         var path: String {
             switch self {
@@ -54,6 +55,8 @@ extension HTTPSession {
             case .getFollowingUser(let smallCategoryId,let  page,let  size):
                 print("user/followings/smallCategoryId=\(smallCategoryId)&page=\(page)&size=\(size)")
                 return "user/followings?smallCategoryId=\(smallCategoryId)&page=\(page)&size=\(size)"
+            case .getFollowerUser(let smallCategoryId,let  page,let  size):
+                return "user/followers?smallCategoryId=\(smallCategoryId)&page=\(page)&size=\(size)"
             case .withDrawal:
                 return "/user/sign-up/v1/user/withdrawal"
             }
@@ -89,6 +92,8 @@ extension HTTPSession {
                 return .get
             case .withDrawal:
                 return .post
+            case .getFollowerUser:
+                return .get
             }
         }
         
@@ -124,6 +129,38 @@ extension HTTPSession {
         }
         
         
+    }
+    
+    func getFollowerUser(smallCategoryId: String, page: String, size: String, completion: @escaping([BlockUserModel]?, PagenationModel?,Error?) -> Void) {
+        request(request: User.getFollowerUser(smallCategoryId: smallCategoryId,page: page, size: size)).responseJSON { response in
+            switch response.result {
+            case .success(let result):
+                if let dict = result as? Dictionary<String, Any> {
+                    if let result = dict["result"] as? [Dictionary<String, Any>],
+                    let pagenation = dict["pagination"] as? Dictionary<String, Any> {
+                        let pagenation = PagenationModel(JSON: pagenation)
+                        
+                        var blockUserList : [BlockUserModel] = []
+                        
+                        for rst in result {
+                            blockUserList.append(BlockUserModel(JSON: rst)!)
+                        }
+                        
+                        completion(blockUserList, pagenation, nil)
+                    }
+                    
+                } else {
+                    completion(nil, nil, nil)
+                }
+                
+                
+                
+            case .failure(let error):
+                print("error message = \(error)")
+                completion(nil, nil,error)
+            }
+        
+        }
     }
     
     func getFollowingUser(smallCategoryId: String, page: String, size: String, completion: @escaping([BlockUserModel]?, PagenationModel?,Error?) -> Void) {
