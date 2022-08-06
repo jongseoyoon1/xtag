@@ -51,6 +51,8 @@ class MakePostSelectImageVC: UIViewController {
             
             if selectedIndex.count == 0 {
                 infoStackView.isHidden = false
+                postImageView.image = nil
+                imageScrollView.zoomScale = 1.0
             } else {
                 infoStackView.isHidden = true
             }
@@ -384,12 +386,50 @@ class MakePostSelectImageVC: UIViewController {
             let sourceSize = originImage.size
             let sourceCGImage = originImage.cgImage!
             
+            let originHeight = sourceSize.height
+            let originWidth = sourceSize.width
+            
+            var ratio: CGFloat = 0
+            var xOffset : CGFloat = 0
+            var yOffset : CGFloat = 0
+            
+            var lengthWitdth : CGFloat = 0
+            var lengthHeight : CGFloat = 0
+            let sqrtScale = sqrt(scaleFactor.scale)
             if MakePostManager.shared.imageRatio! == "1:1" {
-                let xOffset = scaleFactor.xOffset / viewWidth / scaleFactor.scale * sourceSize.width
-                let yOffset = scaleFactor.yOffSet / viewWidth / scaleFactor.scale * sourceSize.height
                 
-                let lengthWitdth = sourceSize.width / scaleFactor.scale
-                let lengthHeight = sourceSize.height / scaleFactor.scale
+                
+                if originHeight >= originWidth {
+                    ratio = originHeight / originWidth
+                    
+                    xOffset = scaleFactor.xOffset// / viewWidth * sourceSize.width
+                    // / viewWidth / scaleFactor.scale * viewWidth
+                    yOffset = scaleFactor.yOffSet// / (viewWidth * ratio) * sourceSize.height // / viewWidth / scaleFactor.scale * viewWidth * ratio
+                    
+                    lengthWitdth = viewWidth / sqrtScale// / scaleFactor.scale// / scaleFactor.scale
+                    lengthHeight = viewWidth / sqrtScale// / scaleFactor.scale // / scaleFactor.scale
+                } else {
+                    ratio = originWidth / originHeight
+
+                    xOffset = scaleFactor.xOffset
+                    //(scaleFactor.xOffset / (viewWidth * ratio)) * sourceSize.width// / viewWidth / scaleFactor.scale * viewWidth * ratio
+                    yOffset = scaleFactor.yOffSet
+                  //  (scaleFactor.yOffSet / viewWidth) * sourceSize.height// / viewWidth / scaleFactor.scale * viewWidth
+                    
+                    lengthWitdth = viewWidth / sqrtScale// / scaleFactor.scale// / scaleFactor.scale
+                    lengthHeight = viewWidth / sqrtScale// / scaleFactor.scale// / scaleFactor.scale
+                }
+                
+                print("sourceSize.width", sourceSize.width)
+                print("sourceSize.height", sourceSize.height)
+                print("scaleFactor.xOffset", scaleFactor.xOffset)
+                print("scaleFactor.yOffSet", scaleFactor.yOffSet)
+                print("scaleFactor.scale", scaleFactor.scale)
+                print("ratio", ratio)
+                print("viewWidth", viewWidth)
+                print("lengthWitdth", lengthWitdth)
+                print("lengthHeight", lengthHeight)
+                
                 
                 let cropRect = CGRect(
                     x: xOffset,
@@ -406,8 +446,70 @@ class MakePostSelectImageVC: UIViewController {
                 return resultImage
             } else if MakePostManager.shared.imageRatio! == "4:5" {
                 
-            } else {
+                if originHeight >= originWidth {
+                    ratio = originHeight / originWidth
+                    
+                    xOffset = scaleFactor.xOffset / viewWidth / scaleFactor.scale * viewWidth + (viewWidth * 4 / 10)
+                    yOffset = scaleFactor.yOffSet / viewWidth / scaleFactor.scale * viewWidth * ratio
+                    
+                    lengthWitdth = viewWidth * scaleFactor.scale
+                    lengthHeight = viewWidth * ratio * scaleFactor.scale
+                } else {
+                    ratio = originWidth / originHeight
+
+                    xOffset = scaleFactor.xOffset / viewWidth / scaleFactor.scale * viewWidth * ratio + (viewWidth * 4 / 10)
+                    yOffset = scaleFactor.yOffSet / viewWidth / scaleFactor.scale * viewWidth
+                    
+                    lengthWitdth = viewWidth * ratio * scaleFactor.scale
+                    lengthHeight = viewWidth * scaleFactor.scale
+                }
                 
+                let cropRect = CGRect(
+                    x: xOffset,
+                    y: yOffset,
+                    width: lengthWitdth,
+                    height: lengthHeight
+                ).integral
+                
+                let croppedCGImage = sourceCGImage.cropping(
+                    to: cropRect
+                )!
+                
+                let resultImage = UIImage(cgImage: croppedCGImage)
+                return resultImage
+                
+            } else {
+                if originHeight >= originWidth {
+                    ratio = originHeight / originWidth
+                    
+                    xOffset = scaleFactor.xOffset / viewWidth / scaleFactor.scale * viewWidth
+                    yOffset = scaleFactor.yOffSet / viewWidth / scaleFactor.scale * viewWidth * ratio
+                    
+                    lengthWitdth = viewWidth * scaleFactor.scale
+                    lengthHeight = viewWidth * ratio * scaleFactor.scale
+                } else {
+                    ratio = originWidth / originHeight
+
+                    xOffset = scaleFactor.xOffset / viewWidth / scaleFactor.scale * viewWidth * ratio
+                    yOffset = scaleFactor.yOffSet / viewWidth / scaleFactor.scale * viewWidth + (viewWidth * 9 / 32)
+                    
+                    lengthWitdth = viewWidth * ratio * scaleFactor.scale
+                    lengthHeight = viewWidth * scaleFactor.scale
+                }
+                
+                let cropRect = CGRect(
+                    x: xOffset,
+                    y: yOffset,
+                    width: lengthWitdth,
+                    height: lengthHeight
+                ).integral
+                
+                let croppedCGImage = sourceCGImage.cropping(
+                    to: cropRect
+                )!
+                
+                let resultImage = UIImage(cgImage: croppedCGImage)
+                return resultImage
             }
             
         }
@@ -551,32 +653,40 @@ extension MakePostSelectImageVC: UIScrollViewDelegate {
     }
     
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        print("scale = \(scale)")
         let x = scrollView.contentOffset.x
         let y = scrollView.contentOffset.y
         
-        self.scaleFactor[currnetIndex].scale = scale
-        
-        self.scaleFactor[currnetIndex].xOffset = x
-        self.scaleFactor[currnetIndex].yOffSet = y
+        if scaleFactor.count > currnetIndex {
+            self.scaleFactor[currnetIndex].scale = scale
+            
+            self.scaleFactor[currnetIndex].xOffset = x
+            self.scaleFactor[currnetIndex].yOffSet = y
+            
+        }
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let x = scrollView.contentOffset.x
         let y = scrollView.contentOffset.y
         
-        self.scaleFactor[currnetIndex].xOffset = x
-        self.scaleFactor[currnetIndex].yOffSet = y
+        
+        if scaleFactor.count > currnetIndex {
+            self.scaleFactor[currnetIndex].xOffset = x
+            self.scaleFactor[currnetIndex].yOffSet = y
+        }
+        
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let x = scrollView.contentOffset.x
         let y = scrollView.contentOffset.y
         
-        self.scaleFactor[currnetIndex].xOffset = x
-        self.scaleFactor[currnetIndex].yOffSet = y
         
-        print("x = \(x)")
-        print("y = \(y)")
+        if scaleFactor.count > currnetIndex {
+            self.scaleFactor[currnetIndex].xOffset = x
+            self.scaleFactor[currnetIndex].yOffSet = y
+            
+        }
+        
     }
 }
