@@ -229,6 +229,15 @@ class MyPageVC: UIViewController {
             self.present(viewcontroller, animated: true)
         }
     }
+    @IBAction func gotoEditBtnPressed(_ sender: Any) {
+        if let viewcontroller = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(withIdentifier: "EditProfileVC") as? EditProfileVC {
+            
+            viewcontroller.modalPresentationStyle = .fullScreen
+            
+            
+            self.present(viewcontroller, animated: true)
+        }
+    }
     private func getUserCategory() {
         HTTPSession.shared.getUserCategory(userId: UserManager.shared.userInfo!.userId!) { smallCategoryModel, error in
             if error == nil {

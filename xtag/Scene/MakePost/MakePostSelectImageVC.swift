@@ -20,6 +20,7 @@ class MakePostSelectImageVC: UIViewController {
         var scale: CGFloat
         var xOffset: CGFloat
         var yOffSet: CGFloat
+        var isChanged: Bool = false
     }
     
     @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
@@ -42,6 +43,7 @@ class MakePostSelectImageVC: UIViewController {
     private var smartAlbums = PHFetchResult<PHAssetCollection>()
     private var userCollections = PHFetchResult<PHAssetCollection>()
     
+    private var selectedIndexPath: IndexPath!
     private var allPhotoCount = 0
     private var selectedIndex: [Int] = [] {
         didSet {
@@ -58,22 +60,50 @@ class MakePostSelectImageVC: UIViewController {
         didSet {
             //imageScrollView.zoomScale = 1.0
             
-            let reversedIndex = allPhotos.count - currnetIndex - 1
+            guard let indexPath = selectedIndexPath else { return }
+            let reversedIndex = allPhotos.count - indexPath.row - 1
             let asset = self.allPhotos[reversedIndex]
             let image = getOriginalUIImage(asset: asset)
             let sourceSize = image!.size
             
-            imageViewHeightConstraint.constant = sourceSize.height
-            imageViewWidthConstraint.constant = sourceSize.width
+            let originHeight = sourceSize.height
+            let originWidth = sourceSize.width
+            
+            let viewWidth = self.imageScrollView.frame.width
+            
+            if originHeight >= originWidth {
+                let ratio = originHeight / originWidth
+                imageViewWidthConstraint.constant = viewWidth
+                imageViewHeightConstraint.constant = viewWidth * ratio
+            } else {
+                let ratio = originWidth / originHeight
+                
+                imageViewHeightConstraint.constant = viewWidth
+                imageViewWidthConstraint.constant = viewWidth * ratio
+
+            }
+            
             
             self.view.layoutIfNeeded()
             
             if scaleFactor.count > 0 {
                 let factor = scaleFactor[currnetIndex]
                 
-                imageScrollView.zoomScale = factor.scale
-                imageScrollView.contentOffset.x = factor.xOffset
-                imageScrollView.contentOffset.y = factor.yOffSet
+                if !factor.isChanged {
+                    scaleFactor[currnetIndex].isChanged = true
+                    imageScrollView.zoomScale = factor.scale
+                    if originHeight >= originWidth {
+                        imageScrollView.contentOffset.x = factor.xOffset
+                        imageScrollView.contentOffset.y = imageViewHeightConstraint.constant / 4
+                    } else {
+                        imageScrollView.contentOffset.x = imageViewWidthConstraint.constant / 4
+                        imageScrollView.contentOffset.y = factor.yOffSet
+                    }
+                } else {
+                    imageScrollView.zoomScale = factor.scale
+                    imageScrollView.contentOffset.x = factor.xOffset
+                    imageScrollView.contentOffset.y = factor.yOffSet
+                }
             }
         }
     }
@@ -496,6 +526,8 @@ extension MakePostSelectImageVC: UICollectionViewDelegate, UICollectionViewDataS
             let reversedIndex = allPhotos.count - indexPath.row - 1
             let asset = self.allPhotos[reversedIndex]
             
+            
+            self.selectedIndexPath = indexPath
             
             if self.selectedIndex.contains(indexPath.row) {
                 
