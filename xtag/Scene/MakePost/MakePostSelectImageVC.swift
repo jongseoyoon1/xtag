@@ -599,6 +599,22 @@ extension MakePostSelectImageVC: UICollectionViewDelegate, UICollectionViewDataS
 extension MakePostSelectImageVC: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         
+        let x = scrollView.contentOffset.x
+        let y = scrollView.contentOffset.y
+        
+        let x_ = scrollView.contentSize.width
+        let y_ = scrollView.contentSize.height
+        
+        if scaleFactor.count > currnetIndex {
+            
+            self.scaleFactor[currnetIndex].xOffset = x
+            self.scaleFactor[currnetIndex].yOffSet = y
+            
+            self.scaleFactor[currnetIndex].contentWidth = x_
+            self.scaleFactor[currnetIndex].contentHeight = y_
+            
+        }
+        
         return self.postImageView
     }
     

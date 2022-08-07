@@ -9,6 +9,7 @@ import UIKit
 
 class MakePostTagVC: UIViewController {
 
+    @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
     @IBOutlet weak var tagImageView: UIImageView!
     @IBOutlet weak var emptyRatioView: UIView!
     @IBOutlet weak var emptyProductView: UIView!
@@ -67,6 +68,9 @@ class MakePostTagVC: UIViewController {
     }
     
     private func updateUI() {
+        
+        
+        
         productList = MakePostManager.shared.postList[postIndex].productList
         if productList.count > 0 {
             emptyProductView.isHidden = true
@@ -245,26 +249,89 @@ extension MakePostTagVC {
         print("touchesMoved = \(touchPoint)")
     }
     
+    private func setProductTag(_ point: CGPoint,_ productIdx: Int) {
+        guard let selectedProduct = self.selectedProduct else { return }
+        
+        let ratio = MakePostManager.shared.imageRatio!
+        
+        var xPadding : CGFloat = 0
+        var yPadding : CGFloat = 0
+        
+        if ratio == "1:1" {
+            xPadding = 0
+            yPadding = 0
+        } else if ratio == "4:5" {
+            xPadding = self.postImageView.frame.size.width / 10
+            yPadding = 0
+        } else {
+            xPadding = 0
+            yPadding = self.postImageView.frame.size.width / 32 * 7
+        }
+        
+        MakePostManager.shared.postList[self.postIndex].productList[productIdx].xRatio = "\(point.x / self.postImageView.frame.size.width)"
+        MakePostManager.shared.postList[self.postIndex].productList[productIdx].yRatio = "\(point.y / self.postImageView.frame.size.width)"
+        
+        selectedProduct.xRatio = "\((point.x - xPadding) / (self.postImageView.frame.size.width - (2 * xPadding)))"
+        selectedProduct.yRatio = "\((point.y - yPadding) / self.postImageView.frame.size.width - (2 * yPadding))"
+    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         guard let productIdx = self.productIndex else { return }
-        guard let selectedProduct = self.selectedProduct else { return }
+        //guard let selectedProduct = self.selectedProduct else { return }
         let touchPoint = touch.location(in: self.view)
         
-        if touchPoint.y > self.postImageView.frame.maxY {
-            tagImageView.center = self.postImageView.center
-            
-            MakePostManager.shared.postList[self.postIndex].productList[productIdx].xRatio = "\(self.postImageView.center.x / self.postImageView.frame.size.width)"
-            MakePostManager.shared.postList[self.postIndex].productList[productIdx].yRatio = "\(self.postImageView.center.y / self.postImageView.frame.size.width)"
-            
-            selectedProduct.xRatio = "\(self.postImageView.center.x / self.postImageView.frame.size.width)"
-            selectedProduct.yRatio = "\(self.postImageView.center.x / self.postImageView.frame.size.width)"
+        let ratio = MakePostManager.shared.imageRatio!
+        
+        if ratio == "1:1" {
+            if touchPoint.y > self.postImageView.frame.maxY {
+                tagImageView.center = self.postImageView.center
+                
+                setProductTag(tagImageView.center, productIdx)
+            } else if touchPoint.y < self.postImageView.frame.minY {
+                tagImageView.center = self.postImageView.center
+                
+                setProductTag(tagImageView.center, productIdx)
+            } else {
+                setProductTag(CGPoint(x: touchPoint.x, y: touchPoint.y), productIdx)
+            }
+        } else if ratio == "4:5" {
+            if touchPoint.x < (self.postImageView.frame.width / 10) {
+                tagImageView.center = self.postImageView.center
+                
+                setProductTag(tagImageView.center, productIdx)
+            } else if touchPoint.y > self.postImageView.frame.maxY {
+                tagImageView.center = self.postImageView.center
+                
+                setProductTag(tagImageView.center, productIdx)
+            } else if touchPoint.y < self.postImageView.frame.minY {
+                tagImageView.center = self.postImageView.center
+                
+                setProductTag(tagImageView.center, productIdx)
+            } else if touchPoint.x > (self.postImageView.frame.width / 10 * 9) {
+                tagImageView.center = self.postImageView.center
+                
+                setProductTag(tagImageView.center, productIdx)
+            } else {
+                setProductTag(CGPoint(x: touchPoint.x, y: touchPoint.y), productIdx)
+            }
         } else {
-            MakePostManager.shared.postList[self.postIndex].productList[productIdx].xRatio = "\(touchPoint.x / self.postImageView.frame.size.width)"
-            MakePostManager.shared.postList[self.postIndex].productList[productIdx].yRatio = "\(touchPoint.y / self.postImageView.frame.size.width)"
+            let yPadding = self.postImageView.frame.size.width / 32 * 7
             
-            selectedProduct.xRatio = "\(touchPoint.x / self.postImageView.frame.size.width)"
-            selectedProduct.yRatio = "\(touchPoint.y / self.postImageView.frame.size.width)"
+            if touchPoint.y > self.postImageView.frame.maxY - yPadding {
+                tagImageView.center = self.postImageView.center
+                
+                setProductTag(tagImageView.center, productIdx)
+            } else if touchPoint.y < self.postImageView.frame.minY + yPadding {
+                tagImageView.center = self.postImageView.center
+                
+                setProductTag(tagImageView.center, productIdx)
+            } else {
+                setProductTag(CGPoint(x: touchPoint.x, y: touchPoint.y), productIdx)
+            }
         }
+        
+        
     }
 }
+
