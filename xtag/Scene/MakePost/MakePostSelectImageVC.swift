@@ -20,6 +20,8 @@ class MakePostSelectImageVC: UIViewController {
         var scale: CGFloat
         var xOffset: CGFloat
         var yOffSet: CGFloat
+        var contentWidth: CGFloat
+        var contentHeight: CGFloat
         var isChanged: Bool = false
     }
     
@@ -82,7 +84,7 @@ class MakePostSelectImageVC: UIViewController {
                 
                 imageViewHeightConstraint.constant = viewWidth
                 imageViewWidthConstraint.constant = viewWidth * ratio
-
+                
             }
             
             
@@ -144,7 +146,7 @@ class MakePostSelectImageVC: UIViewController {
                 self.present(viewcontroller, animated: true)
                 
                 if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakePostVC") as? MakePostVC {
-
+                    
                     vc.modalPresentationStyle = .fullScreen
                     self.present(vc, animated: true)
                 }
@@ -233,13 +235,13 @@ class MakePostSelectImageVC: UIViewController {
             allPhotos = PHAsset.fetchAssets(with: .image, options: fetchQotions)
             allPhotoCount = allPhotos.count
             smartAlbums = PHAssetCollection.fetchAssetCollections(
-              with: .smartAlbum,
-              subtype: .albumRegular,
-              options: nil)
+                with: .smartAlbum,
+                subtype: .albumRegular,
+                options: nil)
             userCollections = PHAssetCollection.fetchAssetCollections(
-              with: .album,
-              subtype: .albumRegular,
-              options: nil)
+                with: .album,
+                subtype: .albumRegular,
+                options: nil)
             
             self.imageCollectionView.reloadData()
             self.updateCollectionViewHeight()
@@ -247,7 +249,7 @@ class MakePostSelectImageVC: UIViewController {
     }
     
     private func getUIImage(asset: PHAsset) -> UIImage? {
-
+        
         var img: UIImage?
         let manager = PHImageManager.default()
         let options = PHImageRequestOptions()
@@ -264,14 +266,14 @@ class MakePostSelectImageVC: UIViewController {
     }
     
     private func getOriginalUIImage(asset: PHAsset) -> UIImage? {
-
+        
         var img: UIImage?
         let manager = PHImageManager.default()
         let options = PHImageRequestOptions()
         options.version = .original
         options.isSynchronous = true
         manager.requestImageData(for: asset, options: options) { data, _, _, _ in
-
+            
             if let data = data {
                 img = UIImage(data: data)
             }
@@ -379,140 +381,88 @@ class MakePostSelectImageVC: UIViewController {
     }
     
     private func cropImage(_ originImage: UIImage, _ scaleFactor: ScaleFactor) -> UIImage {
-        if scaleFactor.scale == 1.0 {
-            return originImage
+        
+        let viewWidth = UIScreen.main.bounds.width
+        let sourceSize = originImage.size
+        let sourceCGImage = originImage.cgImage!
+        
+        let originHeight = sourceSize.height
+        let originWidth = sourceSize.width
+        
+        var ratio: CGFloat = 0
+        var xOffset : CGFloat = 0
+        var yOffset : CGFloat = 0
+        
+        var lengthWitdth : CGFloat = 0
+        var lengthHeight : CGFloat = 0
+        
+        if MakePostManager.shared.imageRatio! == "1:1" {
+            
+            
+            lengthWitdth = viewWidth / (scaleFactor.contentWidth) * originWidth// / sqrtScale
+            lengthHeight = viewWidth / (scaleFactor.contentHeight) * originHeight// / sqrtScale
+            
+            xOffset = (scaleFactor.xOffset / (scaleFactor.contentWidth)) * originWidth
+            yOffset = (scaleFactor.yOffSet / (scaleFactor.contentHeight)) * originHeight
+            
+            let cropRect = CGRect(
+                x: xOffset,
+                y: yOffset,
+                width: lengthWitdth,
+                height: lengthHeight
+            ).integral
+            
+            let croppedCGImage = sourceCGImage.cropping(
+                to: cropRect
+            )!
+            
+            let resultImage = UIImage(cgImage: croppedCGImage)
+            return resultImage
+        } else if MakePostManager.shared.imageRatio! == "4:5" {
+            
+            lengthWitdth = (viewWidth / 5 * 4) / (scaleFactor.contentWidth) * originWidth// / sqrtScale
+            lengthHeight = viewWidth / (scaleFactor.contentHeight) * originHeight// / sqrtScale
+            
+            xOffset = ((scaleFactor.xOffset + (viewWidth / 10 * 1)) / (scaleFactor.contentWidth)) * originWidth
+            yOffset = (scaleFactor.yOffSet / (scaleFactor.contentHeight)) * originHeight
+            
+            let cropRect = CGRect(
+                x: xOffset,
+                y: yOffset,
+                width: lengthWitdth,
+                height: lengthHeight
+            ).integral
+            
+            let croppedCGImage = sourceCGImage.cropping(
+                to: cropRect
+            )!
+            
+            let resultImage = UIImage(cgImage: croppedCGImage)
+            return resultImage
+            
         } else {
-            let viewWidth = UIScreen.main.bounds.width
-            let sourceSize = originImage.size
-            let sourceCGImage = originImage.cgImage!
+            lengthWitdth = (viewWidth) / (scaleFactor.contentWidth) * originWidth// / sqrtScale
+            lengthHeight = (viewWidth / 16 * 9) / (scaleFactor.contentHeight) * originHeight// / sqrtScale
             
-            let originHeight = sourceSize.height
-            let originWidth = sourceSize.width
+            xOffset = ((scaleFactor.xOffset) / (scaleFactor.contentWidth)) * originWidth
+            yOffset = ((scaleFactor.yOffSet  + (viewWidth / 32 * 7)) / (scaleFactor.contentHeight)) * originHeight
             
-            var ratio: CGFloat = 0
-            var xOffset : CGFloat = 0
-            var yOffset : CGFloat = 0
+            let cropRect = CGRect(
+                x: xOffset,
+                y: yOffset,
+                width: lengthWitdth,
+                height: lengthHeight
+            ).integral
             
-            var lengthWitdth : CGFloat = 0
-            var lengthHeight : CGFloat = 0
-            let sqrtScale = sqrt(scaleFactor.scale)
-            if MakePostManager.shared.imageRatio! == "1:1" {
-                
-                
-                if originHeight >= originWidth {
-                    ratio = originHeight / originWidth
-                    
-                    xOffset = scaleFactor.xOffset// / viewWidth * sourceSize.width
-                    // / viewWidth / scaleFactor.scale * viewWidth
-                    yOffset = scaleFactor.yOffSet// / (viewWidth * ratio) * sourceSize.height // / viewWidth / scaleFactor.scale * viewWidth * ratio
-                    
-                    lengthWitdth = viewWidth / sqrtScale// / scaleFactor.scale// / scaleFactor.scale
-                    lengthHeight = viewWidth / sqrtScale// / scaleFactor.scale // / scaleFactor.scale
-                } else {
-                    ratio = originWidth / originHeight
-
-                    xOffset = scaleFactor.xOffset
-                    //(scaleFactor.xOffset / (viewWidth * ratio)) * sourceSize.width// / viewWidth / scaleFactor.scale * viewWidth * ratio
-                    yOffset = scaleFactor.yOffSet
-                  //  (scaleFactor.yOffSet / viewWidth) * sourceSize.height// / viewWidth / scaleFactor.scale * viewWidth
-                    
-                    lengthWitdth = viewWidth / sqrtScale// / scaleFactor.scale// / scaleFactor.scale
-                    lengthHeight = viewWidth / sqrtScale// / scaleFactor.scale// / scaleFactor.scale
-                }
-                
-                print("sourceSize.width", sourceSize.width)
-                print("sourceSize.height", sourceSize.height)
-                print("scaleFactor.xOffset", scaleFactor.xOffset)
-                print("scaleFactor.yOffSet", scaleFactor.yOffSet)
-                print("scaleFactor.scale", scaleFactor.scale)
-                print("ratio", ratio)
-                print("viewWidth", viewWidth)
-                print("lengthWitdth", lengthWitdth)
-                print("lengthHeight", lengthHeight)
-                
-                
-                let cropRect = CGRect(
-                    x: xOffset,
-                    y: yOffset,
-                    width: lengthWitdth,
-                    height: lengthHeight
-                ).integral
-                
-                let croppedCGImage = sourceCGImage.cropping(
-                    to: cropRect
-                )!
-                
-                let resultImage = UIImage(cgImage: croppedCGImage)
-                return resultImage
-            } else if MakePostManager.shared.imageRatio! == "4:5" {
-                
-                if originHeight >= originWidth {
-                    ratio = originHeight / originWidth
-                    
-                    xOffset = scaleFactor.xOffset / viewWidth / scaleFactor.scale * viewWidth + (viewWidth * 4 / 10)
-                    yOffset = scaleFactor.yOffSet / viewWidth / scaleFactor.scale * viewWidth * ratio
-                    
-                    lengthWitdth = viewWidth * scaleFactor.scale
-                    lengthHeight = viewWidth * ratio * scaleFactor.scale
-                } else {
-                    ratio = originWidth / originHeight
-
-                    xOffset = scaleFactor.xOffset / viewWidth / scaleFactor.scale * viewWidth * ratio + (viewWidth * 4 / 10)
-                    yOffset = scaleFactor.yOffSet / viewWidth / scaleFactor.scale * viewWidth
-                    
-                    lengthWitdth = viewWidth * ratio * scaleFactor.scale
-                    lengthHeight = viewWidth * scaleFactor.scale
-                }
-                
-                let cropRect = CGRect(
-                    x: xOffset,
-                    y: yOffset,
-                    width: lengthWitdth,
-                    height: lengthHeight
-                ).integral
-                
-                let croppedCGImage = sourceCGImage.cropping(
-                    to: cropRect
-                )!
-                
-                let resultImage = UIImage(cgImage: croppedCGImage)
-                return resultImage
-                
-            } else {
-                if originHeight >= originWidth {
-                    ratio = originHeight / originWidth
-                    
-                    xOffset = scaleFactor.xOffset / viewWidth / scaleFactor.scale * viewWidth
-                    yOffset = scaleFactor.yOffSet / viewWidth / scaleFactor.scale * viewWidth * ratio
-                    
-                    lengthWitdth = viewWidth * scaleFactor.scale
-                    lengthHeight = viewWidth * ratio * scaleFactor.scale
-                } else {
-                    ratio = originWidth / originHeight
-
-                    xOffset = scaleFactor.xOffset / viewWidth / scaleFactor.scale * viewWidth * ratio
-                    yOffset = scaleFactor.yOffSet / viewWidth / scaleFactor.scale * viewWidth + (viewWidth * 9 / 32)
-                    
-                    lengthWitdth = viewWidth * ratio * scaleFactor.scale
-                    lengthHeight = viewWidth * scaleFactor.scale
-                }
-                
-                let cropRect = CGRect(
-                    x: xOffset,
-                    y: yOffset,
-                    width: lengthWitdth,
-                    height: lengthHeight
-                ).integral
-                
-                let croppedCGImage = sourceCGImage.cropping(
-                    to: cropRect
-                )!
-                
-                let resultImage = UIImage(cgImage: croppedCGImage)
-                return resultImage
-            }
+            let croppedCGImage = sourceCGImage.cropping(
+                to: cropRect
+            )!
             
+            let resultImage = UIImage(cgImage: croppedCGImage)
+            return resultImage
         }
+        
+        
         
         return UIImage(named: "profile_image")!
     }
@@ -636,7 +586,7 @@ extension MakePostSelectImageVC: UICollectionViewDelegate, UICollectionViewDataS
                 
             } else {
                 self.selectedIndex.append(indexPath.row)
-                self.scaleFactor.append(ScaleFactor(scale: 1.0, xOffset: 0, yOffSet: 0))
+                self.scaleFactor.append(ScaleFactor(scale: 1.0, xOffset: 0, yOffSet: 0, contentWidth: 0, contentHeight: 0))
             }
             
             self.currnetIndex = self.selectedIndex.firstIndex(where: { $0 == indexPath.row })!
@@ -656,11 +606,17 @@ extension MakePostSelectImageVC: UIScrollViewDelegate {
         let x = scrollView.contentOffset.x
         let y = scrollView.contentOffset.y
         
+        let x_ = scrollView.contentSize.width
+        let y_ = scrollView.contentSize.height
+        
         if scaleFactor.count > currnetIndex {
             self.scaleFactor[currnetIndex].scale = scale
             
             self.scaleFactor[currnetIndex].xOffset = x
             self.scaleFactor[currnetIndex].yOffSet = y
+            
+            self.scaleFactor[currnetIndex].contentWidth = x_
+            self.scaleFactor[currnetIndex].contentHeight = y_
             
         }
     }
@@ -669,10 +625,15 @@ extension MakePostSelectImageVC: UIScrollViewDelegate {
         let x = scrollView.contentOffset.x
         let y = scrollView.contentOffset.y
         
+        let x_ = scrollView.contentSize.width
+        let y_ = scrollView.contentSize.height
+        
         
         if scaleFactor.count > currnetIndex {
             self.scaleFactor[currnetIndex].xOffset = x
             self.scaleFactor[currnetIndex].yOffSet = y
+            self.scaleFactor[currnetIndex].contentWidth = x_
+            self.scaleFactor[currnetIndex].contentHeight = y_
         }
         
     }
@@ -681,10 +642,15 @@ extension MakePostSelectImageVC: UIScrollViewDelegate {
         let x = scrollView.contentOffset.x
         let y = scrollView.contentOffset.y
         
+        let x_ = scrollView.contentSize.width
+        let y_ = scrollView.contentSize.height
+        
         
         if scaleFactor.count > currnetIndex {
             self.scaleFactor[currnetIndex].xOffset = x
             self.scaleFactor[currnetIndex].yOffSet = y
+            self.scaleFactor[currnetIndex].contentWidth = x_
+            self.scaleFactor[currnetIndex].contentHeight = y_
             
         }
         
