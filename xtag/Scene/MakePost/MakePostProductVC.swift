@@ -69,7 +69,7 @@ class MakePostProductVC: UIViewController {
     }
     
     private func getProduct() {
-        HTTPSession.shared.getUserProductWithReview(userId: UserManager.shared.userInfo?.userId ?? "", smallCategoryId: selectedCategoryId) { result, error in
+        HTTPSession.shared.getUserProductWithReview(userId: UserManager.shared.userInfo?.userId ?? "active", smallCategoryId: selectedCategoryId, status: "") { result, error in
             if error == nil {
                 self.productList = result ?? []
                 

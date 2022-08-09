@@ -135,12 +135,13 @@ extension AllProductVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
         let width = (self.view.frame.size.width - 2) / 2
         var height = width * rx / ry
         
-        if rx == 0 || ry == 0 {
+        if ratio! == "1:1" {
             height = width
+        } else if ratio! == "4:5" {
+            height = width / 4 * 5
+        } else {
+            height = width / 16 * 9
         }
-        
-        print("rx = \(rx) ry = \(ry)")
-        print("width = \(width) hieght = \(height)")
         
         return CGSize(width: width, height: height)
     }

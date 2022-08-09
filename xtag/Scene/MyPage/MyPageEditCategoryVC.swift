@@ -99,11 +99,14 @@ class MyPageEditCategoryVC: UIViewController {
         var removeSmallCategoryIdList : [String] = []
         var addSmallCategoryIdList : [String] = []
         
+        var deletedCategoryName = ""
+        
         for smallCategory in self.originalSmallCategoryList {
             if self.selectedSmallCategoryList.contains(where: { $0.smallCategoryId! == smallCategory.smallCategoryId! }) {
                 
             } else {
                 removeSmallCategoryIdList.append(smallCategory.smallCategoryId!)
+                deletedCategoryName += "'\(smallCategory.smallCategoryName!)'"
             }
         }
         
@@ -115,13 +118,62 @@ class MyPageEditCategoryVC: UIViewController {
             }
         }
         
-        
-        HTTPSession.shared.updateUserCategory(removeSmallCategoryIdList: removeSmallCategoryIdList, addSmallCategoryIdList: addSmallCategoryIdList) { result, error in
-            if error == nil {
-                self.dismiss(animated: true)
+        if removeSmallCategoryIdList.count > 0 {
+            
+            
+            
+            let attributedString = applyBoldAttributedStringSelected("관심사 " + deletedCategoryName + "의 팔로우,포스트,상품평가가 모두 삭제됩니다.", highlightText: deletedCategoryName)
+            
+            
+            showCommonPopup(title: "관심사 삭제", content: attributedString, confirmButtonTitle: "삭제", popupType: .ALERT) {
+                HTTPSession.shared.updateUserCategory(removeSmallCategoryIdList: removeSmallCategoryIdList, addSmallCategoryIdList: addSmallCategoryIdList) { result, error in
+                    if error == nil {
+                        self.dismiss(animated: true)
+                    }
+                }
+            }
+        } else {
+            HTTPSession.shared.updateUserCategory(removeSmallCategoryIdList: removeSmallCategoryIdList, addSmallCategoryIdList: addSmallCategoryIdList) { result, error in
+                if error == nil {
+                    self.dismiss(animated: true)
+                }
             }
         }
+        
+        
+        
+        
+        
     }
+    
+    fileprivate func applyBoldAttributedStringSelected(_ originalText: String, highlightText: String) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: originalText, attributes: [
+            .font: UIFont(name: XTFont.PRETENDARD_REGULAR, size: 14)!,
+            .foregroundColor: XTColor.GREY_900.getColorWithString()
+            
+        ])
+        
+        let range = (originalText as NSString).range(of:highlightText)
+        attributedString.addAttribute(
+            .font,
+            value: UIFont(name: XTFont.PRETENDARD_EXTRABOLD, size: 14.0)!,
+            range: range)
+        
+        attributedString.addAttribute(.foregroundColor, value: XTColor.GREY_900.getColorWithString(), range: range)
+        
+        let range2 = (originalText as NSString).range(of:"팔로우,포스트,상품평가")
+        attributedString.addAttribute(
+            .font,
+            value: UIFont(name: XTFont.PRETENDARD_EXTRABOLD, size: 14.0)!,
+            range: range2)
+        
+        attributedString.addAttribute(.foregroundColor, value: XTColor.GREY_900.getColorWithString(), range: range2)
+                                      
+        return attributedString
+        
+    }
+        
+    
 }
 
 extension MyPageEditCategoryVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

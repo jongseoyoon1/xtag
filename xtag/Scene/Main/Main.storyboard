@@ -1390,14 +1390,14 @@
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wY4-om-dPl">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
-                                                        <color key="backgroundColor" red="0.0" green="0.57662860069999999" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="414" id="Epr-A8-aUQ"/>
                                                             <constraint firstAttribute="width" constant="414" id="N9h-DR-XwL"/>
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.77647058820000003" green="0.1137254902" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="wY4-om-dPl" firstAttribute="trailing" secondItem="RoV-oU-DU9" secondAttribute="trailing" constant="414" id="GKP-nX-gc4"/>
                                                     <constraint firstItem="wY4-om-dPl" firstAttribute="top" secondItem="RoV-oU-DU9" secondAttribute="top" id="RsA-3m-mg1"/>

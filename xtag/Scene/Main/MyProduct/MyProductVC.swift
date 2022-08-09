@@ -100,9 +100,17 @@ extension MyProductVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         
         let width = (self.view.frame.size.width - 2) / 2
         var height = width * ry / rx
+//
+//        if rx == 0 || ry == 0 {
+//            height = width
+//        }
         
-        if rx == 0 || ry == 0 {
+        if ratio! == "1:1" {
             height = width
+        } else if ratio! == "4:5" {
+            height = width / 4 * 5
+        } else {
+            height = width / 16 * 9
         }
         
         print("rx = \(rx) ry = \(ry)")
@@ -150,6 +158,17 @@ extension MyProductVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let post = postList[indexPath.row]
+        if let viewController = UIStoryboard(name: "UserPost", bundle: nil).instantiateViewController(withIdentifier: "UserPostVC") as? UserPostVC {
+            MainNavigationBar.isHidden = true
+            viewController.modalPresentationStyle = .fullScreen
+            viewController.postId = post.postId ?? ""
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
+        
     }
 }
 

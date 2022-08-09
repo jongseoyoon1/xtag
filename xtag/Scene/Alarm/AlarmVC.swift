@@ -118,13 +118,13 @@ extension AlarmVC : UITableViewDelegate, UITableViewDataSource {
             cell.countView.isHidden = false
             
             if noti.smallCategoryNameList.count > 1 {
-                let originText = (noti.sender?.userName ?? "") + " 님이 회원님의 \(noti.smallCategoryNameList.first ?? "") 관심사 외 \(noti.smallCategoryNameList.count)개를 팔로우 합니다."
+                let originText = (noti.sender?.userName ?? "") + " 님이 회원님의 \(noti.smallCategoryNameList.first ?? "") 관심사 외 \(noti.smallCategoryNameList.count - 1)개를 팔로우 합니다."
                 cell.contentLabel.attributedText = applyBoldAttributedStringSelected(originText, highlightText: (noti.sender?.userName ?? ""))
             } else {
                 let originText = (noti.sender?.userName ?? "") + " 님이 회원님의 \(noti.smallCategoryNameList.first ?? "") 관심사를 팔로우 합니다."
                 cell.contentLabel.attributedText = applyBoldAttributedStringSelected(originText, highlightText: (noti.sender?.userName ?? ""))
             }
-            
+            cell.postImageView.kf.setImage(with: URL(string: noti.post?.postCdnImageUri ?? (noti.post?.postS3ImageUri ?? "")))
             cell.timeLabel.text = noti.registerDate
             cell.profileImageView.kf.setImage(with: URL(string: noti.sender?.userCdnImageUri ?? (noti.sender?.userS3ImageUri ?? "")), placeholder: UIImage(named: "profile_image"))
         } else if noti.type! == "COMMENT" {

@@ -78,6 +78,7 @@ class ProductModel: Mappable {
      */
     var xRatio: String?
     var yRatio: String?
+    var smallCategoryList: [SmallCategoryModel] = []
     
     func mapping(map: Map) {
         productCdnImageUri <- map["productCdnImageUri"]
@@ -93,5 +94,7 @@ class ProductModel: Mappable {
         productImageUri <- map["productImageUri"]
         userProductStatus <- map["userProductStatus"]
         productLink <- map["productLink"]
+        
+        smallCategoryList <- map["smallCategoryList"]
     }
 }

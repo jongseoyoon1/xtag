@@ -14,7 +14,7 @@ extension HTTPSession {
         case getProductReview(userProductId: String)
         case getProductWithTag(userProductId: String)
         case getUserProduct(userId: String, smallCategoryId: String)
-        case getUserProductWithReview(userId: String, smallCategoryId: String)
+        case getUserProductWithReview(userId: String, smallCategoryId: String, status: String)
         //case getProductDetail(userProductId: String)
         case makeProduct(title: String, imageUri: String, link: String, satisfied: String, smallCategoryList: [String], type: String, content: String)
         case updateProductStatus(userProductId: String)
@@ -31,8 +31,8 @@ extension HTTPSession {
                 return "post/product/\(userProductId)"
             case .getUserProduct(let userId, let smallCategoryId):
                 return "product/user/\(userId)?smallCategoryId=\(smallCategoryId)"
-            case .getUserProductWithReview(let userId, let smallCategoryId):
-                return "product/user/\(userId)?smallCategoryId=\(smallCategoryId)&status=reviewed"
+            case .getUserProductWithReview(let userId, let smallCategoryId, let status):
+                return "product/user/\(userId)?smallCategoryId=\(smallCategoryId)&status=\(status)"
             case .makeProduct:
                 return "product"
             case .updateProductStatus(let userProductId):
@@ -211,9 +211,9 @@ extension HTTPSession {
     }
     
     
-    func getUserProductWithReview(userId: String, smallCategoryId: String, completion: @escaping([ProductModel]?, Error?) -> Void) {
+    func getUserProductWithReview(userId: String, smallCategoryId: String, status: String, completion: @escaping([ProductModel]?, Error?) -> Void) {
         
-        request(request: Product.getUserProductWithReview(userId:userId, smallCategoryId: smallCategoryId)).responseJSON { response in
+        request(request: Product.getUserProductWithReview(userId:userId, smallCategoryId: smallCategoryId, status: status)).responseJSON { response in
             switch response.result {
             case .success(let result):
                 if let dict = result as? Dictionary<String, Any> {

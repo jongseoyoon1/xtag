@@ -193,7 +193,7 @@ class UserProfileVC: UIViewController {
                 self.postList = result
                 
                 HTTPSession.shared.getUserProductWithReview(userId: self.userId,
-                                                            smallCategoryId: self.selectedSmallCategoryId) { result, error in
+                                                            smallCategoryId: self.selectedSmallCategoryId, status: "active") { result, error in
                     if error == nil {
                         guard let result = result else {
                             return
