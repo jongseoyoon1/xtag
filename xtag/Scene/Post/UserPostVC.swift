@@ -43,9 +43,25 @@ class UserPostVC: UIViewController {
             if selectedProduct == nil {
                 self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0), IndexPath(row: 2, section: 0)], with: .none)
             } else {
+                HTTPSession.shared.getProductDetail(userProductId: self.selectedProduct?.userProductId ?? "") { result, error in
+                    if error == nil {
+                        self.selectedProductDetail = result
+                    }
+                }
                 self.getProductReview(userProductId: selectedProduct!.userProductId ?? "")
             }
             
+        }
+    }
+    
+    private var selectedProductDetail: ProductModel? {
+        didSet {
+            if selectedProductDetail != nil {
+                
+                
+                
+                self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0), IndexPath(row: 2, section: 0)], with: .none)
+            }
         }
     }
     
@@ -246,10 +262,14 @@ extension UserPostVC: UITableViewDelegate, UITableViewDataSource {
             }
             
             if let postDetailModel = self.postDetailModel {
-                cell.smallCategoryList = postDetailModel.postCategoryList
-                cell.tagCollectionView.reloadData()
+//                cell.smallCategoryList = postDetailModel.postCategoryList
+//                cell.tagCollectionView.reloadData()
             }
             
+            if let productDetail = self.selectedProductDetail {
+                cell.smallCategoryList = productDetail.smallCategoryList
+                cell.tagCollectionView.reloadData() 
+            }
             
             
             return cell

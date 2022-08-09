@@ -40,11 +40,13 @@ class ProductDetailVC: UIViewController {
                 guard let result = result else {
                     return
                 }
-
+                self.product.smallCategoryList = result.smallCategoryList
                 self.product.userProductStatus = result.userProductStatus
                 self.nameLabel.text = UserManager.shared.userInfo?.name
                 self.profileImageView.kf.setImage(with: URL(string: UserManager.shared.userInfo?.cdnImageUri ?? (UserManager.shared.userInfo?.s3ImageUri ?? "")), placeholder: UIImage(named: "profile_image"))
             }
+            
+            self.tableView.reloadData()
         }
     }
     
@@ -188,10 +190,8 @@ extension ProductDetailVC: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             
-            if let postDetailModel = self.postDetailModel {
-                cell.smallCategoryList = postDetailModel.postCategoryList
-                cell.tagCollectionView.reloadData()
-            }
+            cell.smallCategoryList = self.product.smallCategoryList
+            cell.tagCollectionView.reloadData()
             
             
             
