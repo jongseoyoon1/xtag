@@ -19,6 +19,7 @@ class MakePostUploadVC: UIViewController {
                                        "여덟 번째 사진 내용 작성",
                                        "아홉 번째 사진 내용 작성",
                                        "열 번째 사진 내용 작성"]
+    @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var postImgaeCollectionVIewPaddingWidth: NSLayoutConstraint!
     @IBOutlet weak var productCollectionView: UICollectionView!
@@ -76,6 +77,8 @@ class MakePostUploadVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        registerForKeyboardNotifications()
+        
         pageLabel.text = "\(pageIndex)/\(imageList.count)"
         pageLabel.attributedText = applyAttributedString(pageLabel.text!, 1)
         
@@ -97,9 +100,56 @@ class MakePostUploadVC: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        unregisterForKeyboardNotifications()
+    }
+    
+    private func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func unregisterForKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ notificatoin: Notification) {
+        let duration = notificatoin.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
+        let curve = notificatoin.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
+        let keyboardSize = (notificatoin.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let height = keyboardSize.height - view.safeAreaInsets.bottom
+        
+        stackViewTopConstraint.constant = height
+        view.layoutIfNeeded()
+    }
+    
+    @objc func keyboardWillHide(_ notificatoin: Notification) {
+        
+        let duration = notificatoin.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
+        let curve = notificatoin.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
+        
+        stackViewTopConstraint.constant = 0
+        view.layoutIfNeeded()
+    }
+    
+    
     private func setupTextView() {
         contentTextView.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         contentTextView.delegate = self
+        
+        let toolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem:    .flexibleSpace, target: nil, action: nil)
+        let doneBtn: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(dismissMyKeyboard))
+        toolbar.setItems([flexSpace, doneBtn], animated: false)
+        toolbar.sizeToFit()
+        self.contentTextView.inputAccessoryView = toolbar
+    }
+    
+    @objc func dismissMyKeyboard() {
+        view.endEditing(true)
     }
     
     private func setupCollectionView() {
@@ -179,7 +229,7 @@ class MakePostUploadVC: UIViewController {
         } completion: { _, _ in
             
         }
-
+        
     }
     
     @IBAction func addPostBtnPressed(_ sender: Any) {
@@ -422,7 +472,7 @@ extension MakePostUploadVC: UITextViewDelegate {
             MakePostManager.shared.postList[self.pageIndex - 1].content = textView.text
         }
     }
-
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             textView.text = placeholderText
@@ -433,14 +483,16 @@ extension MakePostUploadVC: UITextViewDelegate {
             MakePostManager.shared.postList[self.pageIndex - 1].content = textView.text
         }
     }
-
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let inputString = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard let oldString = textView.text, let newRange = Range(range, in: oldString) else { return true }
         let newString = oldString.replacingCharacters(in: newRange, with: inputString).trimmingCharacters(in: .whitespacesAndNewlines)
         MakePostManager.shared.postList[self.pageIndex - 1].content = newString
         let characterCount = newString.count
-       
+        
         return true
     }
+    
+    
 }

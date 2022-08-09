@@ -2422,6 +2422,7 @@
                         <outlet property="postImageCollectionView" destination="lhR-4T-TVu" id="GJE-3g-JQg"/>
                         <outlet property="postImgaeCollectionVIewPaddingWidth" destination="arE-vr-IsX" id="jKi-Cp-mt6"/>
                         <outlet property="productCollectionView" destination="du5-Gv-H0S" id="61D-gR-of1"/>
+                        <outlet property="stackViewTopConstraint" destination="aWc-7p-0sq" id="XFJ-XL-1OI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EG5-sc-HGI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
