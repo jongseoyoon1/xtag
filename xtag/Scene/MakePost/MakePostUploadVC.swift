@@ -238,6 +238,7 @@ extension MakePostUploadVC: UICollectionViewDelegate, UICollectionViewDataSource
                 self.imageList.remove(at: self.pageIndex - 1)
                 
                 self.postImageCollectionView.reloadData()
+                self.postImageCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
                 self.pageIndex = 1
             }
             
