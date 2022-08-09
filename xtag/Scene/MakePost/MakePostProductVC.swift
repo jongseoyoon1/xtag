@@ -18,11 +18,16 @@ class MakePostProductVC: UIViewController {
     
     private var selectedCategory: SmallCategoryModel!
     private var categoryList: [SmallCategoryModel] = []
-    private var selectedProductList: [ProductModel] = [] {
+    public var selectedProductList: [ProductModel] = [] {
         didSet {
-            compButton.setTitle("선택 \(selectedProductList.count)", for: []
-            )
-            productThumbnailCollectionView.reloadData()
+            if compButton != nil  {
+                
+                compButton.setTitle("선택 \(selectedProductList.count)", for: [])
+            }
+            if productThumbnailCollectionView != nil {
+                
+                productThumbnailCollectionView.reloadData()
+            }
         }
     }
     private var productList: [ProductModel] = [] {
@@ -51,6 +56,7 @@ class MakePostProductVC: UIViewController {
         setupCollectionView()
         getProduct()
         getUserCategory()
+        
     }
     
     private func setupCollectionView() {
@@ -84,6 +90,16 @@ class MakePostProductVC: UIViewController {
                 self.view.layoutSubviews()
                 
                 self.productCountLabel.attributedText = self.applyBoldAttributedStringSelected("평가한 상품" + "\(self.productList.count)" + "개", highlightText: "\(self.productList.count)")
+                
+                
+                var selectedIdx : [Int] = []
+                for product in self.selectedProductList {
+                    let idx = self.productList.firstIndex(where: { $0.userProductId! == product.userProductId! })
+                    if idx != nil {
+                        selectedIdx.append(idx!)
+                    }
+                }
+                self.selectedIndex = selectedIdx
             }
         }
     }

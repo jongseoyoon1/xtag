@@ -20,8 +20,15 @@ class MakePostTagVC: UIViewController {
     public var postIndex : Int!
     public var productIndex : Int!
     public var postImage: UIImage!
+    private var tagViews: [UIImageView] = []
+    
+    
     public var productList: [ProductModel] = [] {
         didSet {
+            
+            
+            
+            
             productCollectionView.reloadData()
         }
     }
@@ -37,6 +44,8 @@ class MakePostTagVC: UIViewController {
                 if selectedProduct?.xRatio == nil {
                     emptyRatioView.isHidden = false
                     tagImageView.isHidden = true
+                    
+                    updateTag(selectedProduct?.userProductId ?? "")
                 } else {
                     
                     let x = selectedProduct!.xRatio!.CGFloatValue()! * self.postImageView.frame.width
@@ -47,7 +56,7 @@ class MakePostTagVC: UIViewController {
                         tagImageView.isHidden = false
                         emptyRatioView.isHidden = true
                         
-
+                        updateTag(selectedProduct?.userProductId ?? "")
                     }
                 }
             }
@@ -65,6 +74,47 @@ class MakePostTagVC: UIViewController {
         super.viewDidAppear(animated)
         
         updateUI()
+        
+        for view in tagViews {
+            view.removeFromSuperview()
+        }
+        
+        tagViews.removeAll()
+    }
+    
+    private func updateTag(_ userProductId: String) {
+        for view in tagViews {
+            view.removeFromSuperview()
+        }
+        
+        tagViews.removeAll()
+        
+        for product in MakePostManager.shared.postList[self.postIndex].productList {
+            
+            if product.userProductId! != userProductId {
+                let xratio = CGFloat(Float(product.xRatio ?? "") ?? 0.0)
+                let yratio = CGFloat(Float(product.yRatio ?? "") ?? 0.0)
+                let vw = UIImageView(frame: CGRect(x: self.view.frame.width * xratio - 3.5, y: self.postImageView.frame.height * yratio - 3.5, width: 7, height: 7))
+                vw.tag = Int(product.userProductId ?? "0")!
+                vw.cornerradius = 3.5
+                vw.backgroundColor = .white
+                print("add image view")
+                tagViews.append(vw)
+                self.view.addSubview(vw)
+            }
+            
+            for view in tagViews {
+                view.image = nil
+                view.cornerradius = 3.5
+                view.backgroundColor = .white
+                view.frame.size = CGSize(width: 7, height: 7)
+            }
+            
+            view.bringSubviewToFront(tagImageView)
+            }
+            
+            
+
     }
     
     private func updateUI() {
@@ -185,6 +235,8 @@ extension MakePostTagVC: UICollectionViewDelegate, UICollectionViewDataSource, U
                     viewcontroller.modalPresentationStyle = .fullScreen
                     
                     viewcontroller.postIndex = self.postIndex
+                    viewcontroller.selectedProductList = self.productList
+                    
                     
                     self.present(viewcontroller, animated: true)
                 }
