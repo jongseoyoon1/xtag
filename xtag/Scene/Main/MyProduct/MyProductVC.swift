@@ -9,6 +9,11 @@ import UIKit
 import Combine
 
 class MyProductVC: UIViewController {
+    
+    private var isPaging = false
+    private var page = "0"
+    private var size = "20"
+    
     private var subscriptions = Set<AnyCancellable>()
 
     private var postList: [PostModel] = [] {
@@ -43,22 +48,29 @@ class MyProductVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        let customLayout = CustomLayout()
-        customLayout.delegate = self
-        collectionView.collectionViewLayout = customLayout
+//        let customLayout = CustomLayout()
+//        customLayout.delegate = self
+//        collectionView.collectionViewLayout = customLayout
         
         collectionView.contentInset = UIEdgeInsets.zero
     }
     
     private func getPost() {
         
-        HTTPSession.shared.getMyFeed(smallCategoryId: self.smallCategoryId) { result, error in
+        HTTPSession.shared.getMyFeed(page: page, size: size) { result, error in
             if error == nil {
                 guard let result = result else {
                     return
                 }
-
-                self.postList = result
+                
+                if self.page == "0" {
+                    self.postList = result
+                } else {
+                    self.postList.append(contentsOf: result)
+                    self.collectionView.reloadData()
+                }
+                
+                self.isPaging = false
             }
         }
     }
@@ -67,8 +79,10 @@ class MyProductVC: UIViewController {
         let publisher = CategoryManager.shared.$mainSelectedSmallCategory
         publisher.sink { smallCategoryModel in
             if let smallCategoryModel = smallCategoryModel {
+                self.page = "0"
                 self.updatePost(smallCategoryId: smallCategoryModel.smallCategoryId ?? "")
             } else {
+                self.page = "0"
                 self.updatePost(smallCategoryId: "")
             }
         }
@@ -76,13 +90,20 @@ class MyProductVC: UIViewController {
     }
     
     private func updatePost(smallCategoryId: String) {
-        HTTPSession.shared.feed(smallCategoryId: smallCategoryId, page: nil, size: nil) { result, error in
+        HTTPSession.shared.feed(smallCategoryId: smallCategoryId, page: page, size: size) { result, error in
             if error == nil {
                 guard let result = result else {
                     return
                 }
 
-                self.postList = result
+                if self.page == "0" {
+                    self.postList = result
+                } else {
+                    self.postList.append(contentsOf: result)
+                    self.collectionView.reloadData()
+                }
+                
+                self.isPaging = false
             }
         }
     }
@@ -142,8 +163,13 @@ extension MyProductVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         let width = (UIScreen.main.bounds.width - 2 ) / 2//(self.view.frame.size.width - 2) / 2
         var height = width * rx / ry
         
-        if rx == 0 || ry == 0 {
+        
+        if ratio! == "1:1" {
             height = width
+        } else if ratio! == "4:5" {
+            height = width / 4 * 5
+        } else {
+            height = width / 16 * 9
         }
         
         print("rx = \(rx) ry = \(ry)")
@@ -173,3 +199,25 @@ extension MyProductVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
 }
 
 
+extension MyProductVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.height
+        
+        
+        
+        // 스크롤이 테이블 뷰 Offset의 끝에 가게 되면 다음 페이지를 호출
+        if offsetY > (contentHeight - height) {
+            
+            if isPaging == false {
+                var pageIdx = Int(self.page)!
+                pageIdx += 1
+                self.page = "\(pageIdx)"
+                
+                isPaging = true
+                getPost()
+            }
+        }
+    }
+}

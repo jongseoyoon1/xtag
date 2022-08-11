@@ -10,8 +10,8 @@ import Alamofire
 
 extension HTTPSession {
     private enum Post: Router {
-        case feed(smallCategoryId: String?, page: Int?, size: Int?)
-        case getMyFeed(smallCategoryId: String)
+        case feed(smallCategoryId: String, page: String, size: String)
+        case getMyFeed(page: String, size: String)
         case getPostDetail(postId: String)
         case likePost(postId: String)
         case getPostAlbum(userId: String, smallCategoryId: String)
@@ -28,13 +28,14 @@ extension HTTPSession {
             case .feed(let smallCategoryId,let page,let size):
                 var id = ""
                 if smallCategoryId != nil {
-                    id = smallCategoryId!
+                    id = smallCategoryId
                 }
-                return "post/feed?smallCategoryId=\(id)"
+                print("post/feed?smallCategoryId=\(id)&page=\(page)&size=\(size)")
+                return "post/feed?smallCategoryId=\(id)&page=\(page)&size=\(size)"
             case .getPostDetail(let postId):
                 return "post/\(postId)"
-            case .getMyFeed(let smallCategoryId):
-                return "post/feed/category?smallCategoryId=\(smallCategoryId)"
+            case .getMyFeed(let page,let size):
+                return "post/feed/category?page=\(page)&size=\(size)"
             case .likePost(let postId):
                 return "post/\(postId)/like"
             case .getPostAlbum(let userId, let smallCategoryId):
@@ -405,7 +406,7 @@ extension HTTPSession {
         }
     }
     
-    func feed(smallCategoryId: String?, page: Int?, size: Int?, completion: @escaping([PostModel]?, Error?) -> Void) {
+    func feed(smallCategoryId: String, page: String, size: String, completion: @escaping([PostModel]?, Error?) -> Void) {
         
         request(request: Post.feed(smallCategoryId: smallCategoryId, page: page, size: size)).responseJSON { response in
             switch response.result {
@@ -437,9 +438,9 @@ extension HTTPSession {
         }
     }
     
-    func getMyFeed(smallCategoryId: String, completion: @escaping([PostModel]?, Error?) -> Void) {
+    func getMyFeed(page: String, size: String, completion: @escaping([PostModel]?, Error?) -> Void) {
         
-        request(request: Post.getMyFeed(smallCategoryId: smallCategoryId)).responseJSON { response in
+        request(request: Post.getMyFeed(page: page, size: size)).responseJSON { response in
             switch response.result {
             case .success(let result):
                 if let dict = result as? Dictionary<String, Any> {

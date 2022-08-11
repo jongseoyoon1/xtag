@@ -10,6 +10,10 @@ import Combine
 
 class FollowingProductVC: UIViewController {
     
+    private var isPaging = false
+    private var page = "0"
+    private var size = "20"
+    
     private var subscriptions = Set<AnyCancellable>()
 
     private var postList: [PostModel] = [] {
@@ -65,8 +69,10 @@ class FollowingProductVC: UIViewController {
         let publisher = CategoryManager.shared.$mainSelectedSmallCategory
         publisher.sink { smallCategoryModel in
             if let smallCategoryModel = smallCategoryModel {
+                self.page = "0"
                 self.updatePost(smallCategoryId: smallCategoryModel.smallCategoryId ?? "")
             } else {
+                self.page = "0"
                 self.updatePost(smallCategoryId: "")
             }
         }
@@ -74,13 +80,20 @@ class FollowingProductVC: UIViewController {
     }
     
     private func updatePost(smallCategoryId: String) {
-        HTTPSession.shared.feed(smallCategoryId: smallCategoryId, page: nil, size: nil) { result, error in
+        HTTPSession.shared.feed(smallCategoryId: smallCategoryId, page: page, size: size) { result, error in
             if error == nil {
                 guard let result = result else {
                     return
                 }
 
-                self.postList = result
+                if self.page == "0" {
+                    self.postList = result
+                } else {
+                    self.postList.append(contentsOf: result)
+                    self.collectionView.reloadData()
+                }
+                
+                self.isPaging = false
             }
         }
     }
@@ -165,3 +178,25 @@ extension FollowingProductVC: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 
+extension FollowingProductVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.height
+        
+        
+        
+        // 스크롤이 테이블 뷰 Offset의 끝에 가게 되면 다음 페이지를 호출
+        if offsetY > (contentHeight - height) {
+            
+            if isPaging == false {
+                
+                var pageIdx = Int(self.page)!
+                pageIdx += 1
+                self.page = "\(pageIdx)"
+                isPaging = true
+                getPost()
+            }
+        }
+    }
+}
