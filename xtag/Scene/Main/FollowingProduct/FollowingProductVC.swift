@@ -46,9 +46,11 @@ class FollowingProductVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        
         let customLayout = CustomLayout()
         customLayout.delegate = self
         collectionView.collectionViewLayout = customLayout
+        
         
         collectionView.contentInset = UIEdgeInsets.zero
     }
@@ -102,7 +104,7 @@ class FollowingProductVC: UIViewController {
 
 
 
-extension FollowingProductVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CustomLayoutDelegate {
+extension FollowingProductVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout , CustomLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         let post = postList[indexPath.row]
         let ratio = post.postImageRatio
@@ -112,14 +114,12 @@ extension FollowingProductVC: UICollectionViewDelegate, UICollectionViewDataSour
         let width = (self.view.frame.size.width - 2) / 2
         var height = width * ry / rx
         
-        if ratio! == "1:1" {
+        if rx == 0 || ry == 0 {
             height = width
-        } else if ratio! == "4:5" {
-            height = width / 4 * 5
-        } else {
-            height = width / 16 * 9
         }
         
+        print("rx = \(rx) ry = \(ry)")
+        print("width = \(width) hieght = \(height)")
         
         return height
     }

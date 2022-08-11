@@ -29,7 +29,7 @@ class CustomLayout: UICollectionViewLayout {
     private var cache: [UICollectionViewLayoutAttributes] = []
     
     override func prepare() {
-        guard let collectionView = collectionView, cache.isEmpty else { return }
+        //guard let collectionView = collectionView, cache.isEmpty else { return }
         
         let numberOfColumns: Int = 2
         let cellPadding: CGFloat = 1
@@ -40,9 +40,9 @@ class CustomLayout: UICollectionViewLayout {
         
         var column: Int = 0
         
-        for item in 0..<collectionView.numberOfItems(inSection: 0) {
+        for item in 0..<collectionView!.numberOfItems(inSection: 0) {
             let indexPath = IndexPath(item: item, section: 0)
-            let imageHeight = delegate?.collectionView(collectionView, heightForPhotoAtIndexPath: indexPath) ?? 180
+            let imageHeight = delegate?.collectionView(collectionView!, heightForPhotoAtIndexPath: indexPath) ?? 180
             let height = cellPadding * 2 + imageHeight
             
             let frame = CGRect(x: xOffSet[column],

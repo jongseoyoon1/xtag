@@ -46,9 +46,9 @@ class AllProductVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-//        let customLayout = CustomLayout()
-//        customLayout.delegate = self
-//        collectionView.collectionViewLayout = customLayout
+        let customLayout = CustomLayout()
+        customLayout.delegate = self
+        collectionView.collectionViewLayout = customLayout
         
         collectionView.contentInset = UIEdgeInsets.zero
     }

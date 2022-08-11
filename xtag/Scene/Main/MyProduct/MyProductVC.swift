@@ -48,9 +48,9 @@ class MyProductVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-//        let customLayout = CustomLayout()
-//        customLayout.delegate = self
-//        collectionView.collectionViewLayout = customLayout
+        let customLayout = CustomLayout()
+        customLayout.delegate = self
+        collectionView.collectionViewLayout = customLayout
         
         collectionView.contentInset = UIEdgeInsets.zero
     }
@@ -121,17 +121,9 @@ extension MyProductVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         
         let width = (self.view.frame.size.width - 2) / 2
         var height = width * ry / rx
-//
-//        if rx == 0 || ry == 0 {
-//            height = width
-//        }
         
-        if ratio! == "1:1" {
+        if rx == 0 || ry == 0 {
             height = width
-        } else if ratio! == "4:5" {
-            height = width / 4 * 5
-        } else {
-            height = width / 16 * 9
         }
         
         print("rx = \(rx) ry = \(ry)")
@@ -139,7 +131,6 @@ extension MyProductVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         
         return height
     }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return postList.count
     }
